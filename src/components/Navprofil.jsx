@@ -13,7 +13,7 @@ export default function Navprofil(){
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-center">
                     <Navbar.Text>
-                        <p className='text-dark mb-0 fw-bold'>Lengkapi Info Akun</p>
+                        <p className='text-dark mb-0'>Lengkapi Info Akun</p>
                     </Navbar.Text>
                 </Navbar.Collapse>
             </Container>
