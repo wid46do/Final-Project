@@ -50,7 +50,7 @@ export default function Formproduk(){
                     </Form.Group>
                     <div className='mt-3 row'>
                         <div className="porduk-btn d-grid col-6">
-                            <Button className='bg-light button-border text-dark'>
+                            <Button className='form-button2 bg-light button-border text-dark'>
                                 Preview
                             </Button>
                         </div>
