@@ -23,11 +23,12 @@ export default function Formprofil(){
                         <Form.Control
                             type='text'
                             placeholder='Nama'
+                            className='form-input'
                         />
                     </Form.Group>
                     <Form.Group className='mt-3'>
                         <Form.Label>Kota*</Form.Label>
-                        <Form.Select>
+                        <Form.Select className='form-input'>
                             <option text='secondary'>Pilih Kota</option>
                             <option>Surabaya</option>
                         </Form.Select>
@@ -37,6 +38,7 @@ export default function Formprofil(){
                         <Form.Control
                             as='textarea'
                             placeholder='Contoh: Jalan Ikan Hiu 33'
+                            className='form-input'
                         />
                     </Form.Group>
                     <Form.Group className='mt-3'>
@@ -44,6 +46,7 @@ export default function Formprofil(){
                         <Form.Control
                             type='number'
                             placeholder='contoh: +628123456789'
+                            className='form-input'
                         />
                     </Form.Group>
                     <div className='mt-3 d-grid'>

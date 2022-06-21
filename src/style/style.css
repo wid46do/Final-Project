@@ -12,12 +12,16 @@
     background-color: #E2D4F0;
     width: 96px;
     height: 96px;
-    border-radius: 10%;
+    border-radius: 12%;
 }
 
 .profil-form {
     width: 600px;
     height: auto;
+}
+
+.form-input {
+    border-radius: 13px;
 }
 
 .bidder {
@@ -56,6 +60,10 @@
 .offer-btn {
     width: 150px;
     height: auto;
+}
+
+.page-header {
+    margin-left: 80px;
 }
 
 @media (min-width: 992px) {

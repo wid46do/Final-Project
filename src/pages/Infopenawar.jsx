@@ -10,7 +10,7 @@ export default function Infopenawar(){
             <div className="container my-3 my-md-5 my-lg-5">
                 <div className="arrow my-4 my-md-0 my-lg-0 d-flex">
                     <img src={Arrow} alt="" />
-                    <p className='ms-4 mb-0 d-md-none d-lg-none fw-bold'>Info Penawar</p>
+                    <p className='page-header mb-0 d-md-none d-lg-none fw-bold'>Info Penawar</p>
                 </div>
                 <div className='d-flex justify-content-center'>
                     <div className='offer row mx-1'>

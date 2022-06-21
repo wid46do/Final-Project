@@ -18,6 +18,7 @@ export default function Formproduk(){
                         <Form.Control
                             type='text'
                             placeholder='Nama Produk'
+                            className='form-input'
                         />
                     </Form.Group>
                     <Form.Group className='mt-3'>
@@ -25,11 +26,12 @@ export default function Formproduk(){
                         <Form.Control
                             type='number'
                             placeholder='Rp 0,00'
+                            className='form-input'
                         />
                     </Form.Group>
                     <Form.Group className='mt-3'>
                         <Form.Label>Kategori</Form.Label>
-                        <Form.Select>
+                        <Form.Select className='form-input'>
                             <option>Pilih Kategori</option>
                         </Form.Select>
                     </Form.Group>
@@ -38,6 +40,7 @@ export default function Formproduk(){
                         <Form.Control
                             as='textarea'
                             placeholder='Contoh: Jalan Ikan Hiu 33'
+                            className='form-input'
                         />
                     </Form.Group>
                     <Form.Group className='mt-3'>
