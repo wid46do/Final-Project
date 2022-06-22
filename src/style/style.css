@@ -1,18 +1,31 @@
 .form-button {
     background-color: #7126B5 !important;
     border-color: #7126B5 !important;
+    border-radius: 16px;
+}
+
+.form-button2 {
+    border-radius: 16px;
 }
 
 .input-dropzone {
     background-color: #E2D4F0;
     width: 96px;
     height: 96px;
-    border-radius: 10%;
+    border-radius: 12%;
 }
 
 .profil-form {
     width: 600px;
     height: auto;
+}
+
+.form-input {
+    border-radius: 13px;
+}
+
+.bidder {
+    border-radius: 16px;
 }
 
 .produk-dropzone {
@@ -32,8 +45,33 @@
     height: auto;
 }
 
+.ket {
+    width: 100%;
+}
+
+.ket {
+    font-size: 14px;
+}
+
+.time p {
+    font-size: 10px;
+}
+
+.offer-btn {
+    width: 150px;
+    height: auto;
+}
+
+.page-header {
+    margin-left: 80px;
+}
+
 @media (min-width: 992px) {
     .arrow {
         margin-left: 200px;
+    }
+    .offer {
+        width: 600px;
+        height: auto;
     }
 }

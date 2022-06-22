@@ -4,6 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 import './App.css';
+import Infopenawar from "./pages/Infopenawar";
 import Infoproduk from "./pages/Infoproduk";
 import Infoprofil from './pages/Infoprofil';
 import Home from "./pages/Home";
@@ -19,6 +20,7 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/login' element={<Login/>} />
           <Route path='/register' element={<Register/>} />
+          <Route path='/offer' element={<Infopenawar/>}/>
         </Routes>
       </BrowserRouter>
   );
