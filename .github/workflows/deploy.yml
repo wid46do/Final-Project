@@ -1,14 +1,14 @@
 name: Production workflow
 
 on:
-  pull_request:
+  push:
     branches:
       - dev
       - main
 jobs:
-  build:
+  staging:
     runs-on: ubuntu-latest
-
+    if: github.branches == 'dev'
     steps:
       - name: Development Code
         uses: actions/checkout@v2
@@ -19,11 +19,6 @@ jobs:
       - run: npm install
       - run: npm run test
       - run: npm run build --if-present
-
-  staging:
-    needs: [build]
-    if: github.branches == 'dev'
-    steps:
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
