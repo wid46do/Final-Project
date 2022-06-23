@@ -8,7 +8,8 @@ on:
 jobs:
   staging:
     runs-on: ubuntu-latest
-    if: github.branches == 'dev'
+    # if: github.event.pull_request == 'dev'
+    if: github.event_name == 'pull_request'
     steps:
       - name: Development Code
         uses: actions/checkout@v2
