@@ -1,5 +1,5 @@
 import React from "react";
-import "../stylesheets/NavbarSeller.css";
+import "../style/NavbarSeller.css";
 import { FiSearch, FiList, FiBell, FiUser } from "react-icons/fi";
 
 function NavbarSeller() {

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "../stylesheets/SidebarMobile.css";
+import "../style/SidebarMobile.css";
 import { FiX } from "react-icons/fi";
 
 function SidebarMobile({ visible, setVisible }) {

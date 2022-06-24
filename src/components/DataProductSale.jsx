@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FiPlus } from "react-icons/fi";
-import "../stylesheets/DataProductSale.css";
+import "../style/DataProductSale.css";
 
 function DataProductSale() {
   return (

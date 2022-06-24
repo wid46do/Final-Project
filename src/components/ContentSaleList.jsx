@@ -1,5 +1,5 @@
 import React from "react";
-import "../stylesheets/ContentSaleList.css";
+import "../style/ContentSaleList.css";
 import {
   FiBox,
   FiHeart,
