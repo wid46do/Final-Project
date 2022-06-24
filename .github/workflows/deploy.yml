@@ -8,7 +8,7 @@ on:
 jobs:
   staging:
     runs-on: ubuntu-latest
-    if: github.branch_name == 'dev'
+    if: ${{ github.branch_name == 'dev' }}
     steps:
       - name: Development Code
         uses: actions/checkout@v2
