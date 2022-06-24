@@ -1,5 +1,5 @@
 import React from "react";
-import "../stylesheets/ContentPageProduct.css";
+import "../style/ContentPageProduct.css";
 import Slider from "react-slick";
 import { FiArrowLeft } from "react-icons/fi";
 
