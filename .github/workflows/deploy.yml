@@ -27,6 +27,8 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: 'secondhand-appstaging'
           heroku_email: 'rubenemmanuel2000w@gmail.com'
+          dontuseforce: true
+          dontautocreate: true
 
   # production:
   #   runs-on: ubuntu-latest
