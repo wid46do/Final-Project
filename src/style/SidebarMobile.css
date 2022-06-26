@@ -1,0 +1,28 @@
+.sidebar-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.content-sidebar-mobile {
+  width: 50%;
+  height: 100%;
+  background-color: white;
+}
+
+.content-sidebar-mobile div {
+  margin-bottom: 18px;
+}
+
+.icon-close-sidebar {
+  margin-right: 30px;
+}
+
+.content-sidebar-mobile ul {
+  padding-left: 0;
+  font-size: 14px;
+}

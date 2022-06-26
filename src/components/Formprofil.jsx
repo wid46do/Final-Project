@@ -2,13 +2,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button } from 'react-bootstrap';
 import '../style/style.css';
 import Camera from '../images/fi_camera.png';
-import Arrow from '../images/fi_arrow-left.png'; 
+import Arrow from '../images/fi_arrow-left.png';
+import { HiArrowLeft } from 'react-icons/hi' 
 
 export default function Formprofil(){
     return(
         <div className="container my-3 my-md-5 my-lg-5">
             <div className="arrow my-3 my-md-0 my-lg-0 d-flex">
-                <img src={Arrow} alt="" />
+                {/* <img src={Arrow} alt="" /> */}
+                <HiArrowLeft/>
                 <p className='ms-5 mb-0 d-md-none d-lg-none fw-bold'>Lengkapi Info Akun</p>
             </div>
             <div className='d-flex justify-content-center'>
