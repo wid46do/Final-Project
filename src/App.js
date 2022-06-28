@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PageProduct from "./pages/PageProduct"
 import PageSaleList from "./pages/PageSaleList"
+import Test1 from "./components/test1";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='/offer' element={<Infopenawar/>}/>
           <Route path="/halaman-produk" element={<PageProduct />} />
           <Route path="/daftar-jual" element={<PageSaleList />} />
+          <Route path='/test' element={<Test1 />} />
         </Routes>
       </BrowserRouter>
   );
