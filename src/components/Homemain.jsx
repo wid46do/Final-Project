@@ -1,26 +1,70 @@
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/free-mode";
+// import "swiper/css/autoplay";
+
+// import required modules
+import { Autoplay, EffectCoverflow, Pagination } from "swiper";
 import "../style/riostyle.css";
 import Kado from "../images/kado.png";
 import Mosq from "../images/mosq.png";
+import Banner2 from "../images/bannerslide2.png";
 import Clockone from "../images/clock1.png";
 import Clocktwo from "../images/clock2.png";
 export default function Homemain(){
     return(
         <>
-            <div className="home-slider">
-                <div className="slider1"></div>
-                <div className="slider2">
-                    <div className="slider2-body">
-                        <div className="slider2-info">
-                            <h1 className="home-title">Bulan Ramadhan<br />Banyak diskon!</h1>
-                            <h5>Diskon Hingga</h5>
-                            <h1 className="disc">60%</h1>
-                        </div>
-                        <img className="kado" src={Kado} alt="Kado" />
-                        <img className="imagebg" src={Mosq} alt="Mosq" />
+            <Swiper
+                effect={"coverflow"}
+                grabCursor={true}
+                centeredSlides={true}
+                slidesPerView={"auto"}
+                autoplay= {{
+                delay: 1500,
+                disableOnInteraction: false
+                }}
+                coverflowEffect={{
+                rotate: 0,
+                stretch: 0,
+                depth: 300,
+                modifier: 1,
+                slideShadows: false,
+                }}
+                loop={true}
+                pagination={true}
+                modules={[EffectCoverflow, Pagination]}
+                className="home-slider">
+                <SwiperSlide className="slider1">
+                    <img src={Banner2} alt="banner2"  />
+                </SwiperSlide>
+                <SwiperSlide className="slider2">
+                    <img src={Banner2} alt="banner2"  />
+                </SwiperSlide>
+                <SwiperSlide className="slider3">
+                    <img src={Banner2} alt="banner2"  />
+                </SwiperSlide>
+            </Swiper>
+            <div className="home-rect-bg">
+                <div className="slider2-body">
+                    <div className="slider2-info">
+                        <h1 className="home-title">Bulan Ramadhan<br />Banyak diskon!</h1>
+                        <h5>Diskon Hingga</h5>
+                        <h1 className="disc">60%</h1>
                     </div>
+                    <img className="kado" src={Kado} alt="Kado" />
+                    <img className="imagebg" src={Mosq} alt="Mosq" />
                 </div>
-                <div className="slider3"></div>
             </div>
+            {/* <div className="home-slider">
+                <div className="slider1"><img src={Banner2} alt="banner2" /></div>
+                <div className="slider2"><img src={Banner2} alt="banner2" /></div>
+                <div className="slider3"><img src={Banner2} alt="banner2" /></div>
+            </div> */}
 
             <div className="home-layout">
                 <h4>Telusuri Kategori</h4>
