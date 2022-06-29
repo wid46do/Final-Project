@@ -12,7 +12,11 @@
     background-color: #e2d4f0;
     width: 96px;
     height: 96px;
-    border-radius: 50%;
+    border-radius: 12%;
+}
+
+.bg-transparent {
+    background-color: transparent;
 }
 
 .profil-form {
@@ -64,6 +68,14 @@
 
 .page-header {
     margin-left: 80px;
+}
+
+.input-dropzone img {
+    /* width: 100%;
+    height: 100%; */
+    border-radius: 12%;
+    background-color: transparent;
+    object-fit: fill;
 }
 
 @media (min-width: 992px) {
