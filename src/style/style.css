@@ -78,6 +78,12 @@
     object-fit: fill;
 }
 
+.preview {
+    width: 96px;
+    height: 96px;
+    border-radius: 12%;
+}
+
 @media (min-width: 992px) {
     .arrow {
         margin-left: 200px;
