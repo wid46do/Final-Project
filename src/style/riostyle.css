@@ -294,6 +294,44 @@ body{
 .home-rect-bg{
     display: none;
 }
+.slider-category{
+    display: flex !important;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 1.5em;
+}
+.category-btn{
+    display: flex !important;
+    justify-content: space-between;
+    background-color: #E2D4F0;
+    margin-right: 1em;
+    padding: 14px 24px;
+    border-radius: 12px;
+    stroke: #3C3C3C;
+    color: #3C3C3C;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+/* .category-btn svg{
+    margin-right: 0.75em;
+} */
+.category-btn:hover{
+    background-color: #7126B5;
+    color: #FFFFFF;
+    stroke: #FFFFFF;
+}
+.semua{
+    width: 126px !important;
+}
+.hobi, .baju{
+    width: 108px !important;
+}
+.kendaraan, .kesehatan{
+    width: 155px !important;
+}
+.elektronik{
+    width: 142px !important;
+}
 /* .slider1{
     margin-left: -1em;
     width: 236px;
@@ -713,14 +751,37 @@ body{
         width: 156px;
         height: 206px;
     }
+    .slider-category{
+        display: block !important;
+        width: 450px;
+    }
     .home-category{
+        display: none;
+    }
+    .category-btn{
+        padding: 12px 16px;
+        font-size: 0.875rem;
+    }
+    .semua{
+        width: 110px !important;
+    }
+    .hobi, .baju{
+        width: 92px !important;
+    }
+    .kendaraan, .kesehatan{
+        width: 139px !important;
+    }
+    .elektronik{
+        width: 126px !important;
+    }
+    /* .home-category{
         position: sticky;
         width: 800px;
     }
     .home-category div{
         height: 16px;
         padding: 0.75em 1em;
-    }
+    } */
     .sell-btn{
         left: 122px;
         margin-top: 500px;
