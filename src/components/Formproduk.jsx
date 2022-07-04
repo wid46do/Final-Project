@@ -1,41 +1,64 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button } from 'react-bootstrap';
 import '../style/style.css';
 import Plus from '../images/fi_plus.png';
 import { HiArrowLeft } from 'react-icons/hi';
 import { useDropzone } from 'react-dropzone';
+import Select from 'react-select';
 
 export default function Formproduk(){
-    const [ imagePreview, setImagePreview ] = useState(null)
+    const [ imagePreview, setImagePreview ] = useState([]);
 
-    const selectFile = (file) => {
+    const selectFile = (event) => {
         const reader = new FileReader();
+        console.log(event.constructor.name)
         reader.addEventListener('load', () => {
-            setImagePreview(reader.result)
-        }, false);
+            setImagePreview((before) =>{
+                const next = [...before]
+                next.push(reader.result)
+                return next;
+            });
+            
+        });
+        console.log(event);
 
-        if (file) {
-            reader.readAsDataURL(file);
-        }
-    }
+        if (event && imagePreview.length < 4) {
+            reader.readAsDataURL(event.constructor.name === "SyntheticBaseEvent"? event.target.files[0] : event);
+        };
+    };
 
-    const onDrop = useCallback(acceptedFiles => {
+    const onDrop = (acceptedFiles) => {
         selectFile(acceptedFiles[0]);
-    }, [])
+    }
 
     const {
       getRootProps,
       getInputProps,
-    //   isDragActive,
-    //   isDragAccept,
-    //   isDragReject,
+      isDragActive,
+      isDragAccept,
+      isDragReject,
     } = useDropzone({
       onDrop,
       accept: [
         'image/*'
       ]
     });
+
+    const options = [
+        { value: '1', label: 'Hobi' },
+        { value: '2', label: 'Kendaraan' },
+        { value: '3', label: 'Baju' },
+        { value: '4', label: 'Elektronik' },
+        { value: '5', label: 'Kesehatan' }
+    ]
+
+    const customStyles = {
+        control: (provided) => ({
+            ...provided,
+            borderRadius: '12px',
+        }),
+    }
 
     return(
         <div className="container my-3 my-md-5 my-lg-5">
@@ -66,9 +89,7 @@ export default function Formproduk(){
 
                     <Form.Group className='mt-3'>
                         <Form.Label>Kategori</Form.Label>
-                        <Form.Select className='form-input'>
-                            <option>Pilih Kategori</option>
-                        </Form.Select>
+                        <Select styles={customStyles} options={options} isMulti/>
                     </Form.Group>
 
                     <Form.Group className='mt-3'>
@@ -88,13 +109,17 @@ export default function Formproduk(){
                                 <img src={Plus} alt="" />
                             </div>
 
-                            {imagePreview && (  
-                                <div className='preview col-6 col-md-12 col-lg-12 p-0 ms-3'>
-                                    <img 
-                                        src={imagePreview} alt=""
-                                        style={ {width: "100%", height: "100%", objectFit: "fill", borderRadius: "12%"} }
-                                    />
-                                </div>   
+                            {imagePreview && (
+                                imagePreview.map((image) => {
+                                    return(
+                                        <div key={image} className='preview col-6 col-md-12 col-lg-12 p-0 ms-4'>
+                                            <img
+                                                src={image} alt=""
+                                                style={ {width: "100%", height: "100%", objectFit: "fill", borderRadius: "12%"} }
+                                            />
+                                        </div>
+                                    )
+                                })
                             )}
                         </div>
                     </Form.Group>
@@ -107,10 +132,11 @@ export default function Formproduk(){
                         </div>
                         <div className="porduk-btn d-grid col-6">
                             <Button className='form-button'>
-                                Terbitakan
+                                Terbitkan
                             </Button>
                         </div>
                     </div>
+                    
                 </Form>
             </div>
         </div>

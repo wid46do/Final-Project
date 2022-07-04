@@ -84,6 +84,10 @@
     border-radius: 12%;
 }
 
+.select {
+    border-radius: 12%;
+}
+
 @media (min-width: 992px) {
     .arrow {
         margin-left: 200px;
