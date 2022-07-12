@@ -6,9 +6,22 @@ import Plus from '../images/fi_plus.png';
 import { HiArrowLeft } from 'react-icons/hi';
 import { useDropzone } from 'react-dropzone';
 import Select from 'react-select';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 export default function Formproduk(){
     const [ imagePreview, setImagePreview ] = useState([]);
+    const [ options, setOptions ] = useState([])
+    const [ inputProduk, setInputProduk ] = useState(
+        {
+            name: "",
+            price: 0,
+            category: "",
+            description: "",
+            status: false
+        }
+    )
 
     const selectFile = (event) => {
         const reader = new FileReader();
@@ -45,14 +58,6 @@ export default function Formproduk(){
       ]
     });
 
-    const options = [
-        { value: '1', label: 'Hobi' },
-        { value: '2', label: 'Kendaraan' },
-        { value: '3', label: 'Baju' },
-        { value: '4', label: 'Elektronik' },
-        { value: '5', label: 'Kesehatan' }
-    ]
-
     const customStyles = {
         control: (provided) => ({
             ...provided,
@@ -60,10 +65,33 @@ export default function Formproduk(){
         }),
     }
 
+    const onChangeHandler = (key, value) => {
+        inputProduk[key] = value;
+        setInputProduk({...inputProduk});
+    }
+    console.log(inputProduk);
+
+    useEffect(() => {
+        const getCategory = async() => {
+            const respon = await axios.get('')
+            setOptions(respon.data.data.map((category)=>{
+                return{
+                    value: category.id,
+                    label: category.name
+                }
+            }))
+        }
+        getCategory()
+    }, []);
+
+    const navigate = useNavigate()
+
     return(
         <div className="container my-3 my-md-5 my-lg-5">
             <div className="arrow my-4 my-md-0 my-lg-0 d-flex">
-                <HiArrowLeft/>
+                <button onClick={() => {navigate(-1)}} className='border-0 bg-white'>
+                    <HiArrowLeft/>
+                </button>
                 <p className='ms-4 mb-0 d-md-none d-lg-none fw-bold'>Lengkapi Detail Produk</p>
             </div>
             <div className='d-flex justify-content-center'>
@@ -75,21 +103,29 @@ export default function Formproduk(){
                             type='text'
                             placeholder='Nama Produk'
                             className='form-input'
+                            onChange={(e)=>{onChangeHandler("name", e.target.value)}}
                         />
                     </Form.Group>
 
                     <Form.Group className='mt-3'>
                         <Form.Label>Harga Produk</Form.Label>
                         <Form.Control
-                            type='number'
+                            type='text'
+                            inputMode='numeric'
                             placeholder='Rp 0,00'
                             className='form-input'
+                            onChange={(e)=>{onChangeHandler("price", parseInt(e.target.value)||0)}}
                         />
                     </Form.Group>
 
                     <Form.Group className='mt-3'>
                         <Form.Label>Kategori</Form.Label>
-                        <Select styles={customStyles} options={options} isMulti/>
+                        <Select 
+                            styles={customStyles} 
+                            options={options} 
+                            isMulti
+                            onChange={(e)=>{onChangeHandler("category", e)}}
+                        />
                     </Form.Group>
 
                     <Form.Group className='mt-3'>
@@ -98,6 +134,7 @@ export default function Formproduk(){
                             as='textarea'
                             placeholder='Contoh: Jalan Ikan Hiu 33'
                             className='form-input'
+                            onChange={(e)=>{onChangeHandler("description", e.target.value)}}
                         />
                     </Form.Group>
 
