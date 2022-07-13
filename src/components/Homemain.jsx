@@ -16,7 +16,11 @@ import { Autoplay, EffectCoverflow, Pagination, FreeMode } from "swiper";
 import "../style/riostyle.css";
 import Kado from "../images/kado.png";
 import Mosq from "../images/mosq.png";
-import Banner2 from "../images/bannerslide2.png";
+import Banner1 from "../images/banner-1.png";
+import Banner2 from "../images/banner-2.png";
+import Banner3 from "../images/banner-3.png";
+import Banner4 from "../images/banner-4.png";
+import Banner5 from "../images/banner-5.png";
 import Clockone from "../images/clock1.png";
 import Clocktwo from "../images/clock2.png";
 export default function Homemain(){
@@ -25,7 +29,7 @@ export default function Homemain(){
         infinite: false,
         speed: 500,
         slidesToShow: 6,
-        draggable: false,
+        draggable: true,
         slide:'div',
         slidesToScroll: 1,
         arrows: false,
@@ -67,13 +71,19 @@ export default function Homemain(){
                 modules={[EffectCoverflow, Pagination]}
                 className="home-slider">
                 <SwiperSlide className="slider1">
-                    <img src={Banner2} alt="banner2"  />
+                    <img src={Banner1} alt="banner2"  />
                 </SwiperSlide>
                 <SwiperSlide className="slider2">
                     <img src={Banner2} alt="banner2"  />
                 </SwiperSlide>
                 <SwiperSlide className="slider3">
-                    <img src={Banner2} alt="banner2"  />
+                    <img src={Banner3} alt="banner2"  />
+                </SwiperSlide>
+                <SwiperSlide className="slider3">
+                    <img src={Banner4} alt="banner2"  />
+                </SwiperSlide>
+                <SwiperSlide className="slider3">
+                    <img src={Banner5} alt="banner2"  />
                 </SwiperSlide>
             </Swiper>
             <div className="home-rect-bg">
