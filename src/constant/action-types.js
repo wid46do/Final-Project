@@ -1,0 +1,6 @@
+export const ActionTypes = {
+  LOGIN_SUCCESS: "LOGIN_SUCCESS",
+  LOGIN_FAIL: "LOGIN_FAIL",
+  LOGOUT: "LOGOUT",
+  MESSAGE_ERROR: "MESSAGE_ERROR",
+};
