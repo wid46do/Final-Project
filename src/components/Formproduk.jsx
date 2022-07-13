@@ -32,7 +32,6 @@ export default function Formproduk(){
                 next.push(reader.result)
                 return next;
             });
-            
         });
         console.log(event);
 
