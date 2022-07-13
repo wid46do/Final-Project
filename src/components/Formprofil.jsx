@@ -5,6 +5,7 @@ import '../style/style.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Camera from '../images/fi_camera.png';
 import { HiArrowLeft } from 'react-icons/hi';
+import { useNavigate } from "react-router-dom";
 
 export default function Formprofil(){
     const [ uploadedImage, setUploadedImage ] = useState(false);
@@ -21,10 +22,14 @@ export default function Formprofil(){
         }
     };
 
+    const navigate = useNavigate()
+
     return(
         <div className="container my-3 my-md-5 my-lg-5">
             <div className="arrow my-3 my-md-0 my-lg-0 d-flex">
-                <HiArrowLeft/>
+                <button onClick={() => {navigate(-1)}} className='border-0 bg-white'>
+                    <HiArrowLeft/>
+                </button>
                 <p className='ms-5 mb-0 d-md-none d-lg-none fw-bold'>Lengkapi Info Akun</p>
             </div>
             <div className='d-flex justify-content-center'>
