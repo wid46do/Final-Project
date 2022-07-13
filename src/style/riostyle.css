@@ -393,7 +393,7 @@ body{
     height: 288px;
 }
 .home-layout{
-    width: 1168px;
+    width: 85%;
     margin-top: 2.5em;
     margin-left: auto;
     margin-right: auto;
@@ -448,7 +448,7 @@ body{
     row-gap: 1em;
     overflow-y: auto;
     overflow-x: hidden;
-    grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));;
+    grid-template-columns: repeat(auto-fill, minmax(156px, 158px));;
 }
 .sell-btn{
     display: flex;
@@ -558,6 +558,9 @@ body{
         margin-right: auto;
         margin-top: 1.5em;
     }
+    .login-form form{
+        width: 328px;
+    }
     .login-form form button{
         width: 328px;
     }
@@ -578,7 +581,7 @@ body{
     .logo-wrapper{
         width: 100%;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: space-around;
     }
     .home-logo{
         display: none;
@@ -608,7 +611,7 @@ body{
         top: 0;
         left: 0;
         width: 50%;
-        height: 100vh;
+        height: 200vh;
         background-color: #FFFFFF;
         z-index: 5;
         transform: translateX(-100%);
@@ -619,7 +622,7 @@ body{
         top: 0;
         left: 0;
         width: 50%;
-        height: 100vh;
+        height: 200vh;
         background-color: #FFFFFF;
         z-index: 5;
         transform: translateX(0%);
@@ -693,7 +696,7 @@ body{
         width: 100%;
         height: 300px;
         top: 0;
-        left: 1em;
+        left: 0;
     }
     .slider2{
         position: absolute;
@@ -706,8 +709,8 @@ body{
     }
     .slider2-info{
         position: absolute;
-        margin-left: 0em;
-        margin-top: 0em;
+        margin-left: 1em;
+        margin-top: 3em;
     }
     .home-title{
         font-size: 1.25rem;
@@ -725,24 +728,29 @@ body{
     .kado{
         /* position: absolute; */
         margin-left: 13.0625em;
-        /* top: 124px; */
+        top: 124px;
         width: 127px;
         height: 123px;
         background-repeat: no-repeat;
     }
     .home-layout{
+        width: 100%;
         margin-top: 202px;
-        margin-left: 1em;
+        /* margin-left: 1em; */
     }
     .home-layout h4{
+        width: 100%;
         font-size: 0.875rem;
         font-weight: 500;
+        margin-left: 1em;
     }
     .homegrid-container{
-        position: absolute;
-        width: 360px;
+        /* position: absolute; */
+        width: 95%;
         height: 80vh;
         margin-top: 2em;
+        margin-left: auto;
+        margin-right: auto;
     }
     .homegrid-container::-webkit-scrollbar{
         width: 3px;
@@ -752,8 +760,10 @@ body{
         height: 206px;
     }
     .slider-category{
-        display: block !important;
-        width: 450px;
+        display: inline-flex !important;
+        width: 100%;
+        height: 45px;
+        margin-left: 1em;
     }
     .home-category{
         display: none;
@@ -783,7 +793,7 @@ body{
         padding: 0.75em 1em;
     } */
     .sell-btn{
-        left: 122px;
+        left: 130px;
         margin-top: 500px;
     }
 }
