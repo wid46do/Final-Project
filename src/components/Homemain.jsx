@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Homecard from "./Homecard";
+import { Link } from "react-router-dom";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import Slider from "react-slick";
@@ -12,7 +13,7 @@ import "swiper/css/free-mode";
 // import "swiper/css/autoplay";
 
 // import required modules
-import { Autoplay, EffectCoverflow, Pagination, FreeMode } from "swiper";
+import { Autoplay, EffectCoverflow, Pagination } from "swiper";
 import "../style/riostyle.css";
 import Kado from "../images/kado.png";
 import Mosq from "../images/mosq.png";
@@ -21,10 +22,9 @@ import Banner2 from "../images/banner-2.png";
 import Banner3 from "../images/banner-3.png";
 import Banner4 from "../images/banner-4.png";
 import Banner5 from "../images/banner-5.png";
-import Clockone from "../images/clock1.png";
-import Clocktwo from "../images/clock2.png";
+import { FiSearch } from "react-icons/fi";
+import { BsPlusLg } from "react-icons/bs";
 export default function Homemain(){
-    const [categoryDekstop, categoryMobile] = useState(false);
     let settings = {
         infinite: false,
         speed: 500,
@@ -97,55 +97,32 @@ export default function Homemain(){
                     <img className="imagebg" src={Mosq} alt="Mosq" />
                 </div>
             </div>
-            {/* <div className="home-slider">
-                <div className="slider1"><img src={Banner2} alt="banner2" /></div>
-                <div className="slider2"><img src={Banner2} alt="banner2" /></div>
-                <div className="slider3"><img src={Banner2} alt="banner2" /></div>
-            </div> */}
 
             <div className="home-layout">
                 <h4>Telusuri Kategori</h4>
                 <Slider {...settings}>
                     <div className="category-btn semua">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M17.5 17.5L13.875 13.875" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                        <FiSearch style={{width: '20px', height: '20px'}}/>
                         Semua
                     </div>
                     <div className="category-btn hobi">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M17.5 17.5L13.875 13.875" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg> 
+                        <FiSearch style={{width: '20px', height: '20px'}}/>
                         Hobi
                     </div>
                     <div className="category-btn kendaraan">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M17.5 17.5L13.875 13.875" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                        <FiSearch style={{width: '20px', height: '20px'}}/>
                         Kendaraan
                     </div>
                     <div className="category-btn baju">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M17.5 17.5L13.875 13.875" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                        <FiSearch style={{width: '20px', height: '20px'}}/>
                         Baju
                     </div>
                     <div className="category-btn elektronik">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M17.5 17.5L13.875 13.875" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                        <FiSearch style={{width: '20px', height: '20px'}}/>
                         Elektronik
                     </div>
                     <div className="category-btn kesehatan">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M17.5 17.5L13.875 13.875" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>                    
+                        <FiSearch style={{width: '20px', height: '20px'}}/>                  
                         Kesehatan
                     </div>
                     <div className="holder-category">
@@ -154,13 +131,10 @@ export default function Homemain(){
                 </Slider>
 
                 <div className="homecard-container">
-                    <a href="" className="sell-btn">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 4.1665V15.8332" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M4.1665 10H15.8332" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                    <Link to={'/daftar-jual'} className="sell-btn">
+                        <BsPlusLg />
                         Jual
-                    </a>
+                    </Link>
                     
                     <div className="homegrid-container">                        
                         <Homecard />
