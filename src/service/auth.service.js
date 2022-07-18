@@ -9,16 +9,15 @@ const login = (username, password) => {
       password,
     })
     .then((res) => {
-      console.log(res);
-      // if (res.data) {
-      //   localStorage.setItem("user", JSON.stringify(res.data));
-      // }
+      if (res.data) {
+        localStorage.setItem("token", JSON.stringify(res.data));
+      }
       return res.data;
     });
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.removeItem("token");
 };
 
 export default {

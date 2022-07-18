@@ -4,7 +4,7 @@ import Hero from "../images/hero.png";
 import { useNavigate } from "react-router";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login, logout } from "../actions/auth";
+import { clearError, login, logout } from "../actions/auth";
 
 export default function Loginuser() {
   const [revPassword, unrevPassword] = useState(false);
@@ -14,29 +14,40 @@ export default function Loginuser() {
 
   const dispatch = useDispatch();
   const { message } = useSelector((state) => state.message);
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn, authError } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState("");
 
+  const errorRef = useRef();
+
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/home");
+      navigate("/");
     }
   }, []);
+
+  useEffect(() => {
+    if (authError !== false) {
+      setTimeout(() => {
+        dispatch(clearError());
+      }, 5000);
+      return;
+    }
+  }, [authError]);
 
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
-    dispatch(login(username, password));
-    // .then(() => {
-    //   navigate("/");
-    //   window.location.reload();
-    // })
-    // .catch(() => {
-    //   setLoading(false);
-    // });
+    dispatch(login(username, password))
+      .then(() => {
+        navigate("/");
+        window.location.reload();
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   };
 
   const handleLogOut = () => {
@@ -44,6 +55,7 @@ export default function Loginuser() {
 
     navigate("/login");
   };
+
   return (
     <>
       <div className="login-page">
@@ -124,11 +136,19 @@ export default function Loginuser() {
                 </i>
               </div>
               <button type="submit">
-                <a href="#">Masuk</a>
+                {loading && (
+                  <span className="spinner-border spinner-border-sm"></span>
+                )}
+                <a href="#" className="ms-2">
+                  Masuk
+                </a>
               </button>
+              {authError !== false && (
+                <p className="error-login">{authError}</p>
+              )}
             </form>
             <p className="sign-acc">
-              Belum punya akun?{" "}
+              Belum punya akun?
               <span>
                 <a href="register.html">Daftar di sini</a>
               </span>

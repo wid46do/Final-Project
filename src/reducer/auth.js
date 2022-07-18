@@ -1,8 +1,8 @@
 import { ActionTypes } from "../constant/action-types";
 
-const user = JSON.parse(localStorage.getItem("user"));
+const token = JSON.parse(localStorage.getItem("token"));
 
-const initialState = user
+const initialState = token
   ? { isLoggedIn: true, authData: false, authError: false }
   : { isLoggedIn: false, authData: false, authError: false };
 
@@ -16,6 +16,13 @@ const auth = (state = initialState, action) => {
         authError: action.payload.errorMessage,
       };
     case ActionTypes.LOGIN_FAIL:
+      return {
+        ...state,
+        isLoggedIn: false,
+        authData: action.payload.data,
+        authError: action.payload.errorMessage,
+      };
+    case ActionTypes.CLEAR_ERROR:
       return {
         ...state,
         isLoggedIn: false,

@@ -1,11 +1,14 @@
 import Navhomedefault from "../components/Navhomedefault";
 import Homemain from "../components/Homemain";
 import Navhomelogged from "../components/Navhomelogged";
-export default function Home(){
-    return(
-        <>
-            <Navhomedefault />
-            <Homemain />
-        </>
-    )
+import { useSelector } from "react-redux";
+
+export default function Home() {
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  return (
+    <>
+      {isLoggedIn ? <Navhomelogged /> : <Navhomedefault />}
+      <Homemain />
+    </>
+  );
 }

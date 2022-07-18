@@ -15,28 +15,27 @@ export const login = (username, password) => (dispatch) => {
       return Promise.resolve();
     },
     (error) => {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        console.log(error.response, "cek response error");
       dispatch({
         type: ActionTypes.LOGIN_FAIL,
         payload: {
           data: false,
-          errorMessage: message,
+          errorMessage: error.message,
         },
-      });
-
-      dispatch({
-        type: ActionTypes.MESSAGE_ERROR,
-        payload: message,
       });
 
       return Promise.reject();
     }
   );
+};
+
+export const clearError = () => {
+  return {
+    type: ActionTypes.CLEAR_ERROR,
+    payload: {
+      data: false,
+      errorMessage: false,
+    },
+  };
 };
 
 export const logout = () => (dispatch) => {
