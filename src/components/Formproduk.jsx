@@ -11,14 +11,15 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 export default function Formproduk(){
+    const [ currentFile, setCurrentFile ] = useState(null)
     const [ imagePreview, setImagePreview ] = useState([]);
     const [ options, setOptions ] = useState([])
     const [ inputProduk, setInputProduk ] = useState(
         {
-            name: "",
-            price: 0,
-            category: "",
-            description: "",
+            product_name: "",
+            product_harga: 0,
+            // category: "",
+            product_deskripsi: "",
             status: false
         }
     )
@@ -33,11 +34,11 @@ export default function Formproduk(){
                 return next;
             });
         });
-        console.log(event);
 
         if (event && imagePreview.length < 4) {
             reader.readAsDataURL(event.constructor.name === "SyntheticBaseEvent"? event.target.files[0] : event);
         };
+        setCurrentFile(event)
     };
 
     const onDrop = (acceptedFiles) => {
@@ -47,9 +48,6 @@ export default function Formproduk(){
     const {
       getRootProps,
       getInputProps,
-      isDragActive,
-      isDragAccept,
-      isDragReject,
     } = useDropzone({
       onDrop,
       accept: [
@@ -72,11 +70,12 @@ export default function Formproduk(){
 
     useEffect(() => {
         const getCategory = async() => {
-            const respon = await axios.get('')
-            setOptions(respon.data.data.map((category)=>{
+            const respon = await axios.get('https://secondhand6.herokuapp.com/category/getAll')
+            setOptions(respon.data.map((category)=>{
                 return{
-                    value: category.id,
-                    label: category.name
+                    ...category,
+                    value: category.category_id,
+                    label: category.category_name
                 }
             }))
         }
@@ -84,6 +83,30 @@ export default function Formproduk(){
     }, []);
 
     const navigate = useNavigate()
+
+    const upload = async() =>{
+        try {
+            let formData = new FormData()
+
+            Object.keys(inputProduk).forEach((key) => {
+                formData.append(key, inputProduk[key])
+            })
+
+            formData.append("image", currentFile)
+            console.log(formData);
+            
+            const res = await axios.post("https://secondhand6.herokuapp.com/product/add", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+            return res.data
+        } catch (error) {
+            alert("upload failed")
+        }
+    }
+
+    console.log(currentFile, "ini file");
 
     return(
         <div className="container my-3 my-md-5 my-lg-5">
@@ -94,7 +117,7 @@ export default function Formproduk(){
                 <p className='ms-4 mb-0 d-md-none d-lg-none fw-bold'>Lengkapi Detail Produk</p>
             </div>
             <div className='d-flex justify-content-center'>
-                <Form className='profil-form'>
+                <Form className='profil-form' onSubmit={(e) => e.preventDefault()}>
 
                     <Form.Group>
                         <Form.Label>Nama Produk</Form.Label>
@@ -102,7 +125,7 @@ export default function Formproduk(){
                             type='text'
                             placeholder='Nama Produk'
                             className='form-input'
-                            onChange={(e)=>{onChangeHandler("name", e.target.value)}}
+                            onChange={(e)=>{onChangeHandler("product_name", e.target.value)}}
                         />
                     </Form.Group>
 
@@ -113,7 +136,7 @@ export default function Formproduk(){
                             inputMode='numeric'
                             placeholder='Rp 0,00'
                             className='form-input'
-                            onChange={(e)=>{onChangeHandler("price", parseInt(e.target.value)||0)}}
+                            onChange={(e)=>{onChangeHandler("product_harga", parseInt(e.target.value)||0)}}
                         />
                     </Form.Group>
 
@@ -122,7 +145,7 @@ export default function Formproduk(){
                         <Select 
                             styles={customStyles} 
                             options={options} 
-                            isMulti
+                            // isMulti
                             onChange={(e)=>{onChangeHandler("category", e)}}
                         />
                     </Form.Group>
@@ -133,7 +156,7 @@ export default function Formproduk(){
                             as='textarea'
                             placeholder='Contoh: Jalan Ikan Hiu 33'
                             className='form-input'
-                            onChange={(e)=>{onChangeHandler("description", e.target.value)}}
+                            onChange={(e)=>{onChangeHandler("product_deskripsi", e.target.value)}}
                         />
                     </Form.Group>
 
@@ -167,7 +190,7 @@ export default function Formproduk(){
                             </Button>
                         </div>
                         <div className="porduk-btn d-grid col-6">
-                            <Button className='form-button'>
+                            <Button className='form-button' onClick={upload}>
                                 Terbitkan
                             </Button>
                         </div>
