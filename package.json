@@ -14,6 +14,10 @@
         "react-dropzone": "^14.2.1",
         "react-icons": "^4.4.0",
         "react-redux": "^8.0.2",
+<<<<<<< HEAD
+=======
+        "react-number-format": "^4.9.3",
+>>>>>>> b0e6ab08a5b722934114c964073bf7f8b6c19059
         "react-router-dom": "^6.3.0",
         "react-scripts": "5.0.1",
         "react-select": "^5.4.0",
