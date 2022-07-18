@@ -29,14 +29,14 @@ export default function Loginuser() {
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
-    dispatch(login(username, password))
-      .then(() => {
-        navigate("/");
-        window.location.reload();
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+    dispatch(login(username, password));
+    // .then(() => {
+    //   navigate("/");
+    //   window.location.reload();
+    // })
+    // .catch(() => {
+    //   setLoading(false);
+    // });
   };
 
   const handleLogOut = () => {

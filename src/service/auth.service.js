@@ -1,17 +1,18 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/auth/";
+const API_URL = "https://secondhand6.herokuapp.com/user/";
 
 const login = (username, password) => {
   return axios
-    .post(API_URL + "signin", {
+    .post(API_URL + "login", {
       username,
       password,
     })
     .then((res) => {
-      if (res.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(res.data));
-      }
+      console.log(res);
+      // if (res.data) {
+      //   localStorage.setItem("user", JSON.stringify(res.data));
+      // }
       return res.data;
     });
 };
