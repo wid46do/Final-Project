@@ -1,6 +1,32 @@
 import { ActionTypes } from "../constant/action-types";
 import authService from "../service/auth.service";
 
+export const register = (fullname, email, password, username) => (dispatch) => {
+  return authService.register(fullname, email, password, username).then(
+    (res) => {
+      console.log(res);
+      dispatch({
+        type: ActionTypes.REGISTER_SUCCESS,
+        payload: {
+          registerStatus: true,
+        },
+      });
+
+      return Promise.resolve();
+    },
+    (error) => {
+      dispatch({
+        type: ActionTypes.REGISTER_FAIL,
+        payload: {
+          registerStatus: false,
+        },
+      });
+
+      return Promise.reject();
+    }
+  );
+};
+
 export const login = (username, password) => (dispatch) => {
   return authService.login(username, password).then(
     (res) => {
@@ -28,11 +54,21 @@ export const login = (username, password) => (dispatch) => {
   );
 };
 
-export const clearError = () => {
+export const clearErrorLogin = () => {
   return {
-    type: ActionTypes.CLEAR_ERROR,
+    type: ActionTypes.CLEAR_ERROR_LOGIN,
     payload: {
       data: false,
+      errorMessage: false,
+    },
+  };
+};
+
+export const clearRegister = () => {
+  return {
+    type: ActionTypes.CLEAR_REGISTER,
+    payload: {
+      registerStatus: null,
       errorMessage: false,
     },
   };

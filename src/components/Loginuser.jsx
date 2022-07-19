@@ -4,7 +4,8 @@ import Hero from "../images/hero.png";
 import { useNavigate } from "react-router";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearError, login, logout } from "../actions/auth";
+import { clearErrorLogin, login, logout } from "../actions/auth";
+import { Link } from "react-router-dom";
 
 export default function Loginuser() {
   const [revPassword, unrevPassword] = useState(false);
@@ -13,7 +14,6 @@ export default function Loginuser() {
   };
 
   const dispatch = useDispatch();
-  const { message } = useSelector((state) => state.message);
   const { isLoggedIn, authError } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -31,8 +31,8 @@ export default function Loginuser() {
   useEffect(() => {
     if (authError !== false) {
       setTimeout(() => {
-        dispatch(clearError());
-      }, 5000);
+        dispatch(clearErrorLogin());
+      }, 3000);
       return;
     }
   }, [authError]);
@@ -43,17 +43,10 @@ export default function Loginuser() {
     dispatch(login(username, password))
       .then(() => {
         navigate("/");
-        window.location.reload();
       })
       .catch(() => {
         setLoading(false);
       });
-  };
-
-  const handleLogOut = () => {
-    dispatch(logout());
-
-    navigate("/login");
   };
 
   return (
@@ -139,9 +132,7 @@ export default function Loginuser() {
                 {loading && (
                   <span className="spinner-border spinner-border-sm"></span>
                 )}
-                <a href="#" className="ms-2">
-                  Masuk
-                </a>
+                <span className="ms-2 color-white">Masuk</span>
               </button>
               {authError !== false && (
                 <p className="error-login">{authError}</p>
@@ -150,7 +141,7 @@ export default function Loginuser() {
             <p className="sign-acc">
               Belum punya akun?
               <span>
-                <a href="register.html">Daftar di sini</a>
+                <Link to={"/register"}> Daftar di sini</Link>
               </span>
             </p>
           </div>
