@@ -29,7 +29,8 @@
         "start": "react-scripts start",
         "build": "CI=false react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "analyze": "cra-bundle-analyzer"
     },
     "eslintConfig": {
         "extends": [
@@ -48,5 +49,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "cra-bundle-analyzer": "^0.1.1"
     }
 }
