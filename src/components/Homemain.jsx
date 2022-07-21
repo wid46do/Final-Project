@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Homecard from "./Homecard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import Slider from "react-slick";
@@ -22,9 +22,11 @@ import Banner2 from "../images/banner-2.png";
 import Banner3 from "../images/banner-3.png";
 import Banner4 from "../images/banner-4.png";
 import Banner5 from "../images/banner-5.png";
+import Clockone from '../images/clock1.png';
 import { FiSearch } from "react-icons/fi";
 import { BsPlusLg } from "react-icons/bs";
 export default function Homemain(){
+    const navigate = useNavigate();
     let settings = {
         infinite: false,
         speed: 500,
@@ -138,6 +140,230 @@ export default function Homemain(){
                     
                     <div className="homegrid-container">                        
                         <Homecard />
+                        {/* <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div>
+                        <div className="homegrid-item">
+                            <div className="card-item">
+                                <img src={Clockone} className="item-img" alt="Item" />
+                                <h5>Jam Tangan</h5>
+                                <h6>Aksesoris</h6>
+                                <h5>Rp. 150000</h5>
+                            </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
