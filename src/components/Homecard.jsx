@@ -27,7 +27,7 @@ export default function Homecard() {
           return (
             <div
               onClick={() => {
-                navigate("/halaman-produk");
+                navigate(`/page-penawaran/${res.product_id}`);
               }}
               key={res.product_id}
               className="homegrid-item"
