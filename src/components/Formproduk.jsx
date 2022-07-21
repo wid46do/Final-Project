@@ -1,13 +1,13 @@
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Form, Button } from "react-bootstrap";
-import "../style/style.css";
-import Plus from "../images/fi_plus.png";
-import { HiArrowLeft } from "react-icons/hi";
-import { useDropzone } from "react-dropzone";
-import Select from "react-select";
-import { useEffect } from "react";
-import axios from "axios";
+import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Form, Button } from 'react-bootstrap';
+import '../style/style.css';
+import Plus from '../images/fi_plus.png';
+import { HiArrowLeft } from 'react-icons/hi';
+import { useDropzone } from 'react-dropzone';
+import Select from 'react-select';
+import { useEffect } from 'react';
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 export default function Formproduk(){
@@ -60,30 +60,13 @@ export default function Formproduk(){
       ]
     });
 
-    if (event && imagePreview.length < 4) {
-      reader.readAsDataURL(
-        event.constructor.name === "SyntheticBaseEvent"
-          ? event.target.files[0]
-          : event
-      );
-      setImageFiles([
-        ...imageFiles,
-        event.constructor.name === "SyntheticBaseEvent"
-          ? event.target.files[0]
-          : event,
-      ]);
+    const customStyles = {
+        control: (provided) => ({
+            ...provided,
+            borderRadius: '12px',
+        }),
     }
-  };
 
-  const onDrop = (acceptedFiles) => {
-    selectFile(acceptedFiles[0]);
-  };
-
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: ["image/*"],
-  });
-  
     const onChangeHandler = (key, value) => {
         if(key === "category_id"){
             inputProduk[key] = value.value;
@@ -241,25 +224,9 @@ export default function Formproduk(){
                             </Button>
                         </div>
                     </div>
-                  );
-                })}
+                    
+                </Form>
             </div>
-          </Form.Group>
-
-          <div className="mt-3 row">
-            <div className="porduk-btn d-grid col-6">
-              <Button className="form-button2 bg-light button-border text-dark">
-                Preview
-              </Button>
-            </div>
-            <div className="porduk-btn d-grid col-6">
-              <Button className="form-button" onClick={upload}>
-                Terbitkan
-              </Button>
-            </div>
-          </div>
-        </Form>
-      </div>
-    </div>
-  );
+        </div>
+    )
 }
