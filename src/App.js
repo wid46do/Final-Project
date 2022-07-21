@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Infopenawar from "./pages/Infopenawar";
+import Infoproduk from "./pages/Infoproduk";
+import Infoprofil from "./pages/Infoprofil";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import PageProduct from "./pages/PageProduct";
+import PageSaleList from "./pages/PageSaleList";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import PrivateRoute from "./privateroute/PrivateRoute";
+import PagePenawaran from "./pages/PagePenawaran";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<PrivateRoute />}>
+          <Route path="/profile" element={<Infoprofil />} />
+          <Route path="/produk" element={<Infoproduk />} />
+          <Route path="/offer" element={<Infopenawar />} />
+          <Route path="/halaman-produk/:id" element={<PageProduct />} />
+          <Route path="/daftar-jual" element={<PageSaleList />} />
+          <Route path="/page-penawaran/:id" element={<PagePenawaran />} />
+        </Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

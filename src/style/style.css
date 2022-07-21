@@ -1,0 +1,105 @@
+.form-button {
+    background-color: #7126b5 !important;
+    border-color: #7126b5 !important;
+    border-radius: 16px;
+}
+
+.form-button2 {
+    border-radius: 16px;
+}
+
+.input-dropzone {
+    background-color: #e2d4f0;
+    width: 96px;
+    height: 96px;
+    border-radius: 12%;
+}
+
+.bg-transparent {
+    background-color: transparent;
+}
+
+.profil-form {
+    width: 600px;
+    height: auto;
+}
+
+.form-input {
+    border-radius: 13px;
+}
+
+.bidder {
+    border-radius: 16px;
+}
+
+.produk-dropzone {
+    width: 96px;
+    height: 96px;
+    border-radius: 10%;
+    border: dashed;
+    border-color: grey;
+}
+
+.button-border {
+    border-color: #7126b5;
+}
+
+.produk-btn {
+    width: 500px;
+    height: auto;
+}
+
+.ket {
+    width: 100%;
+}
+
+.ket {
+    font-size: 14px;
+}
+
+.time p {
+    font-size: 10px;
+}
+
+.offer-btn {
+    width: 150px;
+    height: auto;
+}
+
+.page-header {
+    margin-left: 80px;
+}
+
+.input-dropzone img {
+    /* width: 100%;
+    height: 100%; */
+    border-radius: 12%;
+    background-color: transparent;
+    object-fit: fill;
+}
+
+.preview {
+    width: 96px;
+    height: 96px;
+    border-radius: 12%;
+}
+
+.select {
+    border-radius: 12%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+@media (min-width: 992px) {
+    .arrow {
+        margin-left: 200px;
+    }
+    .offer {
+        width: 600px;
+        height: auto;
+    }
+}
