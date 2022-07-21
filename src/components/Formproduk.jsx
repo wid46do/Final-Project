@@ -1,28 +1,54 @@
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Form, Button } from "react-bootstrap";
-import "../style/style.css";
-import Plus from "../images/fi_plus.png";
-import { HiArrowLeft } from "react-icons/hi";
-import { useDropzone } from "react-dropzone";
-import Select from "react-select";
-import { useEffect } from "react";
-import axios from "axios";
+import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Form, Button } from 'react-bootstrap';
+import '../style/style.css';
+import Plus from '../images/fi_plus.png';
+import { HiArrowLeft } from 'react-icons/hi';
+import { useDropzone } from 'react-dropzone';
+import Select from 'react-select';
+import { useEffect } from 'react';
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-export default function Formproduk() {
-  const [imageFiles, setImageFiles] = useState([]);
-  const [imagePreview, setImagePreview] = useState([]);
-  const [options, setOptions] = useState([]);
-  const [inputProduk, setInputProduk] = useState({
-    product_name: "",
-    product_harga: 0,
-    category_id: 0,
-    product_deskripsi: "",
-    statusProduct: "DIJUAL",
-    user_id: 12,
-    product_lokasi: "surabaya",
-  });
+export default function Formproduk(){
+    const [ imageFiles, setImageFiles ] = useState([])
+    const [ imagePreview, setImagePreview ] = useState([]);
+    const [ options, setOptions ] = useState([])
+    const [ inputProduk, setInputProduk ] = useState(
+        {
+            product_name: "",
+            product_harga: 0,
+            category_id: 0,
+            product_deskripsi: "",
+            statusProduct: "DIJUAL",
+            user_id: 1,
+            product_lokasi: "",
+        }
+    )
+
+    const selectFile = (event) => {
+        const reader = new FileReader();
+        console.log(event.constructor.name)
+        reader.addEventListener('load', () => {
+            setImagePreview((before) =>{
+                const next = [...before]
+                next.push(reader.result)
+                return next;
+            });
+        });
+
+        if (event && imagePreview.length < 4) {
+            reader.readAsDataURL(event.constructor.name === "SyntheticBaseEvent"? event.target.files[0] : event);
+            setImageFiles([
+                ...imageFiles,
+                event.constructor.name === "SyntheticBaseEvent"? event.target.files[0] : event
+            ])
+        };
+    };
+
+    const onDrop = (acceptedFiles) => {
+        selectFile(acceptedFiles[0]);
+    }
 
   const selectFile = (event) => {
     const reader = new FileReader();
@@ -35,29 +61,22 @@ export default function Formproduk() {
       });
     });
 
-    if (event && imagePreview.length < 4) {
-      reader.readAsDataURL(
-        event.constructor.name === "SyntheticBaseEvent"
-          ? event.target.files[0]
-          : event
-      );
-      setImageFiles([
-        ...imageFiles,
-        event.constructor.name === "SyntheticBaseEvent"
-          ? event.target.files[0]
-          : event,
-      ]);
+    const customStyles = {
+        control: (provided) => ({
+            ...provided,
+            borderRadius: '12px',
+        }),
     }
-  };
 
-  const onDrop = (acceptedFiles) => {
-    selectFile(acceptedFiles[0]);
-  };
-
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: ["image/*"],
-  });
+    const onChangeHandler = (key, value) => {
+        if(key === "category_id"){
+            inputProduk[key] = value.value;
+        }else{
+            inputProduk[key] = value;
+        }
+        setInputProduk({...inputProduk});
+    }
+    console.log(inputProduk);
 
   const customStyles = {
     control: (provided) => ({
@@ -77,38 +96,23 @@ export default function Formproduk() {
   };
   console.log(inputProduk);
 
-  useEffect(() => {
-    const getCategory = async () => {
-      const respon = await axios.get(
-        "https://secondhand6.herokuapp.com/category/getAll"
-      );
-      setOptions(
-        respon.data.map((category) => {
-          return {
-            value: category.category_id,
-            label: category.category_name,
-          };
-        })
-      );
-    };
-    getCategory();
-  }, []);
+    const upload = async(id) =>{
+        try {
+            let formData = new FormData()
+            console.log(inputProduk);
 
-  const navigate = useNavigate();
+            Object.keys(inputProduk).forEach((key) => {
+                if(id === "preview"){
+                    inputProduk.statusProduct = "TERJUAL"
+                }
+                setInputProduk({...inputProduk})
+                formData.append(key, inputProduk[key])
+            })
 
   const upload = async () => {
     try {
       let formData = new FormData();
       console.log(inputProduk);
-
-      Object.keys(inputProduk).forEach((key) => {
-        formData.append(key, inputProduk[key]);
-      });
-
-      console.log(imageFiles);
-      imageFiles.forEach((imageFile) => {
-        formData.append("product_gambar", imageFile);
-      });
 
       const res = await axios.post(
         "https://secondhand6.herokuapp.com/product/add",
@@ -154,18 +158,15 @@ export default function Formproduk() {
             />
           </Form.Group>
 
-          <Form.Group className="mt-3">
-            <Form.Label>Harga Produk</Form.Label>
-            <Form.Control
-              type="text"
-              inputMode="numeric"
-              placeholder="Rp 0,00"
-              className="form-input"
-              onChange={(e) => {
-                onChangeHandler("product_harga", parseInt(e.target.value) || 0);
-              }}
-            />
-          </Form.Group>
+                    <Form.Group className='mt-3'>
+                        <Form.Label>Kategori</Form.Label>
+                        <Select 
+                            styles={customStyles}
+                            options={options}
+                            // isMulti
+                            onChange={(e)=>{onChangeHandler("category_id", e)}}
+                        />
+                    </Form.Group>
 
           <Form.Group className="mt-3">
             <Form.Label>Kategori</Form.Label>
@@ -214,6 +215,7 @@ export default function Formproduk() {
                 <img src={Plus} alt="" />
               </div>
 
+
               {imagePreview &&
                 imagePreview.map((image) => {
                   return (
@@ -232,9 +234,10 @@ export default function Formproduk() {
                         }}
                       />
                     </div>
-                  );
-                })}
+                    
+                </Form>
             </div>
+
           </Form.Group>
 
           <div className="mt-3 row">
@@ -254,3 +257,8 @@ export default function Formproduk() {
     </div>
   );
 }
+
+        </div>
+    )
+}
+
