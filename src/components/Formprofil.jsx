@@ -56,16 +56,16 @@ export default function Formprofil() {
     e.preventDefault();
     const formData = new FormData();
 
-    formData.append("user_id", user_id);
+    formData.append("user_Id", user_id);
     formData.append("full_name", fullname);
     formData.append("kota", city);
     formData.append("alamat", alamat);
     formData.append("no_telp", noTelp);
     formData.append("fotoProfile", avatar);
 
-    // for (const value of formData.values()) {
-    //   console.log({ value });
-    // }
+    for (const value of formData.values()) {
+      console.log({ value });
+    }
 
     // dispatch(updateProfile(formData, navigate));
     // axios
@@ -95,7 +95,7 @@ export default function Formprofil() {
 
     axios({
       method: "put",
-      url: "https://secondhand6.herokuapp.com/user/update/12",
+      url: "https://secondhand6.herokuapp.com/user/update/4",
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     })
@@ -109,7 +109,7 @@ export default function Formprofil() {
       });
   };
 
-  console.log(avatar);
+  // console.log(dataProfile);
 
   return (
     <>

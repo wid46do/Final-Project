@@ -11,6 +11,7 @@ import PageSaleList from "./pages/PageSaleList";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import PrivateRoute from "./privateroute/PrivateRoute";
+import PagePenawaran from "./pages/PagePenawaran";
 
 function App() {
   return (
@@ -20,8 +21,9 @@ function App() {
           <Route path="/profile" element={<Infoprofil />} />
           <Route path="/produk" element={<Infoproduk />} />
           <Route path="/offer" element={<Infopenawar />} />
-          <Route path="/halaman-produk" element={<PageProduct />} />
+          <Route path="/halaman-produk/:id" element={<PageProduct />} />
           <Route path="/daftar-jual" element={<PageSaleList />} />
+          <Route path="/page-penawaran/:id" element={<PagePenawaran />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
