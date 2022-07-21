@@ -22,7 +22,7 @@ export default function Formproduk(){
             product_deskripsi: "",
             statusProduct: "DIJUAL",
             user_id: 1,
-            product_lokasi: "surabaya",
+            product_lokasi: "",
         }
     )
 
@@ -109,12 +109,16 @@ export default function Formproduk(){
 
     const navigate = useNavigate()
 
-    const upload = async() =>{
+    const upload = async(id) =>{
         try {
             let formData = new FormData()
             console.log(inputProduk);
 
             Object.keys(inputProduk).forEach((key) => {
+                if(id === "preview"){
+                    inputProduk.statusProduct = "TERJUAL"
+                }
+                setInputProduk({...inputProduk})
                 formData.append(key, inputProduk[key])
             })
 
@@ -133,7 +137,6 @@ export default function Formproduk(){
             alert("upload failed")
         }
     }
-
 
     return(
         <div className="container my-3 my-md-5 my-lg-5">
@@ -170,7 +173,7 @@ export default function Formproduk(){
                     <Form.Group className='mt-3'>
                         <Form.Label>Kategori</Form.Label>
                         <Select 
-                            styles={customStyles} 
+                            styles={customStyles}
                             options={options}
                             // isMulti
                             onChange={(e)=>{onChangeHandler("category_id", e)}}
@@ -222,12 +225,18 @@ export default function Formproduk(){
 
                     <div className='mt-3 row'>
                         <div className="porduk-btn d-grid col-6">
-                            <Button className='form-button2 bg-light button-border text-dark'>
+                            <Button 
+                                className='form-button2 bg-light button-border text-dark'
+                                onClick={()=>upload("preview")}
+                            >
                                 Preview
                             </Button>
                         </div>
                         <div className="porduk-btn d-grid col-6">
-                            <Button className='form-button' onClick={upload}>
+                            <Button 
+                                className='form-button'
+                                onClick={()=>upload("dijual")}
+                            >
                                 Terbitkan
                             </Button>
                         </div>
