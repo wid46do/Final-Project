@@ -1,10 +1,9 @@
 import "../style/riostyle.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
-
+import Clockone from "../images/clock1.png";
 export default function Homecard() {
-  const navigate = useNavigate();
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -17,7 +16,8 @@ export default function Homecard() {
     getData();
   }, []);
 
-  // console.log(data);
+  const navigate = useNavigate();
+
   return (
     <>
       {data === undefined ? (
@@ -26,19 +26,19 @@ export default function Homecard() {
         data.map((res) => {
           return (
             <div
+              onClick={() => {
+                navigate("/halaman-produk");
+              }}
               key={res.product_id}
               className="homegrid-item"
-              onClick={() => {
-                navigate(`/page-penawaran/${res.product_id}`);
-              }}
             >
               <div className="card-item">
                 <img
                   src={res.product_gambar[0]?.gambar_url}
                   className="item-img"
-                  alt="Clock"
+                  alt="Item"
                 />
-                <h5>{res.product_name}</h5>
+                <h5 style={{ fontWeight: "600" }}>{res.product_name}</h5>
                 <h6>Aksesoris</h6>
                 <h5>{res.product_harga}</h5>
               </div>
