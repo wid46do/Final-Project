@@ -6,14 +6,15 @@ import Clockone from '../images/clock1.png';
 export default function Homecard(){
     const [data, setData] = useState();
 
-    useEffect(() => {
-        const getData = async () => {
-            const res = await axios.get("https://secondhand6.herokuapp.com/product/getAll");
-            setData(res.data);
-        };
-        getData();
-    },[]);
-    console.log(data);
+  useEffect(() => {
+    const getData = async () => {
+      const res = await axios.get(
+        "https://secondhand6.herokuapp.com/product/getAll"
+      );
+      setData(res.data);
+    };
+    getData();
+  }, []);
 
     const navigate = useNavigate()
 

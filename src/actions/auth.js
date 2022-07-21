@@ -1,6 +1,32 @@
 import { ActionTypes } from "../constant/action-types";
 import authService from "../service/auth.service";
 
+export const register = (fullname, email, password, username) => (dispatch) => {
+  return authService.register(fullname, email, password, username).then(
+    (res) => {
+      console.log(res);
+      dispatch({
+        type: ActionTypes.REGISTER_SUCCESS,
+        payload: {
+          registerStatus: true,
+        },
+      });
+
+      return Promise.resolve();
+    },
+    (error) => {
+      dispatch({
+        type: ActionTypes.REGISTER_FAIL,
+        payload: {
+          registerStatus: false,
+        },
+      });
+
+      return Promise.reject();
+    }
+  );
+};
+
 export const login = (username, password) => (dispatch) => {
   return authService.login(username, password).then(
     (res) => {
@@ -15,28 +41,37 @@ export const login = (username, password) => (dispatch) => {
       return Promise.resolve();
     },
     (error) => {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        console.log(error.response, "cek response error");
       dispatch({
         type: ActionTypes.LOGIN_FAIL,
         payload: {
           data: false,
-          errorMessage: message,
+          errorMessage: error.message,
         },
-      });
-
-      dispatch({
-        type: ActionTypes.MESSAGE_ERROR,
-        payload: message,
       });
 
       return Promise.reject();
     }
   );
+};
+
+export const clearErrorLogin = () => {
+  return {
+    type: ActionTypes.CLEAR_ERROR_LOGIN,
+    payload: {
+      data: false,
+      errorMessage: false,
+    },
+  };
+};
+
+export const clearRegister = () => {
+  return {
+    type: ActionTypes.CLEAR_REGISTER,
+    payload: {
+      registerStatus: null,
+      errorMessage: false,
+    },
+  };
 };
 
 export const logout = () => (dispatch) => {
