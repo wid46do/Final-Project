@@ -27,6 +27,29 @@ export const getProfile = () => (dispatch) => {
     });
 };
 
+export const getPenjual = (idPenjual) => (dispatch) => {
+  return axios
+    .get(`https://secondhand6.herokuapp.com/user/${idPenjual}`)
+    .then((response) => {
+      dispatch({
+        type: ActionTypes.GET_PROFILE_PENJUAL_SUCCESS,
+        payload: {
+          data: response.data,
+          errorMessage: false,
+        },
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: ActionTypes.GET_PROFILE_PENJUAL_FAIL,
+        payload: {
+          data: false,
+          errorMessage: error.message,
+        },
+      });
+    });
+};
+
 export const updateProfile = (data, navigate) => (dispatch) => {
   console.log(data, "ini dataku");
   return axios({
