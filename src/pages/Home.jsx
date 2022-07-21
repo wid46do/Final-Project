@@ -4,7 +4,7 @@ import Navhomelogged from "../components/Navhomelogged";
 export default function Home(){
     return(
         <>
-            <Navhomelogged />
+            <Navhomedefault />
             <Homemain />
         </>
     )
