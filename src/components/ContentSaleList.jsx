@@ -13,6 +13,7 @@ import { useNavigate } from "react-router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../actions/profile";
+import profile from "../reducer/profile";
 
 function ContentSaleList({ changeWidth, setVisible }) {
   const settings = {
@@ -23,10 +24,15 @@ function ContentSaleList({ changeWidth, setVisible }) {
     slidesToScroll: 1,
   };
 
+  const {dataProfile} = useSelector((state)=>state.profile)
+  console.log(dataProfile);
+
   const dispatch = useDispatch()
 
+  const id = JSON.parse(localStorage.getItem("userId"));
+
   useEffect(()=>{
-    dispatch(getProfile())
+    dispatch(getProfile(id))
   },[])
 
   const navigate = useNavigate()
@@ -49,13 +55,13 @@ function ContentSaleList({ changeWidth, setVisible }) {
               <div className="info-seller d-flex justify-content-between align-items-center p-3 mx-4 mx-md-0">
                 <div className="d-flex align-items-center">
                   <img
-                    src="./images/image_user.jpg"
+                    src={dataProfile.fotoProfile}
                     alt="img-user"
                     className="image-user me-3"
                   />
                   <div className="d-flex flex-column justify-content-center">
                     <p className="name-seller">{dataProfile.full_name}</p>
-                    <p className="city-seller">Kota</p>
+                    <p className="city-seller">{dataProfile.kota}</p>
                   </div>
                 </div>
                 <button onClick={()=>navigate("/profile")} className="btn-sale-edit">Edit</button>
