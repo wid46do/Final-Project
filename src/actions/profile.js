@@ -1,13 +1,15 @@
 import axios from "axios";
 import { ActionTypes } from "../constant/action-types";
 
-const id = JSON.parse(localStorage.getItem("userId"));
+// const id = JSON.parse(localStorage.getItem("userId"));
 const token = JSON.parse(localStorage.getItem("token"));
 
-export const getProfile = () => (dispatch) => {
+export const getProfile = (id) => (dispatch) => {
   return axios
     .get(`https://secondhand6.herokuapp.com/user/${id}`)
     .then((response) => {
+      console.log(id, "INI ID ACTION");
+      console.log(response.data, "INI RESPONSE ACTIONS");
       dispatch({
         type: ActionTypes.GET_PROFILE_SUCCESS,
         payload: {
@@ -27,6 +29,15 @@ export const getProfile = () => (dispatch) => {
     });
 };
 
+export const clearProfile = () => {
+  return {
+    type: ActionTypes.CLEAR_PROFILE,
+    payload: {
+      data: false,
+      errorMessage: false,
+    },
+  };
+};
 export const getPenjual = (idPenjual) => (dispatch) => {
   return axios
     .get(`https://secondhand6.herokuapp.com/user/${idPenjual}`)

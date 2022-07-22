@@ -20,6 +20,13 @@ const profile = (state = initialState, action) => {
         dataProfile: action.payload.data,
         errorProfile: action.payload.errorMessage,
       };
+    case ActionTypes.CLEAR_PROFILE:
+      return {
+        ...state,
+        dataProfile: action.payload.data,
+        dataPenjual: action.payload.data,
+        errorProfile: action.payload.errorMessage,
+      };
     case ActionTypes.GET_PROFILE_PENJUAL_SUCCESS:
       return {
         ...state,
