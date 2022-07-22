@@ -9,6 +9,10 @@ import {
 } from "react-icons/fi";
 import DataProductSale from "./DataProductSale";
 import Slider from "react-slick";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfile } from "../actions/profile";
 
 function ContentSaleList({ changeWidth, setVisible }) {
   const settings = {
@@ -18,6 +22,14 @@ function ContentSaleList({ changeWidth, setVisible }) {
     slidesToShow: 2.5,
     slidesToScroll: 1,
   };
+
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(getProfile())
+  },[])
+
+  const navigate = useNavigate()
 
   return (
     <>
@@ -42,11 +54,11 @@ function ContentSaleList({ changeWidth, setVisible }) {
                     className="image-user me-3"
                   />
                   <div className="d-flex flex-column justify-content-center">
-                    <p className="name-seller">Nama Penjual</p>
+                    <p className="name-seller">{dataProfile.full_name}</p>
                     <p className="city-seller">Kota</p>
                   </div>
                 </div>
-                <button className="btn-sale-edit">Edit</button>
+                <button onClick={()=>navigate("/profile")} className="btn-sale-edit">Edit</button>
               </div>
             </div>
           </div>

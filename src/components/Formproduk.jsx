@@ -21,7 +21,7 @@ export default function Formproduk(){
             category_id: 0,
             product_deskripsi: "",
             statusProduct: "DIJUAL",
-            user_id: 1,
+            user_id: 0,
             product_lokasi: "",
         }
     )
@@ -100,6 +100,8 @@ export default function Formproduk(){
             Object.keys(inputProduk).forEach((key) => {
                 if(id === "preview"){
                     inputProduk.statusProduct = "TERJUAL"
+                }else if(key === "user_id"){
+                    inputProduk.user_id = window.localStorage.getItem("userId")
                 }
                 setInputProduk({...inputProduk})
                 formData.append(key, inputProduk[key])
@@ -109,6 +111,7 @@ export default function Formproduk(){
             imageFiles.forEach((imageFile)=>{
                 formData.append("product_gambar", imageFile)
             })
+            navigate('/daftar-jual')
             
             const res = await axios.post("https://secondhand6.herokuapp.com/product/add", formData, {
                 headers: {
@@ -133,7 +136,7 @@ export default function Formproduk(){
                 <Form className='profil-form' onSubmit={(e) => e.preventDefault()}>
 
                     <Form.Group>
-                        <Form.Label>Nama Produk</Form.Label>
+                        <Form.Label data-testId="formLabel">Nama Produk</Form.Label>
                         <Form.Control
                             type='text'
                             placeholder='Nama Produk'
