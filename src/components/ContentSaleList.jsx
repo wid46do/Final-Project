@@ -10,6 +10,7 @@ import {
 import DataProductSale from "./DataProductSale";
 import Slider from "react-slick";
 import { useNavigate } from "react-router";
+
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../actions/profile";
@@ -80,7 +81,12 @@ function ContentSaleList({ changeWidth, setVisible }) {
                   </span>
                   <FiChevronRight className="color-gray" />
                 </div>
-                <div className="d-flex justify-content-between align-items-center mb-3 pb-3 shadow-bottom">
+                <div
+                  className="d-flex justify-content-between align-items-center mb-3 pb-3 shadow-bottom"
+                  onClick={() => {
+                    navigate("/offer");
+                  }}
+                >
                   <span>
                     <FiHeart className="me-2 color-gray" /> Diminati
                   </span>
