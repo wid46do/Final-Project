@@ -9,6 +9,7 @@ import {
 } from "react-icons/fi";
 import DataProductSale from "./DataProductSale";
 import Slider from "react-slick";
+import { useNavigate } from "react-router";
 
 function ContentSaleList({ changeWidth, setVisible }) {
   const settings = {
@@ -18,6 +19,8 @@ function ContentSaleList({ changeWidth, setVisible }) {
     slidesToShow: 2.5,
     slidesToScroll: 1,
   };
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -62,7 +65,12 @@ function ContentSaleList({ changeWidth, setVisible }) {
                   </span>
                   <FiChevronRight className="color-gray" />
                 </div>
-                <div className="d-flex justify-content-between align-items-center mb-3 pb-3 shadow-bottom">
+                <div
+                  className="d-flex justify-content-between align-items-center mb-3 pb-3 shadow-bottom"
+                  onClick={() => {
+                    navigate("/offer");
+                  }}
+                >
                   <span>
                     <FiHeart className="me-2 color-gray" /> Diminati
                   </span>

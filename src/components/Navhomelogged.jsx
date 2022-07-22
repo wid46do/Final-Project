@@ -4,7 +4,7 @@ import { FiList, FiBell, FiMenu, FiSearch } from "react-icons/fi";
 import { IoPersonOutline, IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logout } from "../actions/auth";
+import { clearLogin, logout } from "../actions/auth";
 import { useNavigate } from "react-router";
 
 export default function Navhomelogged() {
@@ -15,7 +15,7 @@ export default function Navhomelogged() {
 
   const handleLogOut = () => {
     dispatch(logout());
-
+    dispatch(clearLogin());
     navigate("/login");
   };
   return (

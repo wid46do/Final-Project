@@ -2,10 +2,10 @@ import axios from "axios";
 
 const API_URL = "https://secondhand6.herokuapp.com/user/";
 
-const login = (username, password) => {
+const login = (email, password) => {
   return axios
     .post(API_URL + "login", {
-      username,
+      email,
       password,
     })
     .then((res) => {
