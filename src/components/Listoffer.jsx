@@ -67,7 +67,9 @@ export default function Listoffer() {
                   <div className="ket ps-3">
                     <div className="time d-flex justify-content-between">
                       <p className="mb-0">Penawaran produk</p>
-                      <p className="mb-0">20 Apr, 14:04</p>
+                      <p className="mb-0">
+                        {item.user.notifikasi[0]?.dateTime}
+                      </p>
                     </div>
                     <p className="mb-0">{item.product.product_name}</p>
                     <p className="mb-0">Rp {item.product.product_harga}</p>
