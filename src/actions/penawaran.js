@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 export const addPenawaran = (data) => (dispatch) => {
   return axios({
     method: "post",
-    url: "https://secondhand6.herokuapp.com/penawaran/addpenawaranffff",
+    url: "https://secondhand6.herokuapp.com/penawaran/addpenawaran",
     data: data,
     headers: { "Content-Type": "application/json" },
   })

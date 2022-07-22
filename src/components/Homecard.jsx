@@ -5,19 +5,20 @@ import { useState, useEffect } from "react";
 import Clockone from "../images/clock1.png";
 export default function Homecard() {
   const [data, setData] = useState();
-
+  const id = JSON.parse(localStorage.getItem("userId"));
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get(
         "https://secondhand6.herokuapp.com/product/getAll"
       );
-      setData(res.data);
+      setData(res.data.filter((item) => item.user_Id !== id));
     };
     getData();
   }, []);
 
   const navigate = useNavigate();
 
+  console.log(data);
   return (
     <>
       {data === undefined ? (

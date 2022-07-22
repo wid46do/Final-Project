@@ -1,8 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Navbar } from "react-bootstrap";
+import { useNavigate } from "react-router";
 import "../style/style.css";
 
 export default function Navproduk() {
+  const navigate = useNavigate();
   return (
     <Navbar
       expand="lg"
@@ -11,8 +13,12 @@ export default function Navproduk() {
       className="shadow d-none d-md-block"
     >
       <Container>
-        <Navbar.Brand href="#">
-          <img src="/images/Rectangle-127.png" alt="logo" />
+        <Navbar.Brand>
+          <img
+            src="/images/Rectangle-127.png"
+            alt="logo"
+            onClick={() => navigate("/")}
+          />
         </Navbar.Brand>
       </Container>
     </Navbar>

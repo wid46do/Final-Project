@@ -54,6 +54,16 @@ export const login = (username, password) => (dispatch) => {
   );
 };
 
+export const clearLogin = () => {
+  return {
+    type: ActionTypes.CLEAR_LOGIN,
+    payload: {
+      data: false,
+      errorMessage: false,
+    },
+  };
+};
+
 export const clearErrorLogin = () => {
   return {
     type: ActionTypes.CLEAR_ERROR_LOGIN,
