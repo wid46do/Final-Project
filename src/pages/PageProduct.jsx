@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ContentPageProduct from "../components/ContentPageProduct";
 import NavbarSeller from "../components/NavbarSeller";
+import Navhomelogged from "../components/Navhomelogged";
 
 function PageProduct() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -18,7 +19,8 @@ function PageProduct() {
   }, [width]);
   return (
     <>
-      {width >= 576 && <NavbarSeller />}
+      {/* {width >= 576 && <NavbarSeller />} */}
+      <Navhomelogged/>
       <ContentPageProduct changeWidth={width} />
     </>
   );

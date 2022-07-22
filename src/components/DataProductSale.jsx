@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import "../style/DataProductSale.css";
 
 function DataProductSale() {
+
   const navigate = useNavigate();
   return (
     <>
@@ -14,6 +15,7 @@ function DataProductSale() {
             navigate("/produk");
           }}
         >
+
           <FiPlus className="color-gray" />
           <p className="font-size-14 color-gray">Tambah Produk</p>
         </div>
