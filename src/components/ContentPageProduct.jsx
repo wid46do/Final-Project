@@ -60,7 +60,7 @@ function ContentPageProduct({ changeWidth }) {
   useEffect(() => {
     if (dataProduk === false) {
       dispatch(getProduk(id));
-      dispatch(getProfile());
+      dispatch(getProfile(user_id));
       return;
     }
     setCategoryId(dataProduk.category_id);
@@ -102,7 +102,7 @@ function ContentPageProduct({ changeWidth }) {
     closeModal();
   };
 
-  // console.log(dataProduk);
+  console.log(dataProduk);
   return (
     <>
       <div className="content-page-product">
