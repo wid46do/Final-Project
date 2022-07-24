@@ -1,14 +1,38 @@
 import axios from "axios";
 import { ActionTypes } from "../constant/action-types";
 
-export const getData = (id) => (dispatch) => {
+export const getData = (id, klik) => (dispatch) => {
+  if (klik === "all" || klik === false) {
+    return axios
+      .get("https://secondhand6.herokuapp.com/product/getAll?status=DIJUAL")
+      .then((response) => {
+        dispatch({
+          type: ActionTypes.GET_DATA_SUCCESS,
+          payload: {
+            data: response.data.filter((item) => item.user_Id !== id),
+            err: false,
+          },
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: ActionTypes.GET_DATA_FAIL,
+          payload: {
+            data: false,
+            err: error,
+          },
+        });
+      });
+  }
   return axios
-    .get("https://secondhand6.herokuapp.com/product/getAll?status=DIJUAL")
+    .get(`https://secondhand6.herokuapp.com/product/getAll?status=DIJUAL`)
     .then((response) => {
       dispatch({
         type: ActionTypes.GET_DATA_SUCCESS,
         payload: {
-          data: response.data.filter((item) => item.user_Id !== id),
+          data: response.data.filter(
+            (item) => item.user_Id !== id && item.category_id === klik
+          ),
           err: false,
         },
       });

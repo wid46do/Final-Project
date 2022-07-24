@@ -33,6 +33,14 @@ function DataProductSold() {
       <div className="row ms-0 ms-md-3 g-md-3 g-0 justify-content-around justify-content-sm-start">
         {loading ? (
           <p>Loading...</p>
+        ) : data.length === 0 ? (
+          <div className="w-100 d-flex flex-column align-items-center justify-content-center mt-3">
+            <img src="/images/wait.png" alt="image" />
+            <p className="font-size-14 mt-3">
+              Belum ada produkmu yang diminati nih, sabar ya rejeki nggak kemana
+              kok
+            </p>
+          </div>
         ) : (
           data.map((item, index) => {
             return (

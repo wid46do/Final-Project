@@ -25,123 +25,132 @@ import Banner5 from "../images/banner-5.png";
 import Clockone from "../images/clock1.png";
 import { FiSearch } from "react-icons/fi";
 import { BsPlusLg } from "react-icons/bs";
-export default function Homemain({dataSearch}) {
-    const navigate = useNavigate();
-    let settings = {
-        infinite: false,
-        speed: 500,
-        slidesToShow: 6,
-        draggable: false,
-        slide:'div',
-        slidesToScroll: 1,
-        arrows: false,
-        className:"slider-category variable-width",
-        variableWidth: true,
-        responsive: [
-            {
-                breakpoint: 450,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    loop: false,
-                    draggable: true,
-                },
-            },
-        ],
-        
-    };
-    return(
-        <>
-            <Swiper
-                effect={"coverflow"}
-                grabCursor={true}
-                centeredSlides={true}
-                slidesPerView={"auto"}
-                autoplay= {{
-                delay: 1500,
-                disableOnInteraction: false
-                }}
-                coverflowEffect={{
-                rotate: 0,
-                stretch: 0,
-                depth: 300,
-                modifier: 1,
-                slideShadows: false,
-                }}
-                loop={true}
-                pagination={true}
-                modules={[EffectCoverflow, Pagination]}
-                className="home-slider">
-                <SwiperSlide className="slider1">
-                    <img src={Banner1} alt="banner2"  />
-                </SwiperSlide>
-                <SwiperSlide className="slider2">
-                    <img src={Banner2} alt="banner2"  />
-                </SwiperSlide>
-                <SwiperSlide className="slider3">
-                    <img src={Banner3} alt="banner2"  />
-                </SwiperSlide>
-                <SwiperSlide className="slider3">
-                    <img src={Banner4} alt="banner2"  />
-                </SwiperSlide>
-                <SwiperSlide className="slider3">
-                    <img src={Banner5} alt="banner2"  />
-                </SwiperSlide>
-            </Swiper>
-            <div className="home-rect-bg">
-                <div className="slider2-body">
-                    <div className="slider2-info">
-                        <h1 className="home-title">Bulan Ramadhan<br />Banyak diskon!</h1>
-                        <h5>Diskon Hingga</h5>
-                        <h1 className="disc">60%</h1>
-                    </div>
-                    <img className="kado" src={Kado} alt="Kado" />
-                    <img className="imagebg" src={Mosq} alt="Mosq" />
-                </div>
-            </div>
+import axios from "axios";
+import { useEffect } from "react";
+export default function Homemain({ dataSearch }) {
+  const navigate = useNavigate();
+  let settings = {
+    infinite: false,
+    speed: 500,
+    slidesToShow: 6,
+    draggable: false,
+    slide: "div",
+    slidesToScroll: 1,
+    arrows: false,
+    className: "slider-category variable-width",
+    variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 450,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          loop: false,
+          draggable: true,
+        },
+      },
+    ],
+  };
+  const [category, setCategory] = useState();
+  const [klik, setKlik] = useState(false);
+  const getCategory = () => {
+    axios
+      .get("https://secondhand6.herokuapp.com/category/getAll")
+      .then((res) => setCategory(res.data))
+      .catch((e) => console.log(e));
+  };
+  useEffect(() => {
+    getCategory();
+  }, []);
+  // console.log(klik);
+  return (
+    <>
+      <Swiper
+        effect={"coverflow"}
+        grabCursor={true}
+        centeredSlides={true}
+        slidesPerView={"auto"}
+        autoplay={{
+          delay: 1500,
+          disableOnInteraction: false,
+        }}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 300,
+          modifier: 1,
+          slideShadows: false,
+        }}
+        loop={true}
+        pagination={true}
+        modules={[EffectCoverflow, Pagination]}
+        className="home-slider"
+      >
+        <SwiperSlide className="slider1">
+          <img src={Banner1} alt="banner2" />
+        </SwiperSlide>
+        <SwiperSlide className="slider2">
+          <img src={Banner2} alt="banner2" />
+        </SwiperSlide>
+        <SwiperSlide className="slider3">
+          <img src={Banner3} alt="banner2" />
+        </SwiperSlide>
+        <SwiperSlide className="slider3">
+          <img src={Banner4} alt="banner2" />
+        </SwiperSlide>
+        <SwiperSlide className="slider3">
+          <img src={Banner5} alt="banner2" />
+        </SwiperSlide>
+      </Swiper>
+      <div className="home-rect-bg">
+        <div className="slider2-body">
+          <div className="slider2-info">
+            <h1 className="home-title">
+              Bulan Ramadhan
+              <br />
+              Banyak diskon!
+            </h1>
+            <h5>Diskon Hingga</h5>
+            <h1 className="disc">60%</h1>
+          </div>
+          <img className="kado" src={Kado} alt="Kado" />
+          <img className="imagebg" src={Mosq} alt="Mosq" />
+        </div>
+      </div>
 
-                <div className="home-layout">
-                    <h4>Telusuri Kategori</h4>
-                    <Slider {...settings}>
-                    <div className="category-btn semua">
-                        <FiSearch style={{ width: "20px", height: "20px" }} />
-                        Semua
-                    </div>
-                    <div className="category-btn hobi">
-                        <FiSearch style={{ width: "20px", height: "20px" }} />
-                        Hobi
-                    </div>
-                    <div className="category-btn kendaraan">
-                        <FiSearch style={{ width: "20px", height: "20px" }} />
-                        Kendaraan
-                    </div>
-                    <div className="category-btn baju">
-                        <FiSearch style={{ width: "20px", height: "20px" }} />
-                        Baju
-                    </div>
-                    <div className="category-btn elektronik">
-                        <FiSearch style={{ width: "20px", height: "20px" }} />
-                        Elektronik
-                    </div>
-                    <div className="category-btn kesehatan">
-                        <FiSearch style={{ width: "20px", height: "20px" }} />
-                        Kesehatan
-                    </div>
-                    <div className="holder-category"></div>
-                    </Slider>
+      <div className="home-layout">
+        <h4>Telusuri Kategori</h4>
+        <Slider {...settings}>
+          <div className="category-btn" onClick={() => setKlik("all")}>
+            <FiSearch style={{ width: "20px", height: "20px" }} />
+            Semua
+          </div>
+          {category?.map((item, index) => {
+            return (
+              <div
+                className="category-btn"
+                key={index}
+                onClick={() => setKlik(item.category_id)}
+              >
+                <FiSearch style={{ width: "20px", height: "20px" }} />
+                {item.category_name}
+              </div>
+            );
+          })}
+          <div className="holder-category"></div>
+        </Slider>
 
-                    <div className="homecard-container">
-                        <Link to={"/daftar-jual"} className="sell-btn">
-                            <BsPlusLg />
-                            Jual
-                        </Link>
+        <div className="homecard-container">
+          <Link to={"/daftar-jual"} className="sell-btn">
+            <BsPlusLg />
+            Jual
+          </Link>
 
-                        <div className="homegrid-container">
-                            <Homecard dataSearch={dataSearch} />
-                        </div>
-                    </div>
-                </div>
-            </>
-        );
-    }
-
+          <div className="homegrid-container">
+            <Homecard dataSearch={dataSearch} klik={klik} />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

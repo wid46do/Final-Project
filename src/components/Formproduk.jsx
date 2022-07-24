@@ -1,128 +1,135 @@
-import { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Button } from 'react-bootstrap';
-import '../style/style.css';
-import Plus from '../images/fi_plus.png';
-import { HiArrowLeft } from 'react-icons/hi';
-import { useDropzone } from 'react-dropzone';
-import Select from 'react-select';
-import { useEffect } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Form, Button } from "react-bootstrap";
+import "../style/style.css";
+import Plus from "../images/fi_plus.png";
+import { HiArrowLeft } from "react-icons/hi";
+import { useDropzone } from "react-dropzone";
+import Select from "react-select";
+import { useEffect } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function Formproduk(){
-    const [ imageFiles, setImageFiles ] = useState([])
-    const [ imagePreview, setImagePreview ] = useState([]);
-    const [ options, setOptions ] = useState([])
-    const [ inputProduk, setInputProduk ] = useState(
-        {
-            product_name: "",
-            product_harga: 0,
-            category_id: 0,
-            product_deskripsi: "",
-            statusProduct: "DIJUAL",
-            user_Id: 0,
-            product_lokasi: "",
-        }
-    )
+export default function Formproduk() {
+  const [imageFiles, setImageFiles] = useState([]);
+  const [imagePreview, setImagePreview] = useState([]);
+  const [options, setOptions] = useState([]);
+  const [inputProduk, setInputProduk] = useState({
+    product_name: "",
+    product_harga: 0,
+    category_id: 0,
+    product_deskripsi: "",
+    statusProduct: "DIJUAL",
+    user_Id: 0,
+    product_lokasi: "",
+  });
 
-    const selectFile = (event) => {
-        const reader = new FileReader();
-        console.log(event.constructor.name)
-        reader.addEventListener('load', () => {
-            setImagePreview((before) =>{
-                const next = [...before]
-                next.push(reader.result)
-                return next;
-            });
-        });
-
-        if (event && imagePreview.length < 4) {
-            reader.readAsDataURL(event.constructor.name === "SyntheticBaseEvent"? event.target.files[0] : event);
-            setImageFiles([
-                ...imageFiles,
-                event.constructor.name === "SyntheticBaseEvent"? event.target.files[0] : event
-            ])
-        };
-    };
-
-    const onDrop = (acceptedFiles) => {
-        selectFile(acceptedFiles[0]);
-    }
-
-    const {
-      getRootProps,
-      getInputProps,
-    } = useDropzone({
-      onDrop,
-      accept: [
-        'image/*'
-      ]
+  const selectFile = (event) => {
+    const reader = new FileReader();
+    console.log(event.constructor.name);
+    reader.addEventListener("load", () => {
+      setImagePreview((before) => {
+        const next = [...before];
+        next.push(reader.result);
+        return next;
+      });
     });
 
-    const customStyles = {
-        control: (provided) => ({
-            ...provided,
-            borderRadius: '12px',
-        }),
+    if (event && imagePreview.length < 4) {
+      reader.readAsDataURL(
+        event.constructor.name === "SyntheticBaseEvent"
+          ? event.target.files[0]
+          : event
+      );
+      setImageFiles([
+        ...imageFiles,
+        event.constructor.name === "SyntheticBaseEvent"
+          ? event.target.files[0]
+          : event,
+      ]);
     }
+  };
 
-    const onChangeHandler = (key, value) => {
-        if(key === "category_id"){
-            inputProduk[key] = value.value;
-        }else{
-            inputProduk[key] = value;
-        }
-        setInputProduk({...inputProduk});
+  const onDrop = (acceptedFiles) => {
+    selectFile(acceptedFiles[0]);
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: ["image/*"],
+  });
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      borderRadius: "12px",
+    }),
+  };
+
+  const onChangeHandler = (key, value) => {
+    if (key === "category_id") {
+      inputProduk[key] = value.value;
+    } else {
+      inputProduk[key] = value;
     }
+    setInputProduk({ ...inputProduk });
+  };
 
-    useEffect(() => {
-        const getCategory = async() => {
-            const respon = await axios.get('https://secondhand6.herokuapp.com/category/getAll')
-            setOptions(respon.data.map((category)=>{
-                return{
-                    value: category.category_id,
-                    label: category.category_name
-                }
-            }))
+  useEffect(() => {
+    const getCategory = async () => {
+      const respon = await axios.get(
+        "https://secondhand6.herokuapp.com/category/getAll"
+      );
+      setOptions(
+        respon.data.map((category) => {
+          return {
+            value: category.category_id,
+            label: category.category_name,
+          };
+        })
+      );
+    };
+    getCategory();
+  }, []);
+
+  const navigate = useNavigate();
+
+  const idUser = JSON.parse(localStorage.getItem("userId"));
+
+  const upload = async (id) => {
+    try {
+      let formData = new FormData();
+
+      Object.keys(inputProduk).forEach((key) => {
+        if (id === "preview") {
+          inputProduk.statusProduct = "TERJUAL";
+        } else if (key === "user_Id") {
+          inputProduk.user_Id = idUser;
         }
-        getCategory()
-    }, []);
+        setInputProduk({ ...inputProduk });
+        formData.append(key, inputProduk[key]);
+      });
 
-    const navigate = useNavigate()
+      imageFiles.forEach((imageFile) => {
+        formData.append("product_gambar", imageFile);
+      });
 
-    const idUser = JSON.parse(localStorage.getItem("userId"));
+      navigate("/daftar-jual");
 
-    const upload = async(id) =>{
-        try {
-            let formData = new FormData()
-
-            Object.keys(inputProduk).forEach((key) => {
-                if(id === "preview"){
-                    inputProduk.statusProduct = "TERJUAL"
-                }else if(key === "user_Id"){
-                    inputProduk.user_Id = idUser
-                }
-                setInputProduk({...inputProduk})
-                formData.append(key, inputProduk[key])
-            })
-
-            imageFiles.forEach((imageFile)=>{
-                formData.append("product_gambar", imageFile)
-            })
-            
-            navigate('/daftar-jual')
-            
-            const res = await axios.post("https://secondhand6.herokuapp.com/product/add", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            })
-            return res.data
-        } catch (error) {
-            alert("upload failed")
+      const res = await axios.post(
+        "https://secondhand6.herokuapp.com/product/add",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
+      );
+      return res.data;
+    } catch (error) {
+      alert("upload failed");
     }
+  };
 
     return(
         <div className="container my-3 my-md-5 my-lg-5">
@@ -227,9 +234,28 @@ export default function Formproduk(){
                             </Button>
                         </div>
                     </div>
-                    
-                </Form>
+                  );
+                })}
             </div>
-        </div>
-    )
+          </Form.Group>
+
+          <div className="mt-3 row">
+            <div className="porduk-btn d-grid col-6">
+              <Button
+                className="form-button2 bg-light button-border text-dark"
+                // onClick={()=>upload("preview")}
+              >
+                Preview
+              </Button>
+            </div>
+            <div className="porduk-btn d-grid col-6">
+              <Button className="form-button" onClick={() => upload("dijual")}>
+                Terbitkan
+              </Button>
+            </div>
+          </div>
+        </Form>
+      </div>
+    </div>
+  );
 }
