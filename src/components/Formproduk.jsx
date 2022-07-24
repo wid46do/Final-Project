@@ -136,7 +136,7 @@ export default function Formproduk(){
                 <Form className='profil-form' onSubmit={(e) => e.preventDefault()}>
 
                     <Form.Group>
-                        <Form.Label data-testId="formLabel">Nama Produk</Form.Label>
+                        <Form.Label data-testid="formLabel">Nama Produk</Form.Label>
                         <Form.Control
                             type='text'
                             placeholder='Nama Produk'
@@ -213,7 +213,7 @@ export default function Formproduk(){
                         <div className="porduk-btn d-grid col-6">
                             <Button 
                                 className='form-button2 bg-light button-border text-dark'
-                                onClick={()=>upload("preview")}
+                                // onClick={()=>upload("preview")}
                             >
                                 Preview
                             </Button>
