@@ -28,7 +28,6 @@ function ContentSaleList({ changeWidth, setVisible }) {
   };
 
   const {dataProfile} = useSelector((state)=>state.profile)
-  console.log(dataProfile);
 
   const dispatch = useDispatch()
 

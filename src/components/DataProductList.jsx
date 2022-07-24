@@ -14,7 +14,7 @@ function DataProductList() {
   const getDataList = () => {
     setLoading(true);
     axios
-      .get("https://secondhand6.herokuapp.com/product/wishlist/10")
+      .get(`https://secondhand6.herokuapp.com/product/wishlist/${id}`)
       .then((response) => {
         setData(
           response.data.filter((item) => item.statusProduct !== "TERJUAL")
