@@ -3,7 +3,6 @@ import { useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 export default function Navhomedefault(){
     const [openSideBar, setEnableBell] = useState(false);
-    const navigate = useNavigate("/daftar-jual")
     return(
         <>
         <div id="overlay" style={{display: openSideBar ? "block":"none"}}></div>

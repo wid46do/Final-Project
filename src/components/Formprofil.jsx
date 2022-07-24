@@ -9,10 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile, updateProfile } from "../actions/profile";
-import axios from "axios";
 
 export default function Formprofil() {
-  const token = JSON.parse(localStorage.getItem("token"));
   const user_id = JSON.parse(localStorage.getItem("userId"));
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,7 +23,6 @@ export default function Formprofil() {
   const [noTelp, setNoTelp] = useState();
   const [city, setCity] = useState();
   const [alamat, setAlamat] = useState();
-  const [password, setPassword] = useState();
 
   useEffect(() => {
     if (dataProfile === false) {

@@ -28,7 +28,6 @@ export default function Formproduk(){
 
     const selectFile = (event) => {
         const reader = new FileReader();
-        console.log(event.constructor.name)
         reader.addEventListener('load', () => {
             setImagePreview((before) =>{
                 const next = [...before]
@@ -111,13 +110,12 @@ export default function Formproduk(){
                 formData.append("product_gambar", imageFile)
             })
             
-            navigate('/daftar-jual')
-            
             const res = await axios.post("https://secondhand6.herokuapp.com/product/add", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             })
+            navigate('/daftar-jual')
             return res.data
         } catch (error) {
             alert("upload failed")
@@ -227,7 +225,6 @@ export default function Formproduk(){
                             </Button>
                         </div>
                     </div>
-                    
                 </Form>
             </div>
         </div>

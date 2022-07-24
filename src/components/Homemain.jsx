@@ -22,13 +22,11 @@ import Banner2 from "../images/banner-2.png";
 import Banner3 from "../images/banner-3.png";
 import Banner4 from "../images/banner-4.png";
 import Banner5 from "../images/banner-5.png";
-import Clockone from "../images/clock1.png";
 import { FiSearch } from "react-icons/fi";
 import { BsPlusLg } from "react-icons/bs";
 import axios from "axios";
 import { useEffect } from "react";
 export default function Homemain({ dataSearch }) {
-  const navigate = useNavigate();
   let settings = {
     infinite: false,
     speed: 500,
@@ -62,7 +60,7 @@ export default function Homemain({ dataSearch }) {
   useEffect(() => {
     getCategory();
   }, []);
-  // console.log(klik);
+
   return (
     <>
       <Swiper

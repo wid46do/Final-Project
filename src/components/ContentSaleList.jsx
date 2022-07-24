@@ -16,7 +16,6 @@ import DataProductSold from "./DataProductSold";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../actions/profile";
-import profile from "../reducer/profile";
 
 function ContentSaleList({ changeWidth, setVisible }) {
   const settings = {
