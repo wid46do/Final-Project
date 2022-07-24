@@ -110,13 +110,12 @@ export default function Formproduk(){
                 formData.append("product_gambar", imageFile)
             })
             
-            navigate('/daftar-jual')
-            
             const res = await axios.post("https://secondhand6.herokuapp.com/product/add", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             })
+            navigate('/daftar-jual')
             return res.data
         } catch (error) {
             alert("upload failed")
