@@ -23,6 +23,7 @@ body {
   transition: 0.5s ease-in-out;
   z-index: 4; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
+  overflow-y: hidden;
 }
 /* width */
 ::-webkit-scrollbar {
@@ -190,6 +191,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  z-index: 5;
+  margin-top: -115px;
+  background-color: #FFFFFF;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }
 .home-navbar {
@@ -287,15 +292,9 @@ body {
 .nav-list {
   display: none;
 }
-/* .home-slider{
-    width: 100%;
-    height: 288px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 2em;
-} */
+.home-slider{
+    margin-top: 115px !important;
+}
 /* SWIPER */
 .swiper {
   width: 100%;
@@ -340,6 +339,9 @@ body {
   color: #3c3c3c;
   cursor: pointer;
   font-size: 0.875rem;
+}
+.slick-slide{
+  margin-left: 1em;
 }
 /* .category-btn svg{
     margin-right: 0.75em;
@@ -434,6 +436,9 @@ body {
   font-weight: 700;
   margin-bottom: 0;
 }
+.homecard-container{
+  height: 100vh;
+}
 .home-category {
   display: flex;
   flex-direction: row;
@@ -469,16 +474,16 @@ body {
   color: #000000;
 }
 .homegrid-container {
-  position: relative;
-  margin-top: 2.5em;
-  padding: 0.25em 0.25em;
-  display: grid;
-  width: 100%;
-  height: 80%;
-  column-gap: 0.75em;
-  row-gap: 1em;
-  grid-template-columns: repeat(auto-fill, minmax(15%, 15.5%));
-  grid-template-rows: repeat(auto-fill, minmax(45%, 15.5%));
+    position: relative;
+    margin-top: 2.5em;
+    padding: 0.25em 0.25em;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    column-gap: 1em;
+    row-gap: 1em;
+    grid-template-columns: repeat(auto-fill, minmax(15%, 15.5%));
+    grid-template-rows: repeat(auto-fill, minmax(35%, 15.5%));
 }
 .sell-btn {
   display: flex;
@@ -581,6 +586,9 @@ body {
   cursor: pointer;
   border-radius: 1em;
 }
+.sidebar-wrapper{
+  display: none;
+}
 
 /* Mobile Layout */
 @media only screen and (max-width: 450px) {
@@ -652,6 +660,10 @@ body {
   .home-header {
     box-shadow: none;
     justify-content: space-between;
+    background-color: transparent;
+    position: absolute;
+    margin-top: -230px;
+    z-index: 3;
   }
   .home-navbar {
     width: 100%;
@@ -660,6 +672,7 @@ body {
     width: 100%;
     align-items: center;
     justify-content: space-around;
+    z-index: 2;
   }
   .home-logo {
     display: none;
@@ -685,6 +698,18 @@ body {
     margin-left: 60%;
   }
   .profile-wrapper {
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 200vh;
+    background-color: #ffffff;
+    z-index: 5;
+    transform: translateX(-100%);
+    transition: 0.5s ease-in-out; */
+    display: none;
+  }
+  .sidebar-wrapper{
     position: fixed;
     top: 0;
     left: 0;
@@ -702,7 +727,7 @@ body {
     width: 50%;
     height: 200vh;
     background-color: #ffffff;
-    z-index: 5;
+    z-index: 10;
     transform: translateX(0%);
     transition: 0.5s ease-in-out;
   }
@@ -780,140 +805,129 @@ body {
         position: absolute;
         top: 200px;
     } */
-  .swiper {
-    display: none;
-  }
-  .home-rect-bg {
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 398px;
-    left: 0px;
-    top: 0px;
-    z-index: -5;
-    background: linear-gradient(
-      180deg,
-      #ffe9c9 59.55%,
-      rgba(255, 233, 202, 0) 100%
-    );
-  }
-  .slider1,
-  .slider3,
-  .imagebg {
-    display: none;
-  }
-  .slider2-body {
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 300px;
-    top: 0;
-    left: 0;
-  }
-  .slider2 {
-    position: absolute;
-    width: 100%;
-    height: 398px;
-    top: 0;
-    border-radius: 0;
-    z-index: -3;
-    background: linear-gradient(
-      180deg,
-      #ffe9c9 59.55%,
-      rgba(255, 233, 202, 0) 100%
-    );
-  }
-  .slider2-info {
-    position: absolute;
-    margin-left: 1em;
-    margin-top: 3em;
-  }
-  .home-title {
-    font-size: 1.25rem;
-    line-height: 30px;
-    height: 60px;
-  }
-  .slider2-info h5 {
-    font-size: 0.625rem;
-    padding-bottom: 0.25em;
-  }
-  .disc {
-    font-size: 1.125rem;
-    line-height: 26px;
-  }
-  .kado {
-    /* position: absolute; */
-    margin-left: 13.0625em;
-    top: 124px;
-    width: 127px;
-    height: 123px;
-    background-repeat: no-repeat;
-  }
-  .home-layout {
-    width: 100%;
-    margin-top: 202px;
-    /* margin-left: 1em; */
-  }
-  .home-layout h4 {
-    width: auto;
-    font-size: 0.875rem;
-    font-weight: 500;
-    margin-left: 1em;
-  }
-  .homegrid-container {
-    /* position: absolute; */
-    width: 95%;
-    height: 100vh;
-    margin-top: 2em;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1.5%;
-    grid-template-columns: repeat(auto-fill, minmax(47%, 40%));
-    grid-template-rows: repeat(auto-fill, minmax(33%, 15%));
-  }
-  .homegrid-container::-webkit-scrollbar {
-    width: 3px;
-  }
-  .homegrid-item {
-    width: 156px;
-    height: 206px;
-  }
-  .slider-category {
-    display: inline-flex !important;
-    width: 95%;
-    height: 45px;
-    margin-left: 1em;
-  }
-  .home-category {
-    display: none;
-  }
-  .category-btn {
-    padding: 12px 16px;
-    font-size: 0.875rem;
-  }
-  .semua {
-    width: 110px !important;
-  }
-  .hobi,
-  .baju {
-    width: 92px !important;
-  }
-  .kendaraan,
-  .kesehatan {
-    width: 139px !important;
-  }
-  .elektronik {
-    width: 126px !important;
-  }
-  FiSearch {
-    width: 20px;
-    height: 20px;
-  }
-  /* .home-category{
+    .swiper{
+        display: none;
+    }
+    .home-rect-bg{
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 398px;
+        left: 0px;
+        top: 0px;
+        z-index: -5;
+        background: linear-gradient(180deg, #FFE9C9 59.55%, rgba(255, 233, 202, 0) 100%);
+    }
+    .slider1, .slider3, .imagebg{
+        display: none;
+    }
+    .slider2-body{
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 300px;
+        top: 0;
+        left: 0;
+    }
+    .slider2{
+        position: absolute;
+        width: 100%;
+        height: 398px;
+        top: 0;
+        border-radius: 0;
+        z-index: -3;
+        background: linear-gradient(180deg, #FFE9C9 59.55%, rgba(255, 233, 202, 0) 100%);
+    }
+    .slider2-info{
+        position: absolute;
+        margin-left: 1em;
+        margin-top: 3em;
+    }
+    .home-title{
+        font-size: 1.25rem;
+        line-height: 30px;
+        height: 60px;
+    }
+    .slider2-info h5{
+        font-size: 0.625rem;
+        padding-bottom: 0.25em;
+    }
+    .disc{
+        font-size: 1.125rem;
+        line-height: 26px;
+    }
+    .kado{
+        /* position: absolute; */
+        margin-left: 13.0625em;
+        top: 124px;
+        width: 127px;
+        height: 123px;
+        background-repeat: no-repeat;
+    }
+    .home-layout{
+        width: 100%;
+        margin-top: 230px;
+        /* margin-left: 1em; */
+    }
+    .home-layout h4{
+        width: auto;
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-left: 1em;
+    }
+    
+    .homegrid-container{
+        /* position: absolute; */
+        width: 95%;
+        height: 83%;
+        margin-top: 2em;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1.5%;
+        grid-template-columns: repeat(auto-fill, minmax(47%, 40%));
+        grid-template-rows: repeat(auto-fill, minmax(33%, 10%));
+    }
+    .homegrid-container::-webkit-scrollbar{
+        width: 3px;
+    }
+    .homegrid-item{
+        width: 156px;
+        height: 206px;
+    }
+    .slider-category{
+        display: inline-flex !important;
+        width: 95%;
+        height: 45px;
+        margin-left: 1em;
+    }
+    .home-category{
+        display: none;
+    }
+    .category-btn{
+        padding: 12px 16px;
+        font-size: 0.875rem;
+    }
+    .semua{
+        width: 110px !important;
+    }
+    .hobi, .baju{
+        width: 92px !important;
+    }
+    .kendaraan, .kesehatan{
+        width: 139px !important;
+    }
+    .elektronik{
+        width: 126px !important;
+    }
+    FiSearch {
+        width: 20px;
+        height: 20px;
+    }
+    /* .home-category{
         position: sticky;
         width: 800px;
     }
@@ -924,5 +938,6 @@ body {
   .sell-btn {
     left: 130px;
     margin-top: 0px;
+    z-index: 2;
   }
 }
