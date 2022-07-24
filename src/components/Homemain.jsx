@@ -28,15 +28,11 @@ import axios from "axios";
 import { useEffect } from "react";
 export default function Homemain({ dataSearch }) {
   let settings = {
+    dots: false,
     infinite: false,
     speed: 500,
     slidesToShow: 6,
-    draggable: false,
-    slide: "div",
     slidesToScroll: 1,
-    arrows: false,
-    className: "slider-category variable-width",
-    variableWidth: true,
     responsive: [
       {
         breakpoint: 450,
@@ -61,6 +57,7 @@ export default function Homemain({ dataSearch }) {
     getCategory();
   }, []);
 
+  console.log(category);
   return (
     <>
       <Swiper
@@ -119,19 +116,35 @@ export default function Homemain({ dataSearch }) {
       <div className="home-layout">
         <h4>Telusuri Kategori</h4>
         <Slider {...settings}>
-          <div className="category-btn" onClick={() => setKlik("all")}>
-            <FiSearch style={{ width: "20px", height: "20px" }} />
-            Semua
+          <div className="category-btn">
+            <div className="category-btn-inside" onClick={() => setKlik("all")}>
+              <FiSearch
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  marginRight: "24px",
+                }}
+              />
+              Semua
+            </div>
           </div>
           {category?.map((item, index) => {
             return (
-              <div
-                className="category-btn"
-                key={index}
-                onClick={() => setKlik(item.category_id)}
-              >
-                <FiSearch style={{ width: "20px", height: "20px" }} />
-                {item.category_name}
+              <div className="category-btn">
+                <div
+                  className="category-btn-inside"
+                  key={index}
+                  onClick={() => setKlik(item.category_id)}
+                >
+                  <FiSearch
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      marginRight: "16px",
+                    }}
+                  />
+                  {item.category_name}
+                </div>
               </div>
             );
           })}
