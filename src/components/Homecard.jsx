@@ -37,7 +37,7 @@ export default function Homecard({ klik }) {
                   alt="Item"
                 />
                 <h5 style={{ fontWeight: "600" }}>{res.product_name}</h5>
-                <h6>Aksesoris</h6>
+                <h6>Category</h6>
                 <h5>{res.product_harga}</h5>
               </div>
             </div>
