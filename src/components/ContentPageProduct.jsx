@@ -240,7 +240,11 @@ function ContentPageProduct({ changeWidth }) {
                   )}
                   {dataPenjual === undefined ? (
                     <div className="info-product-seller">
-                      <img src={dataPenjual.fotoProfile} alt="img-user" className="image-user me-3" />
+                      <img
+                        src={dataPenjual.fotoProfile}
+                        alt="img-user"
+                        className="image-user me-3"
+                      />
                       <div className="d-flex flex-column justify-content-center">
                         <p className="name-seller">Nama Penjual</p>
                         <p className="city-seller">Kota</p>

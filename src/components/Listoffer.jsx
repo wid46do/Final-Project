@@ -38,6 +38,7 @@ export default function Listoffer() {
   const [tolak, setTolak] = useState(false);
   const [idProduct, setIdProduct] = useState();
   const [status, setStatus] = useState();
+  const [idPenawaran, setIdPenawaran] = useState();
   const [modalData, setModalData] = useState({
     avatar: "",
     nama: "",
@@ -115,7 +116,6 @@ export default function Listoffer() {
         setTolak(!tolak);
       })
       .catch((e) => console.log(e));
-    console.log(status);
   };
 
   const handleStatus = (productid) => {
@@ -123,6 +123,7 @@ export default function Listoffer() {
       product_id: idProduct,
       statusJual: status,
     });
+
     axios({
       method: "post",
       data: dataStatus,
@@ -130,15 +131,23 @@ export default function Listoffer() {
       headers: { "Content-Type": "application/json" },
     })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         setTolak(!tolak);
         changeModalStatus();
       })
       .catch((e) => console.log(e));
-  };
 
-  console.log(data);
-  // console.log(modalData.kota, "nama modal");
+    // axios({
+    //   method: "delete",
+    //   url: `https://secondhand6.herokuapp.com/penawaran/deletePenawaran/${idPenawaran}`,
+    // })
+    //   .then((res) => {
+    //     console.log(res);
+    //     setTolak(!tolak);
+    //     changeModalStatus();
+    //   })
+    //   .catch((e) => console.log(e));
+  };
 
   return (
     <>
@@ -256,7 +265,15 @@ export default function Listoffer() {
                     </p>
                   </div>
                   <div className="font-size-14 mt-4">
-                    <input type="radio" id="ditolak" name="status" />
+                    <input
+                      type="radio"
+                      id="ditolak"
+                      name="status"
+                      value={false}
+                      onChange={(e) => {
+                        setStatus(e.target.value);
+                      }}
+                    />
                     <label htmlFor="ditolak" style={{ marginLeft: "10px" }}>
                       Batalkan transaksi
                     </label>
@@ -268,7 +285,7 @@ export default function Listoffer() {
                 <button
                   type="button"
                   className="btn-product-send mt-4"
-                  onClick={() => handleStatus(item.product.product_id)}
+                  onClick={() => handleStatus(idProduct)}
                 >
                   Kirim
                 </button>
@@ -325,6 +342,7 @@ export default function Listoffer() {
                         onClick={() => {
                           changeModalStatus();
                           setIdProduct(item.product.product_id);
+                          setIdPenawaran(item.penawaran_id);
                         }}
                       >
                         Status

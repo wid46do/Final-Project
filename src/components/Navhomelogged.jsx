@@ -53,6 +53,7 @@ export default function Navhomelogged() {
       {openNotifikasi && (
         <div className="notifikasi pb-4">
           {dataNotifikasi?.map((item, index) => {
+            console.log(item);
             return (
               <div
                 className="d-flex pb-3 mt-4"
@@ -60,7 +61,7 @@ export default function Navhomelogged() {
                 key={index}
               >
                 <img
-                  src={item.url}
+                  src={item?.url}
                   alt="icons"
                   style={{
                     width: "48px",
@@ -158,10 +159,11 @@ export default function Navhomelogged() {
               </h4>
               <ul className="profile-account-wrapper">
                 <li>
-                  <FiList style={{ width: "24px", height: "24px" }} />
-                  <Link to={"/daftar-jual"} className="font-dark">
-                    <span className="nav-list">Daftar Jual</span>
-                  </Link>
+                  <FiList
+                    style={{ width: "24px", height: "24px" }}
+                    onClick={() => navigate("/daftar-jual")}
+                  />
+                  <span className="nav-list">Daftar Jual</span>
                 </li>
                 <li>
                   <FiBell

@@ -6,22 +6,15 @@ import Clockone from "../images/clock1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../actions/search";
 
-export default function Homecard() {
+export default function Homecard({ klik }) {
   const id = JSON.parse(localStorage.getItem("userId"));
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.search);
 
   useEffect(() => {
-    //   const getData = async () => {
-    //     const res = await axios.get(
-    //       "https://secondhand6.herokuapp.com/product/getAll?status=DIJUAL"
-    //     );
-    //     setData(res.data.filter((item) => item.user_Id !== id));
-    //   };
-    //   getData();
-    dispatch(getData(id));
-  }, []);
+    dispatch(getData(id, klik));
+  }, [klik]);
 
   return (
     <>

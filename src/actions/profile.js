@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ActionTypes } from "../constant/action-types";
+import Swal from "sweetalert2";
 
-// const id = JSON.parse(localStorage.getItem("userId"));
 const token = JSON.parse(localStorage.getItem("token"));
 
 export const getProfile = (id) => (dispatch) => {
@@ -59,23 +59,23 @@ export const getPenjual = (idPenjual) => (dispatch) => {
     });
 };
 
-export const updateProfile = (data, navigate) => (dispatch) => {
-  console.log(data, "ini dataku");
+export const updateProfile = (data, id) => (dispatch) => {
   return axios({
-    method: "PUT",
-    url: "https://secondhand6.herokuapp.com/user/update/12",
-    data: data,
-    headers: {
-      "content-type": "application/json",
-    },
-  }).then((response) => {
-    console.log(response, "ini response update");
-    dispatch({
-      type: ActionTypes.UPDATE_PROFILE_SUCCESS,
-    }).catch((error) => {
+    method: "post",
+    url: `https://secondhand6.herokuapp.com/user/update/{user_Id}?user_Id=${id}`,
+    data,
+    headers: { "Content-Type": "multipart/form-data" },
+  })
+    .then((res) => {
       dispatch({
-        typeof: ActionTypes.UPDATE_PROFILE_FAIL,
+        type: ActionTypes.UPDATE_PROFILE_SUCCESS,
       });
+      Swal.fire("Success", "Yeay, berhasil update profile", "success");
+    })
+    .catch(() => {
+      dispatch({
+        type: ActionTypes.UPDATE_PROFILE_FAIL,
+      });
+      Swal.fire("Sorry", "Update profile gagal", "error");
     });
-  });
 };

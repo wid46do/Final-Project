@@ -25,6 +25,8 @@ import Banner5 from "../images/banner-5.png";
 import Clockone from "../images/clock1.png";
 import { FiSearch } from "react-icons/fi";
 import { BsPlusLg } from "react-icons/bs";
+import axios from "axios";
+import { useEffect } from "react";
 export default function Homemain({ dataSearch }) {
   const navigate = useNavigate();
   let settings = {
@@ -49,6 +51,18 @@ export default function Homemain({ dataSearch }) {
       },
     ],
   };
+  const [category, setCategory] = useState();
+  const [klik, setKlik] = useState(false);
+  const getCategory = () => {
+    axios
+      .get("https://secondhand6.herokuapp.com/category/getAll")
+      .then((res) => setCategory(res.data))
+      .catch((e) => console.log(e));
+  };
+  useEffect(() => {
+    getCategory();
+  }, []);
+  // console.log(klik);
   return (
     <>
       <Swiper
@@ -107,30 +121,22 @@ export default function Homemain({ dataSearch }) {
       <div className="home-layout">
         <h4>Telusuri Kategori</h4>
         <Slider {...settings}>
-          <div className="category-btn semua">
+          <div className="category-btn" onClick={() => setKlik("all")}>
             <FiSearch style={{ width: "20px", height: "20px" }} />
             Semua
           </div>
-          <div className="category-btn hobi">
-            <FiSearch style={{ width: "20px", height: "20px" }} />
-            Hobi
-          </div>
-          <div className="category-btn kendaraan">
-            <FiSearch style={{ width: "20px", height: "20px" }} />
-            Kendaraan
-          </div>
-          <div className="category-btn">
-            <FiSearch style={{ width: "20px", height: "20px" }} />
-            Baju
-          </div>
-          <div className="category-btn">
-            <FiSearch style={{ width: "20px", height: "20px" }} />
-            Elektronik
-          </div>
-          <div className="category-btn">
-            <FiSearch style={{ width: "20px", height: "20px" }} />
-            Kesehatan
-          </div>
+          {category?.map((item, index) => {
+            return (
+              <div
+                className="category-btn"
+                key={index}
+                onClick={() => setKlik(item.category_id)}
+              >
+                <FiSearch style={{ width: "20px", height: "20px" }} />
+                {item.category_name}
+              </div>
+            );
+          })}
           <div className="holder-category"></div>
         </Slider>
 
@@ -141,7 +147,7 @@ export default function Homemain({ dataSearch }) {
           </Link>
 
           <div className="homegrid-container">
-            <Homecard dataSearch={dataSearch} />
+            <Homecard dataSearch={dataSearch} klik={klik} />
           </div>
         </div>
       </div>
