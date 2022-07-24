@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../style/ContentSaleList.css";
 import {
   FiBox,
@@ -10,6 +10,8 @@ import {
 import DataProductSale from "./DataProductSale";
 import Slider from "react-slick";
 import { useNavigate } from "react-router";
+import DataProductList from "./DataProductList";
+import DataProductSold from "./DataProductSold";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,6 +39,8 @@ function ContentSaleList({ changeWidth, setVisible }) {
   },[])
 
   const navigate = useNavigate()
+
+  const [menu, setMenu] = useState("all");
 
   return (
     <>
@@ -75,7 +79,12 @@ function ContentSaleList({ changeWidth, setVisible }) {
             {changeWidth >= 576 ? (
               <div className="category p-4 mx-0 mx-sm-4 mx-md-0">
                 <h6 className="mb-4">Kategori</h6>
-                <div className="d-flex justify-content-between align-items-center mb-3 pb-3 shadow-bottom">
+                <div
+                  className="d-flex justify-content-between align-items-center mb-3 pb-3 shadow-bottom"
+                  onClick={() => {
+                    setMenu("all");
+                  }}
+                >
                   <span>
                     <FiBox className="me-2 color-gray" /> Semua Produk
                   </span>
@@ -84,7 +93,7 @@ function ContentSaleList({ changeWidth, setVisible }) {
                 <div
                   className="d-flex justify-content-between align-items-center mb-3 pb-3 shadow-bottom"
                   onClick={() => {
-                    navigate("/offer");
+                    setMenu("minat");
                   }}
                 >
                   <span>
@@ -92,7 +101,12 @@ function ContentSaleList({ changeWidth, setVisible }) {
                   </span>
                   <FiChevronRight className="color-gray" />
                 </div>
-                <div className="d-flex justify-content-between align-items-center pb-3">
+                <div
+                  className="d-flex justify-content-between align-items-center pb-3"
+                  onClick={() => {
+                    setMenu("sold");
+                  }}
+                >
                   <span>
                     <FiDollarSign className="me-2 color-gray" /> Terjual
                   </span>
@@ -123,7 +137,13 @@ function ContentSaleList({ changeWidth, setVisible }) {
             )}
           </div>
           <div className="col-12 col-md-9 px-0 px-sm-3 px-md-0 mt-4 mt-md-0 data-product">
-            <DataProductSale />
+            {menu === "all" ? (
+              <DataProductSale />
+            ) : menu === "minat" ? (
+              <DataProductList />
+            ) : (
+              <DataProductSold />
+            )}
           </div>
         </div>
       </div>

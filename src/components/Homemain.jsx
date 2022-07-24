@@ -25,7 +25,8 @@ import Banner5 from "../images/banner-5.png";
 import Clockone from "../images/clock1.png";
 import { FiSearch } from "react-icons/fi";
 import { BsPlusLg } from "react-icons/bs";
-export default function Homemain() {
+
+export default function Homemain({ dataSearch }) {
   const navigate = useNavigate();
   let settings = {
     infinite: false,
@@ -141,7 +142,7 @@ export default function Homemain() {
           </Link>
 
           <div className="homegrid-container">
-            <Homecard />
+            <Homecard dataSearch={dataSearch} />
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { FiSearch, FiList, FiBell, FiUser } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearProduk } from "../actions/produk";
+import { clearProfile } from "../actions/profile";
 
 function NavbarSeller() {
   const dispatch = useDispatch();
@@ -17,8 +18,9 @@ function NavbarSeller() {
           src="/images/Rectangle-127.png"
           alt="logo"
           onClick={() => {
+            dispatch(clearProduk());
+            dispatch(clearProfile());
             navigate("/");
-            window.location.reload();
           }}
         />
         {/* </Link> */}
