@@ -135,7 +135,7 @@ export default function Navhomelogged() {
                     dispatch(getData(id));
                     return;
                   }
-                  dispatch(searchData(search));
+                  dispatch(searchData(search, id));
                 }}
               />
               <input
