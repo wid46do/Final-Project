@@ -131,112 +131,108 @@ export default function Formproduk() {
     }
   };
 
-  return (
-    <div className="container my-3 my-md-5 my-lg-5">
-      <div className="arrow my-4 my-md-0 my-lg-0 d-flex">
-        <button
-          onClick={() => {
-            navigate(-1);
-          }}
-          className="border-0 bg-white"
-        >
-          <HiArrowLeft />
-        </button>
-        <p className="ms-4 mb-0 d-md-none d-lg-none fw-bold">
-          Lengkapi Detail Produk
-        </p>
-      </div>
-      <div className="d-flex justify-content-center">
-        <Form className="profil-form" onSubmit={(e) => e.preventDefault()}>
-          <Form.Group>
-            <Form.Label data-testid="formLabel">Nama Produk</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Nama Produk"
-              className="form-input"
-              onChange={(e) => {
-                onChangeHandler("product_name", e.target.value);
-              }}
-            />
-          </Form.Group>
+    return(
+        <div className="container my-3 my-md-5 my-lg-5">
+            <div className="arrow my-4 my-md-0 my-lg-0 d-flex">
+                <button onClick={() => {navigate(-1)}} className='border-0 bg-white'>
+                    <HiArrowLeft/>
+                </button>
+                <p className='ms-4 mb-0 d-md-none d-lg-none fw-bold'>Lengkapi Detail Produk</p>
+            </div>
+            <div className='d-flex justify-content-center'>
+                <Form className='profil-form' onSubmit={(e) => e.preventDefault()}>
 
-          <Form.Group className="mt-3">
-            <Form.Label>Harga Produk</Form.Label>
-            <Form.Control
-              type="text"
-              inputMode="numeric"
-              placeholder="Rp 0,00"
-              className="form-input"
-              onChange={(e) => {
-                onChangeHandler("product_harga", parseInt(e.target.value) || 0);
-              }}
-            />
-          </Form.Group>
+                    <Form.Group>
+                        <Form.Label data-testid="formLabel">Nama Produk</Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='Nama Produk'
+                            className='form-input'
+                            onChange={(e)=>{onChangeHandler("product_name", e.target.value)}}
+                        />
+                    </Form.Group>
 
-          <Form.Group className="mt-3">
-            <Form.Label>Kategori</Form.Label>
-            <Select
-              styles={customStyles}
-              options={options}
-              // isMulti
-              onChange={(e) => {
-                onChangeHandler("category_id", e);
-              }}
-            />
-          </Form.Group>
+                    <Form.Group className='mt-3'>
+                        <Form.Label>Harga Produk</Form.Label>
+                        <Form.Control
+                            type='text'
+                            inputMode='numeric'
+                            placeholder='Rp 0,00'
+                            className='form-input'
+                            onChange={(e)=>{onChangeHandler("product_harga", parseInt(e.target.value)||0)}}
+                        />
+                    </Form.Group>
 
-          <Form.Group className="mt-3">
-            <Form.Label>Lokasi</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Contoh: Jalan Ikan Hiu 33"
-              className="form-input"
-              onChange={(e) => {
-                onChangeHandler("product_lokasi", e.target.value);
-              }}
-            />
-          </Form.Group>
+                    <Form.Group className='mt-3'>
+                        <Form.Label>Kategori</Form.Label>
+                        <Select 
+                            styles={customStyles}
+                            options={options}
+                            // isMulti
+                            onChange={(e)=>{onChangeHandler("category_id", e)}}
+                        />
+                    </Form.Group>
 
-          <Form.Group className="mt-3">
-            <Form.Label>Deskripsi</Form.Label>
-            <Form.Control
-              as="textarea"
-              placeholder="Deskripsi produk"
-              className="form-input"
-              onChange={(e) => {
-                onChangeHandler("product_deskripsi", e.target.value);
-              }}
-            />
-          </Form.Group>
+                    <Form.Group className='mt-3'>
+                        <Form.Label>Lokasi</Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='Contoh: Jalan Ikan Hiu 33'
+                            className='form-input'
+                            onChange={(e)=>{onChangeHandler("product_lokasi", e.target.value)}}
+                        />
+                    </Form.Group>
 
-          <Form.Group className="mt-3">
-            <Form.Label>Foto Produk</Form.Label>
-            <div className="row px-3">
-              <div
-                {...getRootProps()}
-                className="produk-dropzone d-flex justify-content-center align-items-center col-6 col-md-12 col-lg-12 p-0"
-              >
-                <input {...getInputProps()} onChange={selectFile} />
-                <img src={Plus} alt="" />
-              </div>
+                    <Form.Group className='mt-3'>
+                        <Form.Label>Deskripsi</Form.Label>
+                        <Form.Control
+                            as='textarea'
+                            placeholder='Deskripsi produk'
+                            className='form-input'
+                            onChange={(e)=>{onChangeHandler("product_deskripsi", e.target.value)}}
+                        />
+                    </Form.Group>
 
-              {imagePreview &&
-                imagePreview.map((image) => {
-                  return (
-                    <div
-                      key={image}
-                      className="preview col-6 col-md-12 col-lg-12 p-0 ms-4"
-                    >
-                      <img
-                        src={image}
-                        alt=""
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "fill",
-                          borderRadius: "12%",
-                        }}
-                      />
+                    <Form.Group className='mt-3'>
+                        <Form.Label>Foto Produk</Form.Label>
+                        <div className='row px-3'>
+                            <div {...getRootProps()} className="produk-dropzone d-flex justify-content-center align-items-center col-6 col-md-12 col-lg-12 p-0">
+                                <input {...getInputProps()} onChange={selectFile} />
+                                <img src={Plus} alt="" />
+                            </div>
+
+                            {imagePreview && (
+                                imagePreview.map((image) => {
+                                    return(
+                                        <div key={image} className='preview col-4 col-md-12 col-lg-12 p-0 ms-4'>
+                                            <img
+                                                src={image} alt=""
+                                                style={ {width: "100%", height: "100%", objectFit: "fill", borderRadius: "12%"} }
+                                            />
+                                        </div>
+                                    )
+                                })
+                            )}
+                        </div>
+                    </Form.Group>
+
+                    <div className='mt-3 row'>
+                        <div className="porduk-btn d-grid col-6">
+                            <Button 
+                                className='form-button2 bg-light button-border text-dark'
+                                // onClick={()=>upload("preview")}
+                            >
+                                Preview
+                            </Button>
+                        </div>
+                        <div className="porduk-btn d-grid col-6">
+                            <Button 
+                                className='form-button'
+                                onClick={()=>upload("dijual")}
+                            >
+                                Terbitkan
+                            </Button>
+                        </div>
                     </div>
                   );
                 })}
