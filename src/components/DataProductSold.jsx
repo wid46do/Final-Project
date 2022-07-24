@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { FiPlus } from "react-icons/fi";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
 
@@ -27,7 +26,6 @@ function DataProductSold() {
     getDataSold();
   }, []);
 
-  console.log(data);
   return (
     <>
       <div className="row ms-0 ms-md-3 g-md-3 g-0 justify-content-around justify-content-sm-start">

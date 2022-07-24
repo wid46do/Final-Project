@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ContentSaleList from "../components/ContentSaleList";
-import NavbarSeller from "../components/NavbarSeller";
 import Navhomelogged from "../components/Navhomelogged";
 import SidebarMobile from "../components/SidebarMobile";
 

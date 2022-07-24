@@ -8,7 +8,6 @@ import { clearErrorLogin, login, logout } from "../actions/auth";
 import { Link } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
 
 export default function Loginuser() {
   const [revPassword, unrevPassword] = useState(false);
@@ -22,8 +21,6 @@ export default function Loginuser() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState("");
-
-  const errorRef = useRef();
 
   const form = useRef();
 
@@ -57,7 +54,7 @@ export default function Loginuser() {
     setLoading(true);
 
     form.current.validateAll();
-    
+
     dispatch(login(username, password))
       .then(() => {
         navigate("/");

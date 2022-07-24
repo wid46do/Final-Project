@@ -28,7 +28,6 @@ export default function Formproduk(){
 
     const selectFile = (event) => {
         const reader = new FileReader();
-        console.log(event.constructor.name)
         reader.addEventListener('load', () => {
             setImagePreview((before) =>{
                 const next = [...before]
@@ -227,7 +226,6 @@ export default function Formproduk(){
                             </Button>
                         </div>
                     </div>
-                    
                 </Form>
             </div>
         </div>

@@ -4,14 +4,11 @@ import { useEffect } from "react";
 import { FiPlus } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { getProduk } from "../actions/produk";
 import "../style/DataProductSale.css";
 
 function DataProductSale() {
   const [produk, setProduk] = useState([]);
-  const { dataProduk } = useSelector((state) => state.produk);
   const dispatch = useDispatch();
-  console.log(dataProduk);
 
   const id = JSON.parse(localStorage.getItem("userId"));
 
@@ -34,8 +31,6 @@ function DataProductSale() {
   }, []);
 
   const navigate = useNavigate();
-
-  console.log(produk);
 
   return (
     <>

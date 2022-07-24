@@ -53,7 +53,6 @@ export default function Navhomelogged() {
       {openNotifikasi && (
         <div className="notifikasi pb-4">
           {dataNotifikasi?.map((item, index) => {
-            console.log(item);
             return (
               <div
                 className="d-flex pb-3 mt-4"

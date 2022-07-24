@@ -10,7 +10,6 @@ import { getPenjual, getProfile } from "../actions/profile";
 import { useState } from "react";
 import Modal from "react-modal";
 import { FiX } from "react-icons/fi";
-import axios from "axios";
 import { addPenawaran } from "../actions/penawaran";
 
 const customStyles = {
@@ -102,7 +101,6 @@ function ContentPageProduct({ changeWidth }) {
     closeModal();
   };
 
-  console.log(dataProduk);
   return (
     <>
       <div className="content-page-product">
