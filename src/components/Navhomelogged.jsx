@@ -6,17 +6,24 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearLogin, logout } from "../actions/auth";
 import { useNavigate } from "react-router";
+import { getData, searchData } from "../actions/search";
 
 export default function Navhomelogged() {
+  const id = JSON.parse(localStorage.getItem("userId"));
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [openSideBar, setEnableBell] = useState(false);
   const [dropOpen, dropClose] = useState(false);
+  const [search, setSearch] = useState("");
 
   const handleLogOut = () => {
     dispatch(logout());
     dispatch(clearLogin());
     navigate("/login");
+  };
+
+  const changeSearch = (value) => {
+    setSearch(value);
   };
   return (
     <>
@@ -27,7 +34,7 @@ export default function Navhomelogged() {
       <header className="home-header">
         <nav className="home-navbar">
           <div className="logo-wrapper">
-            <div className="home-logo"></div>
+            <div className="home-logo" onClick={() => navigate("/")}></div>
             <div
               className="home-burger"
               onClick={() => setEnableBell(!openSideBar)}
@@ -39,8 +46,19 @@ export default function Navhomelogged() {
             <div className="home-search">
               <FiSearch
                 style={{ width: "24px", height: "24px", cursor: "pointer" }}
+                onClick={() => {
+                  if (search === "") {
+                    dispatch(getData(id));
+                    return;
+                  }
+                  dispatch(searchData(search));
+                }}
               />
-              <input type="text" placeholder="Cari di sini ..." />
+              <input
+                type="text"
+                placeholder="Cari di sini ..."
+                onChange={(e) => setSearch(e.target.value)}
+              />
             </div>
           </div>
           <div
