@@ -85,7 +85,7 @@ export default function Registeruser() {
             </svg>
           </header>
           <div className="login-form">
-            <p className="masuk">Daftar</p>
+            <p data-testId="header" className="masuk">Daftar</p>
             <form onSubmit={handleRegister}>
               <div className="nama">
                 <label htmlFor="nama">Nama</label>

@@ -75,7 +75,9 @@ export default function Navhomelogged() {
               <ul className="profile-account-wrapper">
                 <li>
                   <FiList style={{ width: "24px", height: "24px" }} />
-                  <span className="nav-list">Daftar Jual</span>
+                  <Link to={"/daftar-jual"} className="font-dark">
+                    <span className="nav-list">Daftar Jual</span>
+                  </Link>
                 </li>
                 <li>
                   <FiBell style={{ width: "24px", height: "24px" }} />
