@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import ContentPageProduct from "../components/ContentPageProduct";
-import NavbarSeller from "../components/NavbarSeller";
 import Navhomelogged from "../components/Navhomelogged";
 
 function PageProduct() {

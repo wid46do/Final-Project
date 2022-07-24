@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ContentSaleList from "../components/ContentSaleList";
-import NavbarSeller from "../components/NavbarSeller";
+import Navhomelogged from "../components/Navhomelogged";
 import SidebarMobile from "../components/SidebarMobile";
 
 function PageSaleList() {
@@ -34,7 +34,7 @@ function PageSaleList() {
   console.log(document.body.style.overflow);
   return (
     <>
-      <NavbarSeller />
+      <Navhomelogged />
       <SidebarMobile visible={sidebarMobile} setVisible={changeSidebar} />
       <ContentSaleList changeWidth={width} setVisible={changeSidebar} />
     </>

@@ -22,21 +22,17 @@ import Banner2 from "../images/banner-2.png";
 import Banner3 from "../images/banner-3.png";
 import Banner4 from "../images/banner-4.png";
 import Banner5 from "../images/banner-5.png";
-import Clockone from "../images/clock1.png";
 import { FiSearch } from "react-icons/fi";
 import { BsPlusLg } from "react-icons/bs";
-export default function Homemain() {
-  const navigate = useNavigate();
+import axios from "axios";
+import { useEffect } from "react";
+export default function Homemain({ dataSearch }) {
   let settings = {
+    dots: false,
     infinite: false,
     speed: 500,
     slidesToShow: 6,
-    draggable: true,
-    slide: "div",
     slidesToScroll: 1,
-    arrows: false,
-    className: "slider-category variable-width",
-    variableWidth: true,
     responsive: [
       {
         breakpoint: 450,
@@ -49,6 +45,19 @@ export default function Homemain() {
       },
     ],
   };
+  const [category, setCategory] = useState();
+  const [klik, setKlik] = useState(false);
+  const getCategory = () => {
+    axios
+      .get("https://secondhand6.herokuapp.com/category/getAll")
+      .then((res) => setCategory(res.data))
+      .catch((e) => console.log(e));
+  };
+  useEffect(() => {
+    getCategory();
+  }, []);
+
+  console.log(category);
   return (
     <>
       <Swiper
@@ -107,30 +116,38 @@ export default function Homemain() {
       <div className="home-layout">
         <h4>Telusuri Kategori</h4>
         <Slider {...settings}>
-          <div className="category-btn semua">
-            <FiSearch style={{ width: "20px", height: "20px" }} />
-            Semua
+          <div className="category-btn">
+            <div className="category-btn-inside" onClick={() => setKlik("all")}>
+              <FiSearch
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  marginRight: "24px",
+                }}
+              />
+              Semua
+            </div>
           </div>
-          <div className="category-btn hobi">
-            <FiSearch style={{ width: "20px", height: "20px" }} />
-            Hobi
-          </div>
-          <div className="category-btn kendaraan">
-            <FiSearch style={{ width: "20px", height: "20px" }} />
-            Kendaraan
-          </div>
-          <div className="category-btn baju">
-            <FiSearch style={{ width: "20px", height: "20px" }} />
-            Baju
-          </div>
-          <div className="category-btn elektronik">
-            <FiSearch style={{ width: "20px", height: "20px" }} />
-            Elektronik
-          </div>
-          <div className="category-btn kesehatan">
-            <FiSearch style={{ width: "20px", height: "20px" }} />
-            Kesehatan
-          </div>
+          {category?.map((item, index) => {
+            return (
+              <div key={index} className="category-btn">
+                <div
+                  className="category-btn-inside"
+                  key={index}
+                  onClick={() => setKlik(item.category_id)}
+                >
+                  <FiSearch
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      marginRight: "16px",
+                    }}
+                  />
+                  {item.category_name}
+                </div>
+              </div>
+            );
+          })}
           <div className="holder-category"></div>
         </Slider>
 
@@ -141,7 +158,7 @@ export default function Homemain() {
           </Link>
 
           <div className="homegrid-container">
-            <Homecard />
+            <Homecard dataSearch={dataSearch} klik={klik} />
           </div>
         </div>
       </div>

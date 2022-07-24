@@ -5,12 +5,11 @@ import { FiArrowLeft } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCategory, getProduk } from "../actions/produk";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { getPenjual, getProfile } from "../actions/profile";
 import { useState } from "react";
 import Modal from "react-modal";
 import { FiX } from "react-icons/fi";
-import axios from "axios";
 import { addPenawaran } from "../actions/penawaran";
 
 const customStyles = {
@@ -36,6 +35,7 @@ const customStyles = {
 
 function ContentPageProduct({ changeWidth }) {
   const user_id = JSON.parse(localStorage.getItem("userId"));
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const { dataProduk, dataCategory } = useSelector((state) => state.produk);
@@ -60,7 +60,7 @@ function ContentPageProduct({ changeWidth }) {
   useEffect(() => {
     if (dataProduk === false) {
       dispatch(getProduk(id));
-      dispatch(getProfile());
+      dispatch(getProfile(user_id));
       return;
     }
     setCategoryId(dataProduk.category_id);
@@ -102,7 +102,6 @@ function ContentPageProduct({ changeWidth }) {
     closeModal();
   };
 
-  // console.log(dataProduk);
   return (
     <>
       <div className="content-page-product">
@@ -176,19 +175,11 @@ function ContentPageProduct({ changeWidth }) {
             <div className="col-12 d-flex justify-content-center">
               <div className="content-product-top d-flex flex-column flex-xl-row justify-content-center">
                 <div className="carousel-product">
-                  <FiArrowLeft className="carousel-product-arrow d-block d-sm-none" />
+                  <FiArrowLeft
+                    className="carousel-product-arrow d-block d-sm-none"
+                    onClick={() => navigate(-1)}
+                  />
                   <Slider {...settings}>
-                    {/* <img
-                      src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/438859/item/goods_09_438859.jpg?width=1600&impolicy=quality_75"
-                      alt=""
-                      className="imgs"
-                    />
-
-                    <img
-                      src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/423482/item/goods_69_423482.jpg?width=1008&impolicy=quality_75"
-                      alt=""
-                      className="imgs"
-                    /> */}
                     {dataProduk === false ? (
                       <p>Loading...</p>
                     ) : (
@@ -240,7 +231,11 @@ function ContentPageProduct({ changeWidth }) {
                   )}
                   {dataPenjual === undefined ? (
                     <div className="info-product-seller">
-                      <img src="" alt="img-user" className="image-user me-3" />
+                      <img
+                        src={dataPenjual.fotoProfile}
+                        alt="img-user"
+                        className="image-user me-3"
+                      />
                       <div className="d-flex flex-column justify-content-center">
                         <p className="name-seller">Nama Penjual</p>
                         <p className="city-seller">Kota</p>
@@ -273,9 +268,16 @@ function ContentPageProduct({ changeWidth }) {
               </div>
             </div>
             {changeWidth <= 576 && (
-              <button className="btn-product-send-responsive" type="button">
-                Terbitkan
+              <button
+                className="btn-product-send-responsive"
+                type="button"
+                onClick={openModal}
+              >
+                Saya tertarik dan ingin nego
               </button>
+              // <button className="btn-product-send-responsive" type="button" onClick={()=>}>
+              //   Terbitkan
+              // </button>
             )}
           </div>
         </div>

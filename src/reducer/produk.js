@@ -25,6 +25,7 @@ const produk = (state = initialState, action) => {
         ...state,
         dataProduk: action.payload.data,
         errorProduk: action.payload.error,
+        dataCategory: action.payload.data,
       };
     case ActionTypes.GET_CATEGORY_SUCCESS:
       return {

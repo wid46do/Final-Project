@@ -9,24 +9,20 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile, updateProfile } from "../actions/profile";
-import axios from "axios";
 
 export default function Formprofil() {
-  const token = JSON.parse(localStorage.getItem("token"));
+  const user_id = JSON.parse(localStorage.getItem("userId"));
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { dataProfile } = useSelector((state) => state.profile);
   const [uploadedImage, setUploadedImage] = useState(false);
   const imageUploader = useRef(null);
 
-  const user_id = JSON.parse(localStorage.getItem("userId"));
-
   const [avatar, setAvatar] = useState(null);
   const [fullname, setFullname] = useState();
   const [noTelp, setNoTelp] = useState();
   const [city, setCity] = useState();
   const [alamat, setAlamat] = useState();
-  const [password, setPassword] = useState();
 
   useEffect(() => {
     if (dataProfile === false) {
@@ -63,53 +59,8 @@ export default function Formprofil() {
     formData.append("no_telp", noTelp);
     formData.append("fotoProfile", avatar);
 
-    for (const value of formData.values()) {
-      console.log({ value });
-    }
-
-    // dispatch(updateProfile(formData, navigate));
-    // axios
-    //   .put("https://secondhand6.herokuapp.com/user/update/12", formData)
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    // axios
-    //   .put("https://secondhand6.herokuapp.com/user/update/12", {
-    //     data: formData,
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //       Authorization: `Basic ${token}`,
-    //       "Access-Control-Allow-Origin": "*",
-    //       "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-    //     },
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
-    axios({
-      method: "post",
-      url: `https://secondhand6.herokuapp.com/user/update/{user_Id}?user_Id=${user_id}`,
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    })
-      .then(function (response) {
-        //handle success
-        console.log(response);
-      })
-      .catch(function (response) {
-        //handle error
-        console.log(response);
-      });
+    dispatch(updateProfile(formData, user_id));
   };
-
-  console.log(dataProfile);
 
   return (
     <>
@@ -124,7 +75,7 @@ export default function Formprofil() {
               }}
               className="border-0 bg-white"
             >
-              <HiArrowLeft />
+              <HiArrowLeft onClick={() => navigate(-1)} />
             </button>
             <p className="ms-5 mb-0 d-md-none d-lg-none fw-bold">
               Lengkapi Info Akun

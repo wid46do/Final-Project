@@ -1,27 +1,23 @@
 import "../style/riostyle.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Clockone from "../images/clock1.png";
-export default function Homecard() {
-  const [data, setData] = useState();
+import { useDispatch, useSelector } from "react-redux";
+import { getData } from "../actions/search";
+import EllipsisText from "react-ellipsis-text";
+
+export default function Homecard({ klik }) {
   const id = JSON.parse(localStorage.getItem("userId"));
-  useEffect(() => {
-    const getData = async () => {
-      const res = await axios.get(
-        "https://secondhand6.herokuapp.com/product/getAll"
-      );
-      setData(res.data.filter((item) => item.user_Id !== id));
-    };
-    getData();
-  }, []);
-
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.search);
 
-  console.log(data);
+  useEffect(() => {
+    dispatch(getData(id, klik));
+  }, [klik]);
+
   return (
     <>
-      {data === undefined ? (
+      {!data ? (
         <p>Loading...</p>
       ) : (
         data.map((res) => {
@@ -39,8 +35,10 @@ export default function Homecard() {
                   className="item-img"
                   alt="Item"
                 />
-                <h5 style={{ fontWeight: "600" }}>{res.product_name}</h5>
-                <h6>Aksesoris</h6>
+                <h5 style={{ fontWeight: "600" }}>
+                  <EllipsisText text={res.product_name} length={16} />
+                </h5>
+                <h6>Category</h6>
                 <h5>{res.product_harga}</h5>
               </div>
             </div>

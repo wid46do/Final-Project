@@ -15,7 +15,7 @@ export const getProduk = (id) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({
-        type: ActionTypes.GET_PROFILE_FAIL,
+        type: ActionTypes.GET_PRODUK_FAIL,
         payload: {
           data: false,
           error: err.message,
