@@ -340,7 +340,7 @@ body {
   cursor: pointer;
   font-size: 0.875rem;
 }
-.slick-slide {
+.home-layout .slick-slide {
   margin-left: 1em;
 }
 /* .category-btn svg{
