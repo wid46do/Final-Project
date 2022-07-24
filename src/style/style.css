@@ -94,6 +94,18 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+.notif {
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.notif p {
+    font-size: 14px;
+}
+
+.notif-desc {
+    width: 100%;
+}
+
 @media (min-width: 992px) {
     .arrow {
         margin-left: 200px;

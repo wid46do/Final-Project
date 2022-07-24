@@ -12,8 +12,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import PrivateRoute from "./privateroute/PrivateRoute";
 import PagePenawaran from "./pages/PagePenawaran";
-import { Provider } from "react-redux";
-import store from "./store";
+import Notifikasi from "./pages/Notifikasi";
 
 function App() {
   return (
@@ -26,6 +25,7 @@ function App() {
           <Route path="/halaman-produk/:id" element={<PageProduct />} />
           <Route path="/daftar-jual" element={<PageSaleList />} />
           <Route path="/page-penawaran/:id" element={<PagePenawaran />} />
+          <Route path="/notif" element={<Notifikasi />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

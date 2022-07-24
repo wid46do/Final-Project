@@ -21,7 +21,7 @@ export default function Formproduk(){
             category_id: 0,
             product_deskripsi: "",
             statusProduct: "DIJUAL",
-            user_id: 0,
+            user_Id: 0,
             product_lokasi: "",
         }
     )
@@ -75,7 +75,6 @@ export default function Formproduk(){
         }
         setInputProduk({...inputProduk});
     }
-    console.log(inputProduk);
 
     useEffect(() => {
         const getCategory = async() => {
@@ -92,25 +91,26 @@ export default function Formproduk(){
 
     const navigate = useNavigate()
 
+    const idUser = JSON.parse(localStorage.getItem("userId"));
+
     const upload = async(id) =>{
         try {
             let formData = new FormData()
-            console.log(inputProduk);
 
             Object.keys(inputProduk).forEach((key) => {
                 if(id === "preview"){
                     inputProduk.statusProduct = "TERJUAL"
-                }else if(key === "user_id"){
-                    inputProduk.user_id = window.localStorage.getItem("userId")
+                }else if(key === "user_Id"){
+                    inputProduk.user_Id = idUser
                 }
                 setInputProduk({...inputProduk})
                 formData.append(key, inputProduk[key])
             })
 
-            console.log(imageFiles);
             imageFiles.forEach((imageFile)=>{
                 formData.append("product_gambar", imageFile)
             })
+            
             navigate('/daftar-jual')
             
             const res = await axios.post("https://secondhand6.herokuapp.com/product/add", formData, {

@@ -8,7 +8,6 @@ import { getProduk } from "../actions/produk";
 import "../style/DataProductSale.css";
 
 function DataProductSale() {
-<<<<<<< HEAD
   const [ produk, setProduk ] = useState([])
   const { dataProduk } = useSelector((state)=>state.produk)
   const dispatch = useDispatch()
@@ -20,8 +19,7 @@ function DataProductSale() {
     try {
       const getAllProduk = async()=>{
         const respon = await axios.get("https://secondhand6.herokuapp.com/product/getAll",);
-        // const newProduk = respon.data.filter(())
-        setProduk(respon.data)
+        setProduk(respon.data.filter((item)=>item.user_Id === id))
       }
       getAllProduk() 
     } catch (error) {
@@ -30,11 +28,9 @@ function DataProductSale() {
   },[])
 
   const navigate = useNavigate()
-  
-=======
 
-  const navigate = useNavigate();
->>>>>>> 4fe5f1aa0e4f83700089e5a08a0f8058dd735bc4
+  console.log(produk);
+  
   return (
     <>
       <div className="row ms-0 ms-md-3 g-md-3 g-0 justify-content-around justify-content-sm-start">
