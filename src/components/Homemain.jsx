@@ -31,7 +31,7 @@ export default function Homemain(){
         infinite: false,
         speed: 500,
         slidesToShow: 6,
-        draggable: true,
+        draggable: false,
         slide:'div',
         slidesToScroll: 1,
         arrows: false,
@@ -103,27 +103,27 @@ export default function Homemain(){
             <div className="home-layout">
                 <h4>Telusuri Kategori</h4>
                 <Slider {...settings}>
-                    <div className="category-btn semua">
+                    <div className="category-btn">
                         <FiSearch style={{width: '20px', height: '20px'}}/>
                         Semua
                     </div>
-                    <div className="category-btn hobi">
+                    <div className="category-btn">
                         <FiSearch style={{width: '20px', height: '20px'}}/>
                         Hobi
                     </div>
-                    <div className="category-btn kendaraan">
+                    <div className="category-btn">
                         <FiSearch style={{width: '20px', height: '20px'}}/>
                         Kendaraan
                     </div>
-                    <div className="category-btn baju">
+                    <div className="category-btn">
                         <FiSearch style={{width: '20px', height: '20px'}}/>
                         Baju
                     </div>
-                    <div className="category-btn elektronik">
+                    <div className="category-btn">
                         <FiSearch style={{width: '20px', height: '20px'}}/>
                         Elektronik
                     </div>
-                    <div className="category-btn kesehatan">
+                    <div className="category-btn">
                         <FiSearch style={{width: '20px', height: '20px'}}/>                  
                         Kesehatan
                     </div>
