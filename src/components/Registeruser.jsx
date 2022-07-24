@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearRegister, register } from "../actions/auth";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import { useRef } from "react";
 
 export default function Registeruser() {
   const dispatch = useDispatch();
@@ -22,6 +25,8 @@ export default function Registeruser() {
     unrevPassword(!revPassword);
   };
 
+  const form = useRef();
+
   useEffect(() => {
     setTimeout(() => {
       dispatch(clearRegister());
@@ -31,6 +36,9 @@ export default function Registeruser() {
   const handleRegister = (e) => {
     e.preventDefault();
     setLoading(true);
+
+    form.current.validateAll();
+
     dispatch(register(fullname, email, password, username))
       .then(() => {
         setFullname("");
@@ -48,6 +56,16 @@ export default function Registeruser() {
         setUsername(username);
         setLoading(false);
       });
+  };
+
+  const required = (value) => {
+    if (!value) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This field is required!
+        </div>
+      );
+    }
   };
 
   return (
@@ -86,10 +104,10 @@ export default function Registeruser() {
           </header>
           <div className="login-form">
             <p data-testid="header" className="masuk">Daftar</p>
-            <form onSubmit={handleRegister}>
+            <Form onSubmit={handleRegister} ref={form}>
               <div className="nama">
                 <label htmlFor="nama">Nama</label>
-                <input
+                <Input
                   id="nama"
                   name="nama"
                   type="text"
@@ -98,11 +116,12 @@ export default function Registeruser() {
                   onChange={(e) => {
                     setFullname(e.target.value);
                   }}
+                  validations={[required]}
                 />
               </div>
               <div className="username">
                 <label htmlFor="username">Username</label>
-                <input
+                <Input
                   id="username"
                   name="username"
                   type="text"
@@ -111,11 +130,12 @@ export default function Registeruser() {
                   onChange={(e) => {
                     setUsername(e.target.value);
                   }}
+                  validations={[required]}
                 />
               </div>
               <div className="email">
                 <label htmlFor="email">Email</label>
-                <input
+                <Input
                   id="email"
                   name="email"
                   type="text"
@@ -124,11 +144,12 @@ export default function Registeruser() {
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
+                  validations={[required]}
                 />
               </div>
               <div className="pass">
                 <label htmlFor="pass">Password</label>
-                <input
+                <Input
                   id="pass"
                   type={revPassword ? "text" : "password"}
                   value={password || ""}
@@ -136,6 +157,7 @@ export default function Registeruser() {
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}
+                  validations={[required]}
                 />
                 <i id="rev-pass" className="pass-eye">
                   <svg
@@ -175,7 +197,7 @@ export default function Registeruser() {
               ) : (
                 ""
               )}
-            </form>
+            </Form>
             <p className="sign-acc">
               Sudah punya akun?
               <span>

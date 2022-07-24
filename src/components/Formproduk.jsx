@@ -197,7 +197,7 @@ export default function Formproduk(){
                             {imagePreview && (
                                 imagePreview.map((image) => {
                                     return(
-                                        <div key={image} className='preview col-6 col-md-12 col-lg-12 p-0 ms-4'>
+                                        <div key={image} className='preview col-4 col-md-12 col-lg-12 p-0 ms-4'>
                                             <img
                                                 src={image} alt=""
                                                 style={ {width: "100%", height: "100%", objectFit: "fill", borderRadius: "12%"} }
