@@ -36,7 +36,7 @@ export default function Homecard({ klik }) {
                   alt="Item"
                 />
                 <h5 style={{ fontWeight: "600" }}>
-                  <EllipsisText text={res.product_name} length={"16"} />
+                  <EllipsisText text={res.product_name} length={16} />
                 </h5>
                 <h6>Category</h6>
                 <h5>{res.product_harga}</h5>

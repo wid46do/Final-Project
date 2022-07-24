@@ -28,6 +28,8 @@ function DataProductList() {
     getDataList();
   }, []);
 
+  
+
   return (
     <>
       <div className="row ms-0 ms-md-3 g-md-3 g-0 justify-content-around justify-content-sm-start">
