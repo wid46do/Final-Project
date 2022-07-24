@@ -6,6 +6,9 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrorLogin, login, logout } from "../actions/auth";
 import { Link } from "react-router-dom";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
 
 export default function Loginuser() {
   const [revPassword, unrevPassword] = useState(false);
@@ -21,6 +24,18 @@ export default function Loginuser() {
   const [loading, setLoading] = useState("");
 
   const errorRef = useRef();
+
+  const form = useRef();
+
+  const required = (value) => {
+    if (!value) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This field is required!
+        </div>
+      );
+    }
+  };
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -40,6 +55,9 @@ export default function Loginuser() {
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
+
+    form.current.validateAll();
+    
     dispatch(login(username, password))
       .then(() => {
         navigate("/");
@@ -85,23 +103,25 @@ export default function Loginuser() {
           </header>
           <div className="login-form">
             <p data-testid="header" className="masuk">Masuk</p>
-            <form onSubmit={handleLogin}>
+            <Form onSubmit={handleLogin} ref={form}>
               <div className="email">
                 <label htmlFor="email">Email</label>
-                <input
+                <Input
                   name="email"
                   type="text"
                   placeholder="Contoh: johndee@gmail.com"
                   onChange={(e) => setUsername(e.target.value)}
+                  validations={[required]}
                 />
               </div>
               <div className="pass">
                 <label htmlFor="pass">Password</label>
-                <input
+                <Input
                   id="pass"
                   type={revPassword ? "text" : "password"}
                   placeholder="Masukkan Password"
                   onChange={(e) => setPassword(e.target.value)}
+                  validations={[required]}
                 />
                 <i id="rev-pass" className="pass-eye">
                   <svg
@@ -137,7 +157,7 @@ export default function Loginuser() {
               {authError !== false && (
                 <p className="error-login">{authError}</p>
               )}
-            </form>
+            </Form>
             <p className="sign-acc">
               Belum punya akun?
               <span>
