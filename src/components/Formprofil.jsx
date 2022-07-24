@@ -30,7 +30,7 @@ export default function Formprofil() {
 
   useEffect(() => {
     if (dataProfile === false) {
-      dispatch(getProfile());
+      dispatch(getProfile(user_id));
       return;
     }
     setAvatar(dataProfile.fotoProfile);
@@ -94,8 +94,8 @@ export default function Formprofil() {
     //   });
 
     axios({
-      method: "put",
-      url: "https://secondhand6.herokuapp.com/user/update/4",
+      method: "post",
+      url: `https://secondhand6.herokuapp.com/user/update/{user_Id}?user_Id=${user_id}`,
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     })
@@ -109,7 +109,7 @@ export default function Formprofil() {
       });
   };
 
-  // console.log(dataProfile);
+  console.log(dataProfile);
 
   return (
     <>

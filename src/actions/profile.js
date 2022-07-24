@@ -5,6 +5,7 @@ import { ActionTypes } from "../constant/action-types";
 const token = JSON.parse(localStorage.getItem("token"));
 
 export const getProfile = (id) => (dispatch) => {
+
     return axios
         .get(`https://secondhand6.herokuapp.com/user/${id}`)
         .then((response) => {
@@ -27,6 +28,15 @@ export const getProfile = (id) => (dispatch) => {
         });
 };
 
+export const clearProfile = () => {
+  return {
+    type: ActionTypes.CLEAR_PROFILE,
+    payload: {
+      data: false,
+      errorMessage: false,
+    },
+  };
+};
 export const getPenjual = (idPenjual) => (dispatch) => {
     return axios
         .get(`https://secondhand6.herokuapp.com/user/${idPenjual}`)

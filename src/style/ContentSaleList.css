@@ -23,6 +23,10 @@
   border-radius: 16px;
 }
 
+.category span:hover {
+  cursor: context-menu;
+}
+
 .shadow-bottom {
   border-bottom: 1px solid #d0d0d0;
 }

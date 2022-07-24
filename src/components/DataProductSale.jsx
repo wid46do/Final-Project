@@ -8,6 +8,7 @@ import { getProduk } from "../actions/produk";
 import "../style/DataProductSale.css";
 
 function DataProductSale() {
+<<<<<<< HEAD
   const [ produk, setProduk ] = useState([])
   const { dataProduk } = useSelector((state)=>state.produk)
   const dispatch = useDispatch()
@@ -30,10 +31,20 @@ function DataProductSale() {
 
   const navigate = useNavigate()
   
+=======
+
+  const navigate = useNavigate();
+>>>>>>> 4fe5f1aa0e4f83700089e5a08a0f8058dd735bc4
   return (
     <>
       <div className="row ms-0 ms-md-3 g-md-3 g-0 justify-content-around justify-content-sm-start">
-        <div className="card-add-product p-2 ms-0 ms-sm-3" onClick={()=>navigate("/produk")}>
+        <div
+          className="card-add-product p-2 ms-0 ms-sm-3"
+          onClick={() => {
+            navigate("/produk");
+          }}
+        >
+
           <FiPlus className="color-gray" />
           <p className="font-size-14 color-gray">Tambah Produk</p>
         </div>
