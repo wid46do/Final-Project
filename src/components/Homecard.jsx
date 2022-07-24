@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../actions/search";
+import EllipsisText from "react-ellipsis-text";
 
 export default function Homecard({ klik }) {
   const id = JSON.parse(localStorage.getItem("userId"));
@@ -34,7 +35,9 @@ export default function Homecard({ klik }) {
                   className="item-img"
                   alt="Item"
                 />
-                <h5 style={{ fontWeight: "600" }}>{res.product_name}</h5>
+                <h5 style={{ fontWeight: "600" }}>
+                  <EllipsisText text={res.product_name} length={"16"} />
+                </h5>
                 <h6>Category</h6>
                 <h5>{res.product_harga}</h5>
               </div>
