@@ -1,8 +1,6 @@
 import "../style/riostyle.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Clockone from "../images/clock1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../actions/search";
 

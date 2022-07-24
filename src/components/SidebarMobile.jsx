@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../style/SidebarMobile.css";
 import { FiX } from "react-icons/fi";
 
