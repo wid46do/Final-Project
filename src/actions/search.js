@@ -48,7 +48,7 @@ export const getData = (id, klik) => (dispatch) => {
     });
 };
 
-export const searchData = (data) => (dispatch) => {
+export const searchData = (data, id) => (dispatch) => {
   return axios({
     method: "post",
     data: {
@@ -61,7 +61,7 @@ export const searchData = (data) => (dispatch) => {
       dispatch({
         type: ActionTypes.SEARCH_PRODUCT_SUCCESS,
         payload: {
-          data: response.data,
+          data: response.data.filter((item) => item.user_Id !== id),
           err: false,
         },
       });

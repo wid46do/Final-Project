@@ -35,7 +35,7 @@ function DataProductSold() {
           <div className="w-100 d-flex flex-column align-items-center justify-content-center mt-3">
             <img src="/images/wait.png" alt="image" />
             <p className="font-size-14 mt-3">
-              Belum ada produkmu yang diminati nih, sabar ya rejeki nggak kemana
+              Belum ada produkmu yang terjual nih, sabar ya rejeki nggak kemana
               kok
             </p>
           </div>
