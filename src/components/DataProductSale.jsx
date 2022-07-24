@@ -49,7 +49,7 @@ function DataProductSale() {
             <div key={produk.product_id} className="card-sale p-2 ms-0 ms-sm-3">
               <div className="h-70 w-100 mb-3">
                 <img
-                  src={produk.product_gambar}
+                  src={produk.product_gambar[0]?.gambar_url}
                   alt=""
                   className="img-card"
                 />
