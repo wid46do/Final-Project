@@ -5,7 +5,7 @@ import { FiPlus } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import "../style/DataProductSale.css";
-import LinesEllipsis from 'react-lines-ellipsis'
+import EllipsisText from "react-ellipsis-text";
 
 function DataProductSale() {
   const [produk, setProduk] = useState([]);
@@ -56,12 +56,7 @@ function DataProductSale() {
                 />
               </div>
               <div className="h-20">
-                {/* <h5 className="font-size-14 mb-1">{produk.product_name}</h5> */}
-                <LinesEllipsis
-                  text={produk.product_name}
-                  length={16}
-                  ellipsis='...'
-                />
+                <EllipsisText text={produk.product_name} length={16} />
                 <p className="font-size-10 color-gray mb-2">Aksesoris</p>
                 <p className="font-size-14 ">{produk.product_harga}</p>
               </div>

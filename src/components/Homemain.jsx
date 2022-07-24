@@ -130,7 +130,7 @@ export default function Homemain({ dataSearch }) {
           </div>
           {category?.map((item, index) => {
             return (
-              <div className="category-btn">
+              <div key={index} className="category-btn">
                 <div
                   className="category-btn-inside"
                   key={index}
