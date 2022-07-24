@@ -26,17 +26,17 @@ function ContentSaleList({ changeWidth, setVisible }) {
     slidesToScroll: 1,
   };
 
-  const {dataProfile} = useSelector((state)=>state.profile)
+  const { dataProfile } = useSelector((state) => state.profile);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const id = JSON.parse(localStorage.getItem("userId"));
 
-  useEffect(()=>{
-    dispatch(getProfile(id))
-  },[])
+  useEffect(() => {
+    dispatch(getProfile(id));
+  }, []);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [menu, setMenu] = useState("all");
 
@@ -67,7 +67,12 @@ function ContentSaleList({ changeWidth, setVisible }) {
                     <p className="city-seller">{dataProfile.kota}</p>
                   </div>
                 </div>
-                <button onClick={()=>navigate("/profile")} className="btn-sale-edit">Edit</button>
+                <button
+                  onClick={() => navigate("/profile")}
+                  className="btn-sale-edit"
+                >
+                  Edit
+                </button>
               </div>
             </div>
           </div>
@@ -114,19 +119,31 @@ function ContentSaleList({ changeWidth, setVisible }) {
             ) : (
               <Slider {...settings}>
                 <div className="list-category">
-                  <div>
+                  <div
+                    onClick={() => {
+                      setMenu("all");
+                    }}
+                  >
                     <FiBox className="me-2 font-size-20" />
                     <span className="font-size-14">Produk</span>
                   </div>
                 </div>
                 <div className="list-category">
-                  <div>
+                  <div
+                    onClick={() => {
+                      setMenu("minat");
+                    }}
+                  >
                     <FiHeart className="me-2 font-size-20" />
                     <span className="font-size-14">Diminati</span>
                   </div>
                 </div>
                 <div className="list-category">
-                  <div>
+                  <div
+                    onClick={() => {
+                      setMenu("sold");
+                    }}
+                  >
                     <FiDollarSign className="me-2 font-size-20" />
                     <span className="font-size-14">Terjual</span>
                   </div>
