@@ -185,10 +185,6 @@ body {
 
 /* Home Style */
 .home-header {
-  position: fixed;
-  top: 0;
-  z-index: 99;
-  background-color: white;
   width: 100%;
   height: 84px;
   display: flex;
@@ -345,6 +341,9 @@ body {
   cursor: pointer;
   font-size: 0.875rem;
 }
+.slick-slide {
+  margin-left: 1em;
+}
 /* .category-btn svg{
     margin-right: 0.75em;
 } */
@@ -438,6 +437,9 @@ body {
   font-weight: 700;
   margin-bottom: 0;
 }
+.homecard-container {
+  height: 100vh;
+}
 .home-category {
   display: flex;
   flex-direction: row;
@@ -479,10 +481,10 @@ body {
   display: grid;
   width: 100%;
   height: 80%;
-  column-gap: 0.75em;
+  column-gap: 1em;
   row-gap: 1em;
   grid-template-columns: repeat(auto-fill, minmax(15%, 15.5%));
-  grid-template-rows: repeat(auto-fill, minmax(45%, 15.5%));
+  /* grid-template-rows: repeat(auto-fill, minmax(45%, 15.5%)); */
 }
 .sell-btn {
   display: flex;
@@ -868,6 +870,7 @@ body {
     font-weight: 500;
     margin-left: 1em;
   }
+
   .homegrid-container {
     /* position: absolute; */
     width: 95%;
@@ -877,7 +880,7 @@ body {
     margin-right: auto;
     padding-left: 1.5%;
     grid-template-columns: repeat(auto-fill, minmax(47%, 40%));
-    grid-template-rows: repeat(auto-fill, minmax(33%, 15%));
+    /* grid-template-rows: repeat(auto-fill, minmax(33%, 10%)); */
   }
   .homegrid-container::-webkit-scrollbar {
     width: 3px;

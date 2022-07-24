@@ -25,16 +25,13 @@ import Banner5 from "../images/banner-5.png";
 import Clockone from "../images/clock1.png";
 import { FiSearch } from "react-icons/fi";
 import { BsPlusLg } from "react-icons/bs";
-import { useEffect } from "react";
-import axios from "axios";
-
 export default function Homemain({ dataSearch }) {
   const navigate = useNavigate();
   let settings = {
     infinite: false,
     speed: 500,
     slidesToShow: 6,
-    draggable: true,
+    draggable: false,
     slide: "div",
     slidesToScroll: 1,
     arrows: false,
@@ -52,23 +49,9 @@ export default function Homemain({ dataSearch }) {
       },
     ],
   };
-  const [category, setCategory] = useState([]);
-
-  const getCategory = () => {
-    axios
-      .get("https://secondhand6.herokuapp.com/category/getAll")
-      .then((response) => setCategory(response))
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    getCategory();
-  }, []);
-
   return (
     <>
       <Swiper
-        style={{ marginTop: "120px" }}
         effect={"coverflow"}
         grabCursor={true}
         centeredSlides={true}
@@ -136,19 +119,19 @@ export default function Homemain({ dataSearch }) {
             <FiSearch style={{ width: "20px", height: "20px" }} />
             Kendaraan
           </div>
-          <div className="category-btn baju">
+          <div className="category-btn">
             <FiSearch style={{ width: "20px", height: "20px" }} />
             Baju
           </div>
-          <div className="category-btn elektronik">
+          <div className="category-btn">
             <FiSearch style={{ width: "20px", height: "20px" }} />
             Elektronik
           </div>
-          <div className="category-btn kesehatan">
+          <div className="category-btn">
             <FiSearch style={{ width: "20px", height: "20px" }} />
             Kesehatan
           </div>
-          {/* <div className="holder-category"></div> */}
+          <div className="holder-category"></div>
         </Slider>
 
         <div className="homecard-container">

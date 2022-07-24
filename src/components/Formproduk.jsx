@@ -20,7 +20,7 @@ export default function Formproduk() {
     category_id: 0,
     product_deskripsi: "",
     statusProduct: "DIJUAL",
-    user_id: 1,
+    user_Id: 0,
     product_lokasi: "",
   });
 
@@ -74,7 +74,6 @@ export default function Formproduk() {
     }
     setInputProduk({ ...inputProduk });
   };
-  console.log(inputProduk);
 
   useEffect(() => {
     const getCategory = async () => {
@@ -95,23 +94,27 @@ export default function Formproduk() {
 
   const navigate = useNavigate();
 
+  const idUser = JSON.parse(localStorage.getItem("userId"));
+
   const upload = async (id) => {
     try {
       let formData = new FormData();
-      console.log(inputProduk);
 
       Object.keys(inputProduk).forEach((key) => {
         if (id === "preview") {
           inputProduk.statusProduct = "TERJUAL";
+        } else if (key === "user_Id") {
+          inputProduk.user_Id = idUser;
         }
         setInputProduk({ ...inputProduk });
         formData.append(key, inputProduk[key]);
       });
 
-      console.log(imageFiles);
       imageFiles.forEach((imageFile) => {
         formData.append("product_gambar", imageFile);
       });
+
+      navigate("/daftar-jual");
 
       const res = await axios.post(
         "https://secondhand6.herokuapp.com/product/add",
@@ -146,7 +149,7 @@ export default function Formproduk() {
       <div className="d-flex justify-content-center">
         <Form className="profil-form" onSubmit={(e) => e.preventDefault()}>
           <Form.Group>
-            <Form.Label>Nama Produk</Form.Label>
+            <Form.Label data-testid="formLabel">Nama Produk</Form.Label>
             <Form.Control
               type="text"
               placeholder="Nama Produk"
@@ -244,7 +247,7 @@ export default function Formproduk() {
             <div className="porduk-btn d-grid col-6">
               <Button
                 className="form-button2 bg-light button-border text-dark"
-                onClick={() => upload("preview")}
+                // onClick={()=>upload("preview")}
               >
                 Preview
               </Button>
