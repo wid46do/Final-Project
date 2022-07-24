@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import { FiPlus } from "react-icons/fi";
+import { useNavigate } from "react-router";
 import "../style/DataProductSale.css";
 
 function DataProductSale() {
+
+  const navigate = useNavigate();
   return (
     <>
       <div className="row ms-0 ms-md-3 g-md-3 g-0 justify-content-around justify-content-sm-start">
-        <div className="card-add-product p-2 ms-0 ms-sm-3">
+        <div
+          className="card-add-product p-2 ms-0 ms-sm-3"
+          onClick={() => {
+            navigate("/produk");
+          }}
+        >
+
           <FiPlus className="color-gray" />
           <p className="font-size-14 color-gray">Tambah Produk</p>
         </div>

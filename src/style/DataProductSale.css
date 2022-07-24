@@ -18,6 +18,10 @@
   align-items: center;
 }
 
+.card-add-product :hover {
+  cursor: context-menu;
+}
+
 .card-sale:hover .img-card {
   object-fit: contain;
   transform: scale(1);

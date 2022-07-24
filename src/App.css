@@ -7,6 +7,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+.bg-gray {
+  background-color: #eeeeee;
+}
+
 .color-gray {
   color: #8a8a8a;
 }
@@ -46,4 +50,8 @@
 
 .cardbody {
   max-height: 100px;
+}
+
+.spinner-border {
+  color: white;
 }

@@ -1,12 +1,29 @@
 import React from "react";
 import "../style/NavbarSeller.css";
 import { FiSearch, FiList, FiBell, FiUser } from "react-icons/fi";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { clearProduk } from "../actions/produk";
+import { clearProfile } from "../actions/profile";
 
 function NavbarSeller() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="navbar-seller w-100 d-none d-sm-flex align-items-sm-center">
-        <img src="./images/icon_secondhand.png" alt="logo" />
+        {/* <Link to={"/"}> */}
+        <img
+          src="/images/Rectangle-127.png"
+          alt="logo"
+          onClick={() => {
+            dispatch(clearProduk());
+            dispatch(clearProfile());
+            navigate("/");
+          }}
+        />
+        {/* </Link> */}
         <div className="d-flex justify-content-between w-100">
           <div className="navbar-search d-flex justify-content-between align-items-center ms-4 px-md-3 py-md-4 px-2 py-3">
             <input type="text" placeholder="Cari di sini ..." />

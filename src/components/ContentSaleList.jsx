@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../style/ContentSaleList.css";
 import {
   FiBox,
@@ -9,6 +9,14 @@ import {
 } from "react-icons/fi";
 import DataProductSale from "./DataProductSale";
 import Slider from "react-slick";
+import { useNavigate } from "react-router";
+import DataProductList from "./DataProductList";
+import DataProductSold from "./DataProductSold";
+
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfile } from "../actions/profile";
+import profile from "../reducer/profile";
 
 function ContentSaleList({ changeWidth, setVisible }) {
   const settings = {
@@ -18,6 +26,21 @@ function ContentSaleList({ changeWidth, setVisible }) {
     slidesToShow: 2.5,
     slidesToScroll: 1,
   };
+
+  const {dataProfile} = useSelector((state)=>state.profile)
+  console.log(dataProfile);
+
+  const dispatch = useDispatch()
+
+  const id = JSON.parse(localStorage.getItem("userId"));
+
+  useEffect(()=>{
+    dispatch(getProfile(id))
+  },[])
+
+  const navigate = useNavigate()
+
+  const [menu, setMenu] = useState("all");
 
   return (
     <>
@@ -37,16 +60,16 @@ function ContentSaleList({ changeWidth, setVisible }) {
               <div className="info-seller d-flex justify-content-between align-items-center p-3 mx-4 mx-md-0">
                 <div className="d-flex align-items-center">
                   <img
-                    src="./images/image_user.jpg"
+                    src={dataProfile.fotoProfile}
                     alt="img-user"
                     className="image-user me-3"
                   />
                   <div className="d-flex flex-column justify-content-center">
-                    <p className="name-seller">Nama Penjual</p>
-                    <p className="city-seller">Kota</p>
+                    <p className="name-seller">{dataProfile.full_name}</p>
+                    <p className="city-seller">{dataProfile.kota}</p>
                   </div>
                 </div>
-                <button className="btn-sale-edit">Edit</button>
+                <button onClick={()=>navigate("/profile")} className="btn-sale-edit">Edit</button>
               </div>
             </div>
           </div>
@@ -56,19 +79,34 @@ function ContentSaleList({ changeWidth, setVisible }) {
             {changeWidth >= 576 ? (
               <div className="category p-4 mx-0 mx-sm-4 mx-md-0">
                 <h6 className="mb-4">Kategori</h6>
-                <div className="d-flex justify-content-between align-items-center mb-3 pb-3 shadow-bottom">
+                <div
+                  className="d-flex justify-content-between align-items-center mb-3 pb-3 shadow-bottom"
+                  onClick={() => {
+                    setMenu("all");
+                  }}
+                >
                   <span>
                     <FiBox className="me-2 color-gray" /> Semua Produk
                   </span>
                   <FiChevronRight className="color-gray" />
                 </div>
-                <div className="d-flex justify-content-between align-items-center mb-3 pb-3 shadow-bottom">
+                <div
+                  className="d-flex justify-content-between align-items-center mb-3 pb-3 shadow-bottom"
+                  onClick={() => {
+                    setMenu("minat");
+                  }}
+                >
                   <span>
                     <FiHeart className="me-2 color-gray" /> Diminati
                   </span>
                   <FiChevronRight className="color-gray" />
                 </div>
-                <div className="d-flex justify-content-between align-items-center pb-3">
+                <div
+                  className="d-flex justify-content-between align-items-center pb-3"
+                  onClick={() => {
+                    setMenu("sold");
+                  }}
+                >
                   <span>
                     <FiDollarSign className="me-2 color-gray" /> Terjual
                   </span>
@@ -99,7 +137,13 @@ function ContentSaleList({ changeWidth, setVisible }) {
             )}
           </div>
           <div className="col-12 col-md-9 px-0 px-sm-3 px-md-0 mt-4 mt-md-0 data-product">
-            <DataProductSale />
+            {menu === "all" ? (
+              <DataProductSale />
+            ) : menu === "minat" ? (
+              <DataProductList />
+            ) : (
+              <DataProductSold />
+            )}
           </div>
         </div>
       </div>
