@@ -61,21 +61,23 @@ export default function Navhomelogged() {
               />
             </div>
           </div>
-          <div
-            className={`${openSideBar ? "open-homenav" : "profile-wrapper"}`}
+          
+        </nav>
+        <div
+            className="profile-wrapper"
           >
             <div className="home-menu">
               <h4 className="brand-title">
                 Second Hand
                 <IoClose
                   style={{ width: "24px", height: "24px", cursor: "pointer" }}
-                  onClick={() => setEnableBell(!openSideBar)}
+                  // onClick={() => setEnableBell(!openSideBar)}
                 />
               </h4>
               <ul className="profile-account-wrapper">
                 <li>
-                  <FiList style={{ width: "24px", height: "24px" }} />
                   <Link to={"/daftar-jual"} className="font-dark">
+                    <FiList style={{ width: "24px", height: "24px" }} />
                     <span className="nav-list">Daftar Jual</span>
                   </Link>
                 </li>
@@ -119,9 +121,67 @@ export default function Navhomelogged() {
                 </li>
               </ul>
             </div>
-          </div>
-        </nav>
+        </div>
       </header>
+      <div
+            className={`${openSideBar ? "open-homenav" : "sidebar-wrapper"}`}
+          >
+            <div className="home-menu">
+              <h4 className="brand-title">
+                Second Hand
+                <IoClose
+                  style={{ width: "24px", height: "24px", cursor: "pointer" }}
+                  onClick={() => setEnableBell(!openSideBar)}
+                />
+              </h4>
+              <ul className="profile-account-wrapper">
+                <li>
+                  <Link style={{textDecoration: "none", color: "black"}} to={"/daftar-jual"} className="font-dark">
+                    <FiList style={{ width: "24px", height: "24px" }} />
+                    <span className="nav-list">Daftar Jual</span>
+                  </Link>
+                </li>
+                <li>
+                  <FiBell style={{ width: "24px", height: "24px" }} />
+                  <span className="nav-list">Notifikasi</span>
+                </li>
+                <li onClick={() => dropClose(!dropOpen)}>
+                  <IoPersonOutline style={{ width: "24px", height: "24px" }} />
+                  <span className="nav-list">Akun Saya</span>
+                  <div
+                    className={`${
+                      dropOpen ? "dropdown-open" : "dropdown-closed"
+                    }`}
+                  >
+                    <ul>
+                      <li>
+                        <Link
+                          style={{ textDecoration: "none", color: "#000000" }}
+                          to={"/profile"}
+                        >
+                          Ubah Akun
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          style={{ textDecoration: "none", color: "#000000" }}
+                          to={"/"}
+                        >
+                          Pengaturan Akun
+                        </Link>
+                      </li>
+                      <li
+                        style={{ textDecoration: "none", color: "#000000" }}
+                        onClick={handleLogOut}
+                      >
+                        Keluar
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+        </div>
     </>
   );
 }
