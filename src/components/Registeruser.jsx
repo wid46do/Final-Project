@@ -41,10 +41,6 @@ export default function Registeruser() {
 
     dispatch(register(fullname, email, password, username))
       .then(() => {
-        setFullname("");
-        setEmail("");
-        setPassword("");
-        setUsername("");
         setTimeout(() => {
           navigate("/login");
         }, 2000);
@@ -103,7 +99,9 @@ export default function Registeruser() {
             </svg>
           </header>
           <div className="login-form">
-            <p data-testid="header" className="masuk">Daftar</p>
+            <p data-testid="header" className="masuk">
+              Daftar
+            </p>
             <Form onSubmit={handleRegister} ref={form}>
               <div className="nama">
                 <label htmlFor="nama">Nama</label>
