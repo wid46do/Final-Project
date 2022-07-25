@@ -31,7 +31,6 @@ function PageSaleList() {
     };
   }, [width]);
 
-  console.log(document.body.style.overflow);
   return (
     <>
       <Navhomelogged />

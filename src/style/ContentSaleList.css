@@ -24,7 +24,7 @@
 }
 
 .category span:hover {
-  cursor: context-menu;
+  cursor: pointer;
 }
 
 .shadow-bottom {

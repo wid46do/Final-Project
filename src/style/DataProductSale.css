@@ -19,7 +19,11 @@
 }
 
 .card-add-product :hover {
-  cursor: context-menu;
+  cursor: pointer;
+}
+
+.card-sale:hover {
+  cursor: pointer;
 }
 
 .card-sale:hover .img-card {

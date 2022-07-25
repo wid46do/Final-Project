@@ -11,7 +11,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { FiX } from "react-icons/fi";
 import { addPenawaran } from "../actions/penawaran";
-import ModalImage from "react-modal-image";
+import axios from "axios";
 
 const customStyles = {
   overlay: {
@@ -34,7 +34,8 @@ const customStyles = {
   },
 };
 
-function ContentPageProduct({ changeWidth }) {
+function ContentEditProduct({ changeWidth }) {
+  const params = useParams();
   const user_id = JSON.parse(localStorage.getItem("userId"));
   const navigate = useNavigate();
 
@@ -48,7 +49,6 @@ function ContentPageProduct({ changeWidth }) {
   const [categoryId, setCategoryId] = useState();
   const [offer, setOffer] = useState();
   const [idPenjual, setIdPenjual] = useState();
-  const [modalIsOpen, setIsOpen] = useState(false);
 
   const settings = {
     infinite: true,
@@ -88,94 +88,18 @@ function ContentPageProduct({ changeWidth }) {
     }
   }, [categoryId]);
 
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  const sendData = () => {
-    const harga = parseInt(offer);
-    const data = JSON.stringify({
-      harga_penawaran: harga,
-      product_id: productId,
-      user_id,
-    });
-
-    dispatch(addPenawaran(data));
-    closeModal();
+  const deleteProduk = () => {
+    axios
+      .delete(`https://secondhand6.herokuapp.com/product/delete/${params.id}`)
+      .then(() => {
+        navigate("/daftar-jual");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
     <>
       <div className="content-page-product">
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          style={customStyles}
-          ariaHideApp={false}
-        >
-          <div className="mx-1">
-            <div className="d-flex justify-content-end">
-              <FiX onClick={closeModal} />
-            </div>
-            <p className="mt-4 fw-normal font-size-14">
-              Masukkan Harga Tawarmu
-            </p>
-            <p className="mt-3 font-size-14 color-gray">
-              Harga tawaranmu akan diketahui penjual, jika penjual cocok kamu
-              akan segera dihubungi penjual.
-            </p>
-            <div
-              className="mt-3 d-flex p-3 bg-gray"
-              style={{ borderRadius: "16px" }}
-            >
-              <img
-                src={
-                  dataProduk.product_gambar !== undefined
-                    ? dataProduk.product_gambar[0]?.gambar_url
-                    : ""
-                }
-                alt="icons"
-                style={{ width: "48px", height: "48px", borderRadius: "12px" }}
-              />
-              <div className="ms-3">
-                <p className="font-size-14 fw-bold mb-0">
-                  {dataProduk.product_name}
-                </p>
-                <p className="font-size-14 mb-0">
-                  Rp. {dataProduk.product_harga}
-                </p>
-              </div>
-            </div>
-            <div className="mt-4">
-              <span className="font-size-12">Harga Tawar</span>
-              <input
-                type={"text"}
-                onChange={(e) => {
-                  setOffer(e.target.value);
-                }}
-                style={{
-                  borderRadius: "16px",
-                  border: "1px solid #D0D0D0",
-                  padding: "12px 10px",
-                  width: "100%",
-                  marginTop: "4px",
-                }}
-                placeholder={"Rp 0,00"}
-              />
-            </div>
-            <button
-              type="button"
-              className="btn-product-send mt-4"
-              onClick={sendData}
-            >
-              Kirim
-            </button>
-          </div>
-        </Modal>
         <div className="container-lg container-page-product px-0">
           <div className="row gx-0">
             <div className="col-12 d-flex justify-content-center">
@@ -197,12 +121,6 @@ function ContentPageProduct({ changeWidth }) {
                             className="imgs"
                             key={item.gambar_id}
                           />
-                          // <ModalImage
-                          //   small={item.gambar_url}
-                          //   large={item.gambar_url}
-                          //   key={item.gambar_id}
-                          //   className="imgs"
-                          // />
                         );
                       })
                     )}
@@ -218,18 +136,19 @@ function ContentPageProduct({ changeWidth }) {
                       <p className="price-product">
                         Rp. {dataProduk.product_harga}
                       </p>
-                      {/* <button type="button" className="btn-product-send">
-                        Terbitkan
-                      </button>
-                      <button type="button" className="btn-product-edit">
-                        Edit
-                      </button> */}
                       <button
                         type="button"
                         className="btn-product-send"
-                        onClick={openModal}
+                        onClick={() => navigate(`/edit-produk/${params.id}`)}
                       >
-                        Saya tertarik dan ingin nego
+                        Edit
+                      </button>
+                      <button
+                        type="button"
+                        className="btn-product-edit"
+                        onClick={deleteProduk}
+                      >
+                        Delete
                       </button>
                     </div>
                   ) : (
@@ -280,16 +199,18 @@ function ContentPageProduct({ changeWidth }) {
               </div>
             </div>
             {changeWidth <= 576 && (
-              <button
-                className="btn-product-send-responsive"
-                type="button"
-                onClick={openModal}
-              >
-                Saya tertarik dan ingin nego
-              </button>
-              // <button className="btn-product-send-responsive" type="button" onClick={()=>}>
-              //   Terbitkan
-              // </button>
+              <div className="btn-responsive-wrapper">
+                <button
+                  className="btn-product-edit-responsive"
+                  type="button"
+                  onClick={() => navigate(`/edit-produk/${params.id}`)}
+                >
+                  Edit
+                </button>
+                <button className="btn-product-delete-responsive" type="button">
+                  Delete
+                </button>
+              </div>
             )}
           </div>
         </div>
@@ -298,4 +219,4 @@ function ContentPageProduct({ changeWidth }) {
   );
 }
 
-export default ContentPageProduct;
+export default ContentEditProduct;
