@@ -1,122 +1,215 @@
 .form-button {
-    background-color: #7126b5 !important;
-    border-color: #7126b5 !important;
-    border-radius: 16px;
+  background-color: #7126b5 !important;
+  border-color: #7126b5 !important;
+  border-radius: 16px;
 }
 
 .form-button2 {
-    border-radius: 16px;
+  border-radius: 16px;
 }
 
 .input-dropzone {
-    background-color: #e2d4f0;
-    width: 96px;
-    height: 96px;
-    border-radius: 12%;
+  background-color: #e2d4f0;
+  width: 96px;
+  height: 96px;
+  border-radius: 12%;
 }
 
 .bg-transparent {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .profil-form {
-    width: 600px;
-    height: auto;
+  width: 600px;
+  height: auto;
 }
 
 .form-input {
-    border-radius: 13px;
+  border-radius: 13px;
 }
 
 .bidder {
-    border-radius: 16px;
+  border-radius: 16px;
 }
 
 .produk-dropzone {
-    width: 96px;
-    height: 96px;
-    border-radius: 10%;
-    border: dashed;
-    border-color: grey;
+  width: 96px;
+  height: 96px;
+  border-radius: 10%;
+  border: dashed;
+  border-color: grey;
 }
 
 .button-border {
-    border-color: #7126b5;
+  border-color: #7126b5;
 }
 
 .produk-btn {
-    width: 500px;
-    height: auto;
+  width: 500px;
+  height: auto;
 }
 
 .ket {
-    width: 100%;
+  width: 100%;
 }
 
 .ket {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .time p {
-    font-size: 10px;
+  font-size: 10px;
 }
 
 .offer-btn {
-    width: 150px;
-    height: auto;
+  width: 150px;
+  height: auto;
 }
 
 .page-header {
-    margin-left: 80px;
+  margin-left: 80px;
 }
 
 .input-dropzone img {
-    /* width: 100%;
+  /* width: 100%;
     height: 100%; */
-    border-radius: 12%;
-    background-color: transparent;
-    object-fit: fill;
+  border-radius: 12%;
+  background-color: transparent;
+  object-fit: fill;
 }
 
 .preview {
-    width: 96px;
-    height: 96px;
-    border-radius: 12%;
+  width: 96px;
+  height: 96px;
+  border-radius: 12%;
 }
 
 .select {
-    border-radius: 12%;
+  border-radius: 12%;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .notif {
-    border-bottom: 1px solid #E5E5E5;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .notif p {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .notif-desc {
-    width: 100%;
+  width: 100%;
 }
 
 .produk-name {
-    overflow: hidden;
-    text-overflow: ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (min-width: 992px) {
-    .arrow {
-        margin-left: 200px;
-    }
-    .offer {
-        width: 600px;
-        height: auto;
-    }
+  .arrow {
+    margin-left: 200px;
+  }
+  .offer {
+    width: 600px;
+    height: auto;
+  }
+}
+
+/* style untuk upload file */
+
+.images {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.image-uploader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed #ced4da;
+  color: #ced4da;
+  border-radius: 12px;
+  width: 100%;
+  min-width: 9rem;
+  height: 100%;
+  min-height: 9rem;
+  cursor: pointer;
+  font-size: large;
+  flex-basis: 33.33%;
+}
+
+.input-image {
+  display: none;
+}
+
+#img {
+  padding: 0;
+  margin: 0;
+  width: 9rem;
+  height: 9rem;
+}
+
+.grid {
+  padding: 1rem;
+  flex-basis: 33.33%;
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  display: flex;
+  justify-content: center;
+}
+
+.image button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  border: none;
+  color: black;
+  background-color: white;
+  border-bottom-right-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+}
+
+.error {
+  color: red;
+}
+
+@media only screen and (max-width: 604px) {
+  .image-uploader {
+    flex-basis: 45%;
+  }
+  .grid {
+    flex-basis: 45%;
+  }
+  #img {
+    width: 8rem;
+    height: 8rem;
+  }
+}
+
+/* wraper notif */
+.wrapper-notifikasi {
+  /* top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; */
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  /* position: fixed; */
+  z-index: 998;
+  margin-top: -120px;
 }

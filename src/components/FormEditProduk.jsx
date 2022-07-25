@@ -9,13 +9,20 @@ import Select from "react-select";
 import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router";
 import { FiArrowLeft, FiPlus, FiX } from "react-icons/fi";
 import Swal from "sweetalert2";
-export default function Formproduk() {
+
+export default function FormEditProduk() {
+  const params = useParams();
   const [selectedImages, setSelectedImages] = useState([]);
   const [images, setImages] = useState([]);
   const [options, setOptions] = useState([]);
+  const [kategori, setKategori] = useState([]);
+  const [firstKategori, setFirstKategori] = useState([]);
+  const [selectKategori, setSelectKategori] = useState();
   const [inputProduk, setInputProduk] = useState({
+    product_id: params.id,
     product_name: "",
     product_harga: 0,
     category_id: 0,
@@ -24,8 +31,6 @@ export default function Formproduk() {
     user_Id: 0,
     product_lokasi: "",
   });
-  console.log(images);
-  console.log(selectedImages);
 
   const onSelectFile = (event) => {
     const selectedFiles = event.target.files;
@@ -55,10 +60,29 @@ export default function Formproduk() {
   };
 
   useEffect(() => {
+    const getDataProduk = () => {
+      axios
+        .get(`https://secondhand6.herokuapp.com/product/${params.id}`)
+        .then((res) => {
+          setInputProduk({
+            ...inputProduk,
+            product_name: res.data.product_name,
+            product_harga: res.data.product_harga,
+            category_id: res.data.category_id,
+            product_lokasi: res.data.product_lokasi,
+            product_deskripsi: res.data.product_deskripsi,
+          });
+        })
+        .catch((err) => console.log(err));
+    };
+    getDataProduk();
+  }, []);
+  useEffect(() => {
     const getCategory = async () => {
       const respon = await axios.get(
         "https://secondhand6.herokuapp.com/category/getAll"
       );
+      setKategori(respon.data);
       setOptions(
         respon.data.map((category) => {
           return {
@@ -70,6 +94,26 @@ export default function Formproduk() {
     };
     getCategory();
   }, []);
+  useEffect(() => {
+    if (kategori.length !== 0 && inputProduk.category_id !== 0) {
+      setFirstKategori(
+        kategori.filter((item) => item.category_id === inputProduk.category_id)
+      );
+    }
+  }, [kategori]);
+
+  useEffect(() => {
+    if (firstKategori.length !== 0) {
+      setSelectKategori(
+        firstKategori.map((item) => {
+          return {
+            value: item.category_id,
+            label: item.category_name,
+          };
+        })
+      );
+    }
+  }, [firstKategori]);
 
   useEffect(() => {
     if (selectedImages.length > 3) {
@@ -81,7 +125,7 @@ export default function Formproduk() {
 
   const idUser = JSON.parse(localStorage.getItem("userId"));
 
-  const upload = async (id) => {
+  const editProduk = async (id) => {
     try {
       let formData = new FormData();
 
@@ -100,7 +144,7 @@ export default function Formproduk() {
       });
 
       const res = await axios.post(
-        "https://secondhand6.herokuapp.com/product/add",
+        `https://secondhand6.herokuapp.com/product/update?product_id=${params.id}`,
         formData,
         {
           headers: {
@@ -111,7 +155,7 @@ export default function Formproduk() {
       navigate("/daftar-jual");
       return res.data;
     } catch (error) {
-      Swal.fire("Sorry", "Update add produk gagal", "error");
+      Swal.fire("Sorry", "Update produk gagal", "error");
     }
   };
 
@@ -136,6 +180,7 @@ export default function Formproduk() {
             <Form.Label data-testid="formLabel">Nama Produk</Form.Label>
             <Form.Control
               type="text"
+              value={inputProduk.product_name || ""}
               placeholder="Nama Produk"
               className="form-input"
               onChange={(e) => {
@@ -148,6 +193,7 @@ export default function Formproduk() {
             <Form.Label>Harga Produk</Form.Label>
             <Form.Control
               type="text"
+              value={inputProduk.product_harga || ""}
               inputMode="numeric"
               placeholder="Rp 0,00"
               className="form-input"
@@ -161,9 +207,10 @@ export default function Formproduk() {
             <Form.Label>Kategori</Form.Label>
             <Select
               styles={customStyles}
+              value={selectKategori}
               options={options}
-              // isMulti
               onChange={(e) => {
+                setSelectKategori(e);
                 onChangeHandler("category_id", e);
               }}
             />
@@ -173,6 +220,7 @@ export default function Formproduk() {
             <Form.Label>Lokasi</Form.Label>
             <Form.Control
               type="text"
+              value={inputProduk.product_lokasi || ""}
               placeholder="Contoh: Jalan Ikan Hiu 33"
               className="form-input"
               onChange={(e) => {
@@ -185,6 +233,7 @@ export default function Formproduk() {
             <Form.Label>Deskripsi</Form.Label>
             <Form.Control
               as="textarea"
+              value={inputProduk.product_deskripsi || ""}
               placeholder="Deskripsi produk"
               className="form-input"
               onChange={(e) => {
@@ -242,8 +291,8 @@ export default function Formproduk() {
               </Button>
             </div>
             <div className="porduk-btn d-grid col-6">
-              <Button className="form-button" onClick={() => upload("dijual")}>
-                Terbitkan
+              <Button className="form-button" onClick={() => editProduk()}>
+                Edit
               </Button>
             </div>
           </div>

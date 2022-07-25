@@ -61,7 +61,9 @@ export const searchData = (data, id) => (dispatch) => {
       dispatch({
         type: ActionTypes.SEARCH_PRODUCT_SUCCESS,
         payload: {
-          data: response.data.filter((item) => item.user_Id !== id),
+          data: response.data.filter(
+            (item) => item.user_Id !== id && item.statusProduct === "DIJUAL"
+          ),
           err: false,
         },
       });

@@ -147,6 +147,39 @@
   bottom: 2.5vh;
 }
 
+.btn-product-edit-responsive {
+  width: 47.5%;
+  height: 48px;
+  background-color: #7126b5;
+  border: 1px solid #7126b5;
+  color: white;
+  font-size: 0.875rem;
+  padding: 0 24px;
+  border-radius: 16px;
+  margin-bottom: 14px;
+}
+
+.btn-product-delete-responsive {
+  width: 47.5%;
+  height: 48px;
+  background-color: white;
+  border: 1px solid #7126b5;
+  color: #7126b5;
+  font-size: 0.875rem;
+  padding: 0 24px;
+  border-radius: 16px;
+  margin-bottom: 14px;
+}
+
+.btn-responsive-wrapper {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 90%;
+  right: 5%;
+  left: 5%;
+  bottom: 2.5vh;
+}
 @media only screen and (max-width: 1200px) {
   .content-product-top {
     width: 90%;

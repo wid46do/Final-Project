@@ -13,6 +13,8 @@ import "slick-carousel/slick/slick-theme.css";
 import PrivateRoute from "./privateroute/PrivateRoute";
 import PagePenawaran from "./pages/PagePenawaran";
 import Notifikasi from "./pages/Notifikasi";
+import FormEditProduk from "./components/FormEditProduk";
+import PageEditProduk from "./pages/PageEditProduk";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           <Route path="/daftar-jual" element={<PageSaleList />} />
           <Route path="/page-penawaran/:id" element={<PagePenawaran />} />
           <Route path="/notif" element={<Notifikasi />} />
+          <Route path="/edit-produk/:id" element={<FormEditProduk />} />
+          <Route path="/info-produk/:id" element={<PageEditProduk />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

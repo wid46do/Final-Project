@@ -48,68 +48,79 @@ export default function Navhomelogged() {
     getNotifikasi();
   }, []);
 
+  useEffect(() => {
+    if (openNotifikasi === true) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [openNotifikasi]);
+
   return (
     <>
       {openNotifikasi && (
-        <div className="notifikasi pb-4">
-          {dataNotifikasi?.map((item, index) => {
-            return (
-              <div
-                className="d-flex pb-3 mt-4"
-                style={{ borderBottom: "1px solid #E5E5E5" }}
-                key={index}
-              >
-                <img
-                  src={item?.url}
-                  alt="icons"
-                  style={{
-                    width: "48px",
-                    height: "48px",
-                    borderRadius: "12px",
-                  }}
-                  onClick={() => navigate("/offer")}
-                />
-                <div className="ms-3 d-flex justify-content-between w-100">
-                  {item.statusPenawaran === "TOLAK" ? (
-                    <div>
-                      <p className="font-size-10 color-gray mb-1">
-                        Penawaran produk
-                      </p>
-                      <p className="font-size-14 mb-1 text-decoration-line-through">
-                        {item.product_name}
-                      </p>
-                      <p className="font-size-14 mb-1 text-decoration-line-through">
-                        Rp {item.product_harga}
-                      </p>
-                      <p className="font-size-14 mb-1 text-decoration-line-through">
-                        Ditawar Rp {item.penawaran_harga}
+        <>
+          <div className="wrapper-notifikasi" onClick={changeNotifikasi}></div>
+          <div className="notifikasi pb-4">
+            {dataNotifikasi?.map((item, index) => {
+              return (
+                <div
+                  className="d-flex pb-3 mt-4"
+                  style={{ borderBottom: "1px solid #E5E5E5" }}
+                  key={index}
+                >
+                  <img
+                    src={item?.url}
+                    alt="icons"
+                    style={{
+                      width: "48px",
+                      height: "48px",
+                      borderRadius: "12px",
+                    }}
+                    onClick={() => navigate("/offer")}
+                  />
+                  <div className="ms-3 d-flex justify-content-between w-100">
+                    {item.statusPenawaran === "TOLAK" ? (
+                      <div>
+                        <p className="font-size-10 color-gray mb-1">
+                          Penawaran produk
+                        </p>
+                        <p className="font-size-14 mb-1 text-decoration-line-through">
+                          {item.product_name}
+                        </p>
+                        <p className="font-size-14 mb-1 text-decoration-line-through">
+                          Rp {item.product_harga}
+                        </p>
+                        <p className="font-size-14 mb-1 text-decoration-line-through">
+                          Ditawar Rp {item.penawaran_harga}
+                        </p>
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="font-size-10 color-gray mb-1">
+                          Penawaran produk
+                        </p>
+                        <p className="font-size-14 mb-1">{item.product_name}</p>
+                        <p className="font-size-14 mb-1">
+                          Rp {item.product_harga}
+                        </p>
+                        <p className="font-size-14 mb-1">
+                          Ditawar Rp {item.penawaran_harga}
+                        </p>
+                      </div>
+                    )}
+                    <div className="d-flex flex-column align-items-end">
+                      <FiX />
+                      <p className="font-size-10 color-gray mt-1">
+                        {item.dateTime}
                       </p>
                     </div>
-                  ) : (
-                    <div>
-                      <p className="font-size-10 color-gray mb-1">
-                        Penawaran produk
-                      </p>
-                      <p className="font-size-14 mb-1">{item.product_name}</p>
-                      <p className="font-size-14 mb-1">
-                        Rp {item.product_harga}
-                      </p>
-                      <p className="font-size-14 mb-1">
-                        Ditawar Rp {item.penawaran_harga}
-                      </p>
-                    </div>
-                  )}
-                  <div className="d-flex flex-column align-items-end">
-                    <FiX />
-                    <p className="font-size-10 color-gray mt-1">
-                      {item.dateTime}
-                    </p>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        </>
       )}
       <div
         id="overlay"

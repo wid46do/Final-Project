@@ -47,7 +47,11 @@ function DataProductSale() {
         </div>
         {produk?.map((produk) => {
           return (
-            <div key={produk.product_id} className="card-sale p-2 ms-0 ms-sm-3">
+            <div
+              key={produk.product_id}
+              className="card-sale p-2 ms-0 ms-sm-3"
+              onClick={() => navigate(`/info-produk/${produk.product_id}`)}
+            >
               <div className="h-70 w-100 mb-3">
                 <img
                   src={produk.product_gambar[0]?.gambar_url}
@@ -57,7 +61,7 @@ function DataProductSale() {
               </div>
               <div className="h-20">
                 <EllipsisText text={produk.product_name} length={16} />
-                <p className="font-size-10 color-gray mb-2">Aksesoris</p>
+                <p className="font-size-10 color-gray mb-2">Category</p>
                 <p className="font-size-14 ">{produk.product_harga}</p>
               </div>
             </div>
