@@ -57,7 +57,6 @@ export default function Homemain({ dataSearch }) {
     getCategory();
   }, []);
 
-  console.log(category);
   return (
     <>
       <Swiper

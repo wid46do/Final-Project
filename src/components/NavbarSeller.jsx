@@ -30,9 +30,9 @@ function NavbarSeller() {
             <FiSearch className="color-gray ms-1 ms-md-3" />
           </div>
           <div className="navbar-icon-wrapper d-flex justify-content-around align-items-center ms-sm-3 me-3 me-sm-0">
-            <FiList />
+            <FiList onClick={() => navigate("/daftar-jual")} />
             <FiBell className="ms-sm-3" />
-            <FiUser className="ms-sm-3" />
+            <FiUser className="ms-sm-3" onClick={() => navigate("/profile")} />
           </div>
         </div>
       </div>
