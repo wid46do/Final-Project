@@ -124,29 +124,30 @@ export default function Listoffer() {
       statusJual: status,
     });
 
-    axios({
-      method: "post",
-      data: dataStatus,
-      url: "https://secondhand6.herokuapp.com/product/updatestatusproduct",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => {
-        console.log(res.data);
-        setTolak(!tolak);
-        changeModalStatus();
-      })
-      .catch((e) => console.log(e));
-
     // axios({
-    //   method: "delete",
-    //   url: `https://secondhand6.herokuapp.com/penawaran/deletePenawaran/${idPenawaran}`,
+    //   method: "post",
+    //   data: dataStatus,
+    //   url: "https://secondhand6.herokuapp.com/product/updatestatusproduct",
+    //   headers: { "Content-Type": "application/json" },
     // })
     //   .then((res) => {
-    //     console.log(res);
+    //     console.log(res.data);
     //     setTolak(!tolak);
     //     changeModalStatus();
     //   })
     //   .catch((e) => console.log(e));
+
+    axios({
+      method: "delete",
+      url: `https://secondhand6.herokuapp.com/penawaran/deletePenawaran/{penawaranId}?penawaranId=${idPenawaran}`,
+      headers: { "Access-Control-Allow-Origin": "*" },
+    })
+      .then((res) => {
+        console.log(res);
+        setTolak(!tolak);
+        changeModalStatus();
+      })
+      .catch((e) => console.log(e));
   };
 
   return (
