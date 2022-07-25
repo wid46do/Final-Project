@@ -189,10 +189,14 @@ input::-webkit-inner-spin-button {
 
 @media only screen and (max-width: 604px) {
   .image-uploader {
-    flex-basis: 50%;
+    flex-basis: 45%;
   }
   .grid {
-    flex-basis: 50%;
+    flex-basis: 45%;
+  }
+  #img {
+    width: 8rem;
+    height: 8rem;
   }
 }
 
