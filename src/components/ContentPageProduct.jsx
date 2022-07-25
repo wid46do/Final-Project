@@ -11,7 +11,6 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { FiX } from "react-icons/fi";
 import { addPenawaran } from "../actions/penawaran";
-import ModalImage from "react-modal-image";
 
 const customStyles = {
   overlay: {
